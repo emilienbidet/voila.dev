@@ -1,14 +1,22 @@
 {
-  "name": "voila.dev",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "packageManager": "bun@1.2.18",
-  "workspaces": [
-    "projects/*/apps/*",
-    "projects/*/packages/*"
-  ],
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+	"name": "voila.dev",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"packageManager": "bun@1.2.18",
+	"workspaces": [
+		"projects/*/apps/*",
+		"projects/*/packages/*"
+	],
+	"scripts": {
+		"format": "biome format --write",
+		"lint": "biome lint --write",
+		"check": "biome check --write"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.1.1"
+	}
 }
