@@ -4,7 +4,11 @@ import { Separator as BaseSeparator } from "@base-ui-components/react/separator"
 import type { ComponentProps } from "react";
 import { cx } from "..";
 
-export function Separator({ className, orientation = "horizontal", ...props }: ComponentProps<typeof BaseSeparator>) {
+export function Separator({
+	className,
+	orientation = "horizontal",
+	...props
+}: ComponentProps<typeof BaseSeparator>) {
 	return (
 		<BaseSeparator
 			orientation={orientation}

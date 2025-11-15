@@ -10,27 +10,55 @@ function List({ className, ...props }: ComponentProps<"ol">) {
 	return (
 		<ol
 			data-slot="breadcrumb-list"
-			className={cx("text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm wrap-break-word sm:gap-2.5", className)}
+			className={cx(
+				"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm wrap-break-word sm:gap-2.5",
+				className,
+			)}
 			{...props}
 		/>
 	);
 }
 
 function Item({ className, ...props }: ComponentProps<"li">) {
-	return <li data-slot="breadcrumb-item" className={cx("inline-flex items-center gap-1.5", className)} {...props} />;
+	return (
+		<li
+			data-slot="breadcrumb-item"
+			className={cx("inline-flex items-center gap-1.5", className)}
+			{...props}
+		/>
+	);
 }
 
 function Link({ className, ...props }: ComponentProps<"a">) {
-	return <a data-slot="breadcrumb-link" className={cx("hover:text-foreground transition-colors", className)} {...props} />;
+	return (
+		<a
+			data-slot="breadcrumb-link"
+			className={cx("hover:text-foreground transition-colors", className)}
+			{...props}
+		/>
+	);
 }
 
 function Page({ className, ...props }: ComponentProps<"span">) {
-	return <span data-slot="breadcrumb-page" aria-current="page" className={cx("text-foreground font-normal", className)} {...props} />;
+	return (
+		<span
+			data-slot="breadcrumb-page"
+			aria-current="page"
+			className={cx("text-foreground font-normal", className)}
+			{...props}
+		/>
+	);
 }
 
 function Separator({ children, className, ...props }: ComponentProps<"li">) {
 	return (
-		<li data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" className={cx("[&>svg]:size-3.5", className)} {...props}>
+		<li
+			data-slot="breadcrumb-separator"
+			role="presentation"
+			aria-hidden="true"
+			className={cx("[&>svg]:size-3.5", className)}
+			{...props}
+		>
 			{children ?? <ChevronRight />}
 		</li>
 	);

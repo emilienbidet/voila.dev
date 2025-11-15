@@ -2,7 +2,11 @@ import { useRender } from "@base-ui-components/react/use-render";
 import type { ComponentProps } from "react";
 import { cx } from "..";
 
-export function Kbd({ render, className, ...props }: useRender.ComponentProps<"kbd">) {
+export function Kbd({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"kbd">) {
 	return useRender({
 		defaultTagName: "kbd",
 		render,
@@ -17,5 +21,10 @@ export function Kbd({ render, className, ...props }: useRender.ComponentProps<"k
 }
 
 export function KbdGroup({ className, ...props }: ComponentProps<"div">) {
-	return <div className={cx("inline-flex items-center gap-1", className)} {...props} />;
+	return (
+		<div
+			className={cx("inline-flex items-center gap-1", className)}
+			{...props}
+		/>
+	);
 }

@@ -16,11 +16,17 @@ function Portal(props: ComponentProps<typeof BasePopover.Portal>) {
 	return <BasePopover.Portal {...props} />;
 }
 
-function Positioner({ className, ...props }: ComponentProps<typeof BasePopover.Positioner>) {
+function Positioner({
+	className,
+	...props
+}: ComponentProps<typeof BasePopover.Positioner>) {
 	return <BasePopover.Positioner className={className} {...props} />;
 }
 
-function Popup({ className, ...props }: ComponentProps<typeof BasePopover.Popup>) {
+function Popup({
+	className,
+	...props
+}: ComponentProps<typeof BasePopover.Popup>) {
 	return (
 		<BasePopover.Popup
 			data-slot="popover-content"
@@ -53,16 +59,35 @@ function Content({
 	);
 }
 
-function Arrow({ className, ...props }: ComponentProps<typeof BasePopover.Arrow>) {
+function Arrow({
+	className,
+	...props
+}: ComponentProps<typeof BasePopover.Arrow>) {
 	return <BasePopover.Arrow className={className} {...props} />;
 }
 
-function Title({ className, ...props }: ComponentProps<typeof BasePopover.Title>) {
-	return <BasePopover.Title className={cx("text-sm font-medium", className)} {...props} />;
+function Title({
+	className,
+	...props
+}: ComponentProps<typeof BasePopover.Title>) {
+	return (
+		<BasePopover.Title
+			className={cx("text-sm font-medium", className)}
+			{...props}
+		/>
+	);
 }
 
-function Description({ className, ...props }: ComponentProps<typeof BasePopover.Description>) {
-	return <BasePopover.Description className={cx("text-muted-foreground text-sm", className)} {...props} />;
+function Description({
+	className,
+	...props
+}: ComponentProps<typeof BasePopover.Description>) {
+	return (
+		<BasePopover.Description
+			className={cx("text-muted-foreground text-sm", className)}
+			{...props}
+		/>
+	);
 }
 
 function Close(props: ComponentProps<typeof BasePopover.Close>) {

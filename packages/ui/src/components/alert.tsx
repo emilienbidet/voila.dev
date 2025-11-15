@@ -16,7 +16,11 @@ const variants = cva({
 	},
 });
 
-function Root({ className, variant, ...props }: useRender.ComponentProps<"div"> & VariantProps<typeof variants>) {
+function Root({
+	className,
+	variant,
+	...props
+}: useRender.ComponentProps<"div"> & VariantProps<typeof variants>) {
 	return useRender({
 		defaultTagName: "div",
 		props: {
@@ -32,7 +36,10 @@ function Title({ className, ...props }: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		props: {
-			className: cx("col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight", className),
+			className: cx(
+				"col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
+				className,
+			),
 			...props,
 		},
 	});

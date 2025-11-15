@@ -1,24 +1,38 @@
 import { useRender } from "@base-ui-components/react/use-render";
 import { cva, cx, type VariantProps } from "..";
 
-function Root({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Root({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
 		props: {
 			"data-slot": "empty",
-			className: cx("flex flex-col items-center justify-center gap-6", className),
+			className: cx(
+				"flex flex-col items-center justify-center gap-6",
+				className,
+			),
 			...props,
 		},
 	});
 }
 
-function Header({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Header({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
 		props: {
-			className: cx("flex flex-col items-center gap-4 text-center max-w-sm", className),
+			className: cx(
+				"flex flex-col items-center gap-4 text-center max-w-sm",
+				className,
+			),
 			...props,
 		},
 	});
@@ -37,7 +51,12 @@ const mediaVariants = cva({
 	},
 });
 
-function Media({ render, variant, className, ...props }: useRender.ComponentProps<"div"> & VariantProps<typeof mediaVariants>) {
+function Media({
+	render,
+	variant,
+	className,
+	...props
+}: useRender.ComponentProps<"div"> & VariantProps<typeof mediaVariants>) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -48,7 +67,11 @@ function Media({ render, variant, className, ...props }: useRender.ComponentProp
 	});
 }
 
-function Title({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Title({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -59,7 +82,11 @@ function Title({ render, className, ...props }: useRender.ComponentProps<"div">)
 	});
 }
 
-function Description({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Description({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -70,7 +97,11 @@ function Description({ render, className, ...props }: useRender.ComponentProps<"
 	});
 }
 
-function Content({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Content({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,

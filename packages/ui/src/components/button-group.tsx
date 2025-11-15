@@ -5,8 +5,10 @@ const variants = cva({
 	base: "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2",
 	variants: {
 		orientation: {
-			horizontal: "[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none",
-			vertical: "flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none",
+			horizontal:
+				"[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none",
+			vertical:
+				"flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none",
 		},
 	},
 	defaultVariants: {
@@ -14,7 +16,12 @@ const variants = cva({
 	},
 });
 
-function Root({ render, className, orientation, ...props }: useRender.ComponentProps<"fieldset"> & VariantProps<typeof variants>) {
+function Root({
+	render,
+	className,
+	orientation,
+	...props
+}: useRender.ComponentProps<"fieldset"> & VariantProps<typeof variants>) {
 	return useRender({
 		defaultTagName: "fieldset",
 		render,
@@ -27,7 +34,11 @@ function Root({ render, className, orientation, ...props }: useRender.ComponentP
 	});
 }
 
-function Text({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Text({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -41,14 +52,26 @@ function Text({ render, className, ...props }: useRender.ComponentProps<"div">) 
 	});
 }
 
-function Separator({ render, className, orientation = "vertical", ...props }: useRender.ComponentProps<"div"> & { orientation?: "vertical" | "horizontal" }) {
+function Separator({
+	render,
+	className,
+	orientation = "vertical",
+	...props
+}: useRender.ComponentProps<"div"> & {
+	orientation?: "vertical" | "horizontal";
+}) {
 	return useRender({
 		defaultTagName: "div",
 		render,
 		props: {
 			"data-slot": "button-group-separator",
 			"data-orientation": orientation,
-			className: cx("bg-input relative m-0! self-stretch", orientation === "vertical" && "w-px", orientation === "horizontal" && "h-px w-full", className),
+			className: cx(
+				"bg-input relative m-0! self-stretch",
+				orientation === "vertical" && "w-px",
+				orientation === "horizontal" && "h-px w-full",
+				className,
+			),
 			...props,
 		},
 	});

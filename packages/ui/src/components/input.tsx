@@ -2,7 +2,10 @@ import type { useRender } from "@base-ui-components/react";
 import { Input as BaseInput } from "@base-ui-components/react/input";
 import { cx } from "..";
 
-export function Input({ className, ...props }: useRender.ComponentProps<typeof BaseInput>) {
+export function Input({
+	className,
+	...props
+}: useRender.ComponentProps<typeof BaseInput>) {
 	return (
 		<BaseInput
 			className={cx(

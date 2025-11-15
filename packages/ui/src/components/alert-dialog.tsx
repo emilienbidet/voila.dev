@@ -17,7 +17,10 @@ function Portal(props: ComponentProps<typeof BaseAlertDialog.Portal>) {
 	return <BaseAlertDialog.Portal {...props} />;
 }
 
-function Backdrop({ className, ...props }: ComponentProps<typeof BaseAlertDialog.Backdrop>) {
+function Backdrop({
+	className,
+	...props
+}: ComponentProps<typeof BaseAlertDialog.Backdrop>) {
 	return (
 		<BaseAlertDialog.Backdrop
 			className={cx(
@@ -29,7 +32,10 @@ function Backdrop({ className, ...props }: ComponentProps<typeof BaseAlertDialog
 	);
 }
 
-function Popup({ className, ...props }: ComponentProps<typeof BaseAlertDialog.Popup>) {
+function Popup({
+	className,
+	...props
+}: ComponentProps<typeof BaseAlertDialog.Popup>) {
 	return (
 		<BaseAlertDialog.Popup
 			className={cx(
@@ -42,19 +48,48 @@ function Popup({ className, ...props }: ComponentProps<typeof BaseAlertDialog.Po
 }
 
 function Header({ className, ...props }: ComponentProps<"div">) {
-	return <div className={cx("flex flex-col gap-2 text-center sm:text-left", className)} {...props} />;
+	return (
+		<div
+			className={cx("flex flex-col gap-2 text-center sm:text-left", className)}
+			{...props}
+		/>
+	);
 }
 
 function Footer({ className, ...props }: ComponentProps<"div">) {
-	return <div className={cx("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)} {...props} />;
+	return (
+		<div
+			className={cx(
+				"flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+				className,
+			)}
+			{...props}
+		/>
+	);
 }
 
-function Title({ className, ...props }: ComponentProps<typeof BaseAlertDialog.Title>) {
-	return <BaseAlertDialog.Title className={cx("text-lg font-semibold", className)} {...props} />;
+function Title({
+	className,
+	...props
+}: ComponentProps<typeof BaseAlertDialog.Title>) {
+	return (
+		<BaseAlertDialog.Title
+			className={cx("text-lg font-semibold", className)}
+			{...props}
+		/>
+	);
 }
 
-function Description({ className, ...props }: ComponentProps<typeof BaseAlertDialog.Description>) {
-	return <BaseAlertDialog.Description className={cx("text-muted-foreground text-sm", className)} {...props} />;
+function Description({
+	className,
+	...props
+}: ComponentProps<typeof BaseAlertDialog.Description>) {
+	return (
+		<BaseAlertDialog.Description
+			className={cx("text-muted-foreground text-sm", className)}
+			{...props}
+		/>
+	);
 }
 
 function Action(props: ComponentProps<typeof Button>) {
@@ -62,7 +97,9 @@ function Action(props: ComponentProps<typeof Button>) {
 }
 
 function Cancel(props: ComponentProps<typeof Button>) {
-	return <BaseAlertDialog.Close render={<Button variant="outline" {...props} />} />;
+	return (
+		<BaseAlertDialog.Close render={<Button variant="outline" {...props} />} />
+	);
 }
 
 function Content({ children, ...props }: ComponentProps<typeof Portal>) {

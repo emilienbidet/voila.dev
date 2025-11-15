@@ -5,10 +5,18 @@ import type { ComponentProps } from "react";
 import { cx } from "..";
 
 function Root({ className, ...props }: ComponentProps<typeof BaseSlider.Root>) {
-	return <BaseSlider.Root className={cx("data-disabled:opacity-50", className)} {...props} />;
+	return (
+		<BaseSlider.Root
+			className={cx("data-disabled:opacity-50", className)}
+			{...props}
+		/>
+	);
 }
 
-function Control({ className, ...props }: ComponentProps<typeof BaseSlider.Control>) {
+function Control({
+	className,
+	...props
+}: ComponentProps<typeof BaseSlider.Control>) {
 	return (
 		<BaseSlider.Control
 			className={cx(
@@ -21,7 +29,10 @@ function Control({ className, ...props }: ComponentProps<typeof BaseSlider.Contr
 	);
 }
 
-function Track({ className, ...props }: ComponentProps<typeof BaseSlider.Track>) {
+function Track({
+	className,
+	...props
+}: ComponentProps<typeof BaseSlider.Track>) {
 	return (
 		<BaseSlider.Track
 			className={cx(
@@ -33,13 +44,25 @@ function Track({ className, ...props }: ComponentProps<typeof BaseSlider.Track>)
 	);
 }
 
-function Indicator({ className, ...props }: ComponentProps<typeof BaseSlider.Indicator>) {
+function Indicator({
+	className,
+	...props
+}: ComponentProps<typeof BaseSlider.Indicator>) {
 	return (
-		<BaseSlider.Indicator className={cx("bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full", className)} {...props} />
+		<BaseSlider.Indicator
+			className={cx(
+				"bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full",
+				className,
+			)}
+			{...props}
+		/>
 	);
 }
 
-function Thumb({ className, ...props }: ComponentProps<typeof BaseSlider.Thumb>) {
+function Thumb({
+	className,
+	...props
+}: ComponentProps<typeof BaseSlider.Thumb>) {
 	return (
 		<BaseSlider.Thumb
 			className={cx(
@@ -51,7 +74,10 @@ function Thumb({ className, ...props }: ComponentProps<typeof BaseSlider.Thumb>)
 	);
 }
 
-function Value({ className, ...props }: ComponentProps<typeof BaseSlider.Value>) {
+function Value({
+	className,
+	...props
+}: ComponentProps<typeof BaseSlider.Value>) {
 	return <BaseSlider.Value className={cx(className)} {...props} />;
 }
 

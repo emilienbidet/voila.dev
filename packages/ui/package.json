@@ -12,7 +12,6 @@
 		"build:themes": "bunx cpx2 'src/styles/themes/**/*.css' 'dist/styles/themes'",
 		"build:components": "tsc",
 		"check-types": "tsc --noEmit",
-		"dev": "bun run dev:styles && bun run dev:themes && bun run dev:components",
 		"dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles/globals.css --watch",
 		"dev:themes": "bunx cpx2 'src/styles/themes/**/*.css' 'dist/styles/themes' --watch",
 		"dev:components": "tsc --watch"
@@ -21,7 +20,7 @@
 		".": "./dist/index.js",
 		"./icons": "./dist/icons.js",
 		"./styles/globals.css": "./dist/styles/globals.css",
-		"./styles/themes/default.css": "./dist/styles/themes/default.css",
+		"./styles/themes/*.css": "./dist/styles/themes/*.css",
 		"./components/*": "./dist/components/*.js"
 	},
 	"dependencies": {

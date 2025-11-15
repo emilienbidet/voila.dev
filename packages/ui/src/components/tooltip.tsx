@@ -2,7 +2,10 @@ import { Tooltip as TooltipPrimitive } from "@base-ui-components/react/tooltip";
 import type { ComponentProps } from "react";
 import { cx } from "..";
 
-function Provider({ delay = 0, ...props }: ComponentProps<typeof TooltipPrimitive.Provider>) {
+function Provider({
+	delay = 0,
+	...props
+}: ComponentProps<typeof TooltipPrimitive.Provider>) {
 	return <TooltipPrimitive.Provider delay={delay} {...props} />;
 }
 
@@ -14,19 +17,31 @@ function Root({ ...props }: ComponentProps<typeof TooltipPrimitive.Root>) {
 	);
 }
 
-function Trigger({ ...props }: ComponentProps<typeof TooltipPrimitive.Trigger>) {
+function Trigger({
+	...props
+}: ComponentProps<typeof TooltipPrimitive.Trigger>) {
 	return <TooltipPrimitive.Trigger {...props} />;
 }
 
-function Positioner({ className, ...props }: React.ComponentProps<typeof TooltipPrimitive.Positioner>) {
+function Positioner({
+	className,
+	...props
+}: React.ComponentProps<typeof TooltipPrimitive.Positioner>) {
 	return (
 		<TooltipPrimitive.Portal>
-			<TooltipPrimitive.Positioner sideOffset={8} className={cx("z-50", className)} {...props} />
+			<TooltipPrimitive.Positioner
+				sideOffset={8}
+				className={cx("z-50", className)}
+				{...props}
+			/>
 		</TooltipPrimitive.Portal>
 	);
 }
 
-function Arrow({ className, ...props }: React.ComponentProps<typeof TooltipPrimitive.Arrow>) {
+function Arrow({
+	className,
+	...props
+}: React.ComponentProps<typeof TooltipPrimitive.Arrow>) {
 	return (
 		<TooltipPrimitive.Arrow
 			className={cx(
@@ -42,7 +57,11 @@ function Arrow({ className, ...props }: React.ComponentProps<typeof TooltipPrimi
 	);
 }
 
-function Content({ className, children, ...props }: React.ComponentProps<typeof TooltipPrimitive.Popup>) {
+function Content({
+	className,
+	children,
+	...props
+}: React.ComponentProps<typeof TooltipPrimitive.Popup>) {
 	return (
 		<TooltipPrimitive.Popup
 			className={cx(

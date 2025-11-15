@@ -1,19 +1,30 @@
 import { useRender } from "@base-ui-components/react/use-render";
 import { cx } from "..";
 
-function Root({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Root({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
 		props: {
 			"data-slot": "card",
-			className: cx("bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm", className),
+			className: cx(
+				"bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+				className,
+			),
 			...props,
 		},
 	});
 }
 
-function Header({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Header({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -27,7 +38,11 @@ function Header({ render, className, ...props }: useRender.ComponentProps<"div">
 	});
 }
 
-function Title({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Title({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -38,7 +53,11 @@ function Title({ render, className, ...props }: useRender.ComponentProps<"div">)
 	});
 }
 
-function Description({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Description({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -49,19 +68,30 @@ function Description({ render, className, ...props }: useRender.ComponentProps<"
 	});
 }
 
-function Action({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Action({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
 		props: {
 			"data-slot": "card-action",
-			className: cx("col-start-2 row-span-2 row-start-1 self-start justify-self-end", className),
+			className: cx(
+				"col-start-2 row-span-2 row-start-1 self-start justify-self-end",
+				className,
+			),
 			...props,
 		},
 	});
 }
 
-function Content({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Content({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -72,7 +102,11 @@ function Content({ render, className, ...props }: useRender.ComponentProps<"div"
 	});
 }
 
-function Footer({ render, className, ...props }: useRender.ComponentProps<"div">) {
+function Footer({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"div">) {
 	return useRender({
 		defaultTagName: "div",
 		render,
@@ -83,4 +117,12 @@ function Footer({ render, className, ...props }: useRender.ComponentProps<"div">
 	});
 }
 
-export const Card = { Root, Header, Title, Description, Action, Content, Footer };
+export const Card = {
+	Root,
+	Header,
+	Title,
+	Description,
+	Action,
+	Content,
+	Footer,
+};

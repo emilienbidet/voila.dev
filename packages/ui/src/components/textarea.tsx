@@ -1,7 +1,11 @@
 import { useRender } from "@base-ui-components/react/use-render";
 import { cx } from "..";
 
-export function Textarea({ render, className, ...props }: useRender.ComponentProps<"textarea">) {
+export function Textarea({
+	render,
+	className,
+	...props
+}: useRender.ComponentProps<"textarea">) {
 	return useRender({
 		defaultTagName: "textarea",
 		render,

@@ -5,12 +5,24 @@ import type { ComponentProps } from "react";
 import { cx } from "..";
 
 function Root({ className, ...props }: ComponentProps<typeof BaseTabs.Root>) {
-	return <BaseTabs.Root className={cx("flex flex-col gap-2", className)} {...props} />;
+	return (
+		<BaseTabs.Root
+			className={cx("flex flex-col gap-2", className)}
+			{...props}
+		/>
+	);
 }
 
 function List({ className, ...props }: ComponentProps<typeof BaseTabs.List>) {
 	return (
-		<BaseTabs.List className={cx("relative z-0", "bg-muted inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]", className)} {...props} />
+		<BaseTabs.List
+			className={cx(
+				"relative z-0",
+				"bg-muted inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
+				className,
+			)}
+			{...props}
+		/>
 	);
 }
 
@@ -32,7 +44,10 @@ function Tab({ className, ...props }: ComponentProps<typeof BaseTabs.Tab>) {
 	);
 }
 
-function Indicator({ className, ...props }: ComponentProps<typeof BaseTabs.Indicator>) {
+function Indicator({
+	className,
+	...props
+}: ComponentProps<typeof BaseTabs.Indicator>) {
 	return (
 		<BaseTabs.Indicator
 			className={cx(
@@ -50,7 +65,12 @@ function Indicator({ className, ...props }: ComponentProps<typeof BaseTabs.Indic
 }
 
 function Panel({ className, ...props }: ComponentProps<typeof BaseTabs.Panel>) {
-	return <BaseTabs.Panel className={cx("flex-1 outline-none", className)} {...props} />;
+	return (
+		<BaseTabs.Panel
+			className={cx("flex-1 outline-none", className)}
+			{...props}
+		/>
+	);
 }
 
 export const Tabs = { Root, List, Tab, Indicator, Panel };

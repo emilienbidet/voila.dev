@@ -8,11 +8,17 @@ function Root(props: ComponentProps<typeof BaseCollapsible.Root>) {
 	return <BaseCollapsible.Root {...props} />;
 }
 
-function Trigger({ className, ...props }: ComponentProps<typeof BaseCollapsible.Trigger>) {
+function Trigger({
+	className,
+	...props
+}: ComponentProps<typeof BaseCollapsible.Trigger>) {
 	return <BaseCollapsible.Trigger className={cx(className)} {...props} />;
 }
 
-function Panel({ className, ...props }: ComponentProps<typeof BaseCollapsible.Panel>) {
+function Panel({
+	className,
+	...props
+}: ComponentProps<typeof BaseCollapsible.Panel>) {
 	return <BaseCollapsible.Panel className={cx(className)} {...props} />;
 }
 
