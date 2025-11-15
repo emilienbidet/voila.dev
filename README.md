@@ -25,6 +25,7 @@ Each service is its own module under the monorepo, but all share a common design
 
 | Service                                              | Description                                       | Status          |
 | ---------------------------------------------------- | ------------------------------------------------- | --------------- |
+| [`ui.voila.dev`](https://ui.voila.dev)               | Shared UI components across all services          | 🚧 Building     |
 | [`vat.voila.dev`](https://vat.voila.dev)             | Validate VAT numbers across Europe                | 🧭 Roadmap      |
 | [`url.voila.dev`](https://url.voila.dev)             | Get Open Graph and metadata previews from any URL | 🧭 Roadmap      |
 | [`analytics.voila.dev`](https://analytics.voila.dev) | Privacy-first, cookieless web analytics           | 🧭 Roadmap      |
@@ -33,7 +34,6 @@ Each service is its own module under the monorepo, but all share a common design
 | [`pdf.voila.dev`](https://pdf.voila.dev)             | Convert HTML/CSS to beautiful PDFs                | 🧭 Roadmap      |
 | [`status.voila.dev`](https://status.voila.dev)       | Uptime and health monitoring tracker              | 🧭 Roadmap      |
 | [`domains.voila.dev`](https://domains.voila.dev)     | Programmatically register and manage domain names | 🧭 Roadmap      |
-| [`ui.voila.dev`](https://ui.voila.dev)               | Shared UI components across all services          | 🧭 Roadmap      |
 
 ---
 

@@ -1,22 +1,45 @@
 {
 	"name": "voila.dev",
-	"module": "index.ts",
-	"type": "module",
-	"private": true,
-	"packageManager": "bun@1.2.18",
+	"version": "1.0.0",
+	"packageManager": "bun@1.3.2",
+	"engines": {
+		"bun": "1.3.2",
+		"node": "22.21.1"
+	},
 	"workspaces": [
+		"packages/*",
 		"projects/*/apps/*",
 		"projects/*/packages/*"
 	],
+	"catalog": {
+		"@types/bun": "^1.3.2",
+		"@types/node": "^22.18.10",
+		"typescript": "^5.9.3"
+	},
+	"catalogs": {
+		"ui": {
+			"@tailwindcss/cli": "^4.1.17",
+			"@tailwindcss/vite": "^4.1.17",
+			"@types/react": "^19.2.5",
+			"@types/react-dom": "^19.2.3",
+			"react": "^19.2.0",
+			"react-dom": "^19.2.0",
+			"tailwindcss": "^4.1.17",
+			"typescript": "^5.9.3"
+		}
+	},
 	"scripts": {
+		"ui.voila.dev:dev": "turbo run dev dev:styles dev:themes dev:components --filter @ui.voila.dev/ui.voila.dev...",
+		"ui.voila.dev:build": "turbo run build build:styles build:themes build:components --filter @ui.voila.dev/ui.voila.dev...",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
-		"check": "biome check --write"
-	},
-	"peerDependencies": {
-		"typescript": "^5"
+		"check": "biome check --write",
+		"changeset": "changeset",
+		"version": "changeset version",
+		"release": "bun run --filter @voila.dev/ui build && changeset publish"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.1.1"
+		"@biomejs/biome": "2.3.5",
+		"@changesets/cli": "^2.27.9"
 	}
 }

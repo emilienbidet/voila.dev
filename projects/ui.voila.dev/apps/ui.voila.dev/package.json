@@ -1,0 +1,30 @@
+{
+	"name": "@ui.voila.dev/ui.voila.dev",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "storybook dev -p 6006",
+		"build": "storybook build --output-dir dist",
+		"start": "bun run server.ts"
+	},
+	"dependencies": {
+		"@voila.dev/ui": "workspace:*",
+		"@tailwindcss/vite": "catalog:ui",
+		"react": "catalog:ui",
+		"react-dom": "catalog:ui",
+		"recharts": "^3.4.1",
+		"tailwindcss": "catalog:ui",
+		"vite": "^7.2.2"
+	},
+	"devDependencies": {
+		"@storybook/react-vite": "^10.0.7",
+		"@types/node": "catalog:",
+		"@types/bun": "catalog:",
+		"@types/react": "catalog:ui",
+		"@types/react-dom": "catalog:ui",
+		"@vitejs/plugin-react": "^5.1.1",
+		"storybook": "^10.0.7",
+		"typescript": "catalog:"
+	}
+}
