@@ -158,16 +158,36 @@ className={cx("flex flex-col gap-1 rounded-sm p-2 text-sm hover:bg-accent hover:
 **In CVA `base` property:**
 
 ```tsx
-// ✅ Good - Use array with join for long base classes
+// ✅ Good - Use string concatenation for long base classes
+const variants = cva({
+	base:
+		"group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 " +
+		"text-sm font-medium " +
+		"hover:bg-accent hover:text-accent-foreground " +
+		"focus:bg-accent focus:text-accent-foreground " +
+		"disabled:pointer-events-none disabled:opacity-50 " +
+		"focus-visible:ring-ring/50 outline-none " +
+		"transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1",
+	variants: { /* ... */ },
+});
+
+// ✅ Good - Alternative: Use template literal for very long strings
+const variants = cva({
+	base: `group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2
+		text-sm font-medium
+		hover:bg-accent hover:text-accent-foreground
+		focus:bg-accent focus:text-accent-foreground
+		disabled:pointer-events-none disabled:opacity-50
+		focus-visible:ring-ring/50 outline-none
+		transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1`.replace(/\s+/g, " "),
+	variants: { /* ... */ },
+});
+
+// ❌ Bad - Don't use array with join
 const variants = cva({
 	base: [
 		"group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2",
 		"text-sm font-medium",
-		"hover:bg-accent hover:text-accent-foreground",
-		"focus:bg-accent focus:text-accent-foreground",
-		"disabled:pointer-events-none disabled:opacity-50",
-		"focus-visible:ring-ring/50 outline-none",
-		"transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1",
 	].join(" "),
 	variants: { /* ... */ },
 });
@@ -184,7 +204,8 @@ const variants = cva({
 - Split when className exceeds ~100 characters
 - Group related classes together (layout, spacing, states, transitions, etc.)
 - Keep each line focused on a single concern when possible
-- Use array with `.join(" ")` for CVA base when splitting
+- Use string concatenation (`+`) for CVA base and variant values when splitting
+- Never use `.join(" ")` with arrays for CSS classnames
 - Maintain consistent indentation and formatting
 
 ## Component Composition
