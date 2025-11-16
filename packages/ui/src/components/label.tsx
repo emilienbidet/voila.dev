@@ -1,16 +1,12 @@
-"use client";
+import type * as React from "react";
 
-import type { ComponentProps } from "react";
 import { cx } from "..";
 
-interface LabelProps extends ComponentProps<"label"> {
-	required?: boolean;
-}
-
-export function Label({ className, children, required, ...props }: LabelProps) {
+export function Label({ className, ...props }: React.ComponentProps<"label">) {
 	return (
-		// biome-ignore lint/a11y/noLabelWithoutControl: we don't need a control for the label component
+		// biome-ignore lint/a11y/noLabelWithoutControl: This label doesn't need a control
 		<label
+			data-slot="label"
 			className={cx(
 				"flex items-center gap-2 text-sm leading-none font-medium select-none",
 				"group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50",
@@ -18,9 +14,6 @@ export function Label({ className, children, required, ...props }: LabelProps) {
 				className,
 			)}
 			{...props}
-		>
-			{children}
-			{required && <span className="text-destructive">*</span>}
-		</label>
+		/>
 	);
 }
