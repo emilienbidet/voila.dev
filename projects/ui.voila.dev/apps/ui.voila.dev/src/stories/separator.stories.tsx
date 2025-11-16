@@ -1,5 +1,5 @@
-import { Separator } from "@voila.dev/ui/components/separator";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Separator } from "@voila.dev/ui/components/separator";
 
 const meta = {
 	title: "UI/Separator",
@@ -12,77 +12,226 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Horizontal: Story = {
+export const Default: Story = {
 	render: () => (
-		<div className="w-80 space-y-4">
-			<div>
-				<h4 className="text-sm font-medium leading-none">Section Title</h4>
-				<p className="text-muted-foreground mt-2 text-sm">Content goes here.</p>
+		<div className="w-full max-w-xl flex">
+			<div className="min-w-16 min-h-full bg-muted rounded-lg grow" />
+			{/* Vertical Separator */}
+			<div className="w-full flex flex-col items-center justify-center gap-2 overflow-hidden px-4">
+				<Separator className="flex-grow" orientation="vertical" />
+				<span className="text-sm text-muted-foreground">OR</span>
+				<Separator className="flex-grow" orientation="vertical" />
 			</div>
-			<Separator />
-			<div>
-				<h4 className="text-sm font-medium leading-none">Another Section</h4>
-				<p className="text-muted-foreground mt-2 text-sm">More content here.</p>
+			<div className="w-full min-w-xs">
+				<div className="h-16 w-full bg-muted rounded-lg" />
+				{/* Horizontal Separator */}
+				<div className="my-6 w-full flex items-center justify-center gap-2 overflow-hidden">
+					<Separator className="flex-grow" />
+					<span className="text-sm text-muted-foreground">OR</span>
+					<Separator className="flex-grow" />
+				</div>
+				<div className="h-16 w-full bg-muted rounded-lg" />
+				{/* Horizontal Separator */}
+				<div className="my-6 w-full flex items-center justify-center overflow-hidden">
+					<Separator className="flex-grow" />
+					<span className="text-sm text-muted-foreground border px-2 rounded-full">
+						OR
+					</span>
+					<Separator className="flex-grow" />
+				</div>
+				<div className="h-16 w-full bg-muted rounded-lg" />
 			</div>
-		</div>
-	),
-};
-
-export const Vertical: Story = {
-	render: () => (
-		<div className="flex h-20 items-center gap-4">
-			<div>Left content</div>
-			<Separator orientation="vertical" />
-			<div>Right content</div>
-		</div>
-	),
-};
-
-export const WithText: Story = {
-	render: () => (
-		<div className="w-80 space-y-4">
-			<div>
-				<h4 className="text-sm font-medium leading-none">Section Title</h4>
-				<p className="text-muted-foreground mt-2 text-sm">Content goes here.</p>
-			</div>
-			<div className="flex items-center gap-4">
-				<Separator className="shrink" />
-				<span className="text-muted-foreground whitespace-nowrap text-xs">
+			{/* Vertical Separator */}
+			<div className="w-full flex flex-col items-center justify-center overflow-hidden px-4">
+				<Separator className="flex-grow" orientation="vertical" />
+				<span className="text-sm text-muted-foreground border px-2 rounded-full">
 					OR
 				</span>
-				<Separator className="shrink" />
+				<Separator className="flex-grow" orientation="vertical" />
 			</div>
-			<div>
-				<h4 className="text-sm font-medium leading-none">Another Section</h4>
-				<p className="text-muted-foreground mt-2 text-sm">More content here.</p>
-			</div>
+			<div className="min-w-16 min-h-full bg-muted rounded-lg grow" />
 		</div>
 	),
 };
 
-export const Multiple: Story = {
+export const Dashed: Story = {
 	render: () => (
-		<div className="w-80 space-y-4">
-			<div>
-				<h4 className="text-sm font-medium leading-none">First Section</h4>
-				<p className="text-muted-foreground mt-2 text-sm">
-					Content in the first section.
-				</p>
+		<div className="w-full max-w-xl flex">
+			<div className="min-w-16 min-h-full bg-muted rounded-lg grow" />
+			{/* Vertical Separator */}
+			<div className="w-full flex flex-col items-center justify-center gap-2 overflow-hidden px-4">
+				<Separator
+					variant="dashed"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+				<span className="text-sm text-muted-foreground">OR</span>
+				<Separator
+					variant="dashed"
+					className="flex-grow"
+					orientation="vertical"
+				/>
 			</div>
-			<Separator />
-			<div>
-				<h4 className="text-sm font-medium leading-none">Second Section</h4>
-				<p className="text-muted-foreground mt-2 text-sm">
-					Content in the second section.
-				</p>
+			<div className="w-full min-w-xs">
+				<div className="h-16 w-full bg-muted rounded-lg" />
+				{/* Horizontal Separator */}
+				<div className="my-6 w-full flex items-center justify-center gap-2 overflow-hidden">
+					<Separator variant="dashed" className="flex-grow" />
+					<span className="text-sm text-muted-foreground">OR</span>
+					<Separator variant="dashed" className="flex-grow" />
+				</div>
+				<div className="h-16 w-full bg-muted rounded-lg" />
+				{/* Horizontal Separator */}
+				<div className="my-6 w-full flex items-center justify-center overflow-hidden">
+					<Separator variant="dashed" className="flex-grow" />
+					<span className="text-sm text-muted-foreground border px-2 rounded-full">
+						OR
+					</span>
+					<Separator variant="dashed" className="flex-grow" />
+				</div>
+				<div className="h-16 w-full bg-muted rounded-lg" />
 			</div>
-			<Separator />
-			<div>
-				<h4 className="text-sm font-medium leading-none">Third Section</h4>
-				<p className="text-muted-foreground mt-2 text-sm">
-					Content in the third section.
-				</p>
+			{/* Vertical Separator */}
+			<div className="w-full flex flex-col items-center justify-center overflow-hidden px-4">
+				<Separator
+					variant="dashed"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+				<span className="text-sm text-muted-foreground border px-2 rounded-full">
+					OR
+				</span>
+				<Separator
+					variant="dashed"
+					className="flex-grow"
+					orientation="vertical"
+				/>
 			</div>
+			<div className="min-w-16 min-h-full bg-muted rounded-lg grow" />
+		</div>
+	),
+};
+
+export const Double: Story = {
+	render: () => (
+		<div className="w-full max-w-xl flex">
+			<div className="min-w-16 min-h-full bg-muted rounded-lg grow" />
+			{/* Vertical Separator */}
+			<div className="w-full flex flex-col items-center justify-center gap-2 overflow-hidden px-4">
+				<Separator
+					variant="double"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+				<span className="text-sm text-muted-foreground">OR</span>
+				<Separator
+					variant="double"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+			</div>
+			<div className="w-full min-w-xs">
+				<div className="h-16 w-full bg-muted rounded-lg" />
+				{/* Horizontal Separator */}
+				<div className="my-6 w-full flex items-center justify-center gap-2 overflow-hidden">
+					<Separator variant="double" className="flex-grow" />
+					<span className="text-sm text-muted-foreground">OR</span>
+					<Separator variant="double" className="flex-grow" />
+				</div>
+				<div className="h-16 w-full bg-muted rounded-lg" />
+				{/* Horizontal Separator */}
+				<div className="my-6 w-full flex items-center justify-center overflow-hidden">
+					<Separator variant="double" className="flex-grow" />
+					<span className="text-sm text-muted-foreground border px-2 rounded-full">
+						OR
+					</span>
+					<Separator variant="double" className="flex-grow" />
+				</div>
+				<div className="h-16 w-full bg-muted rounded-lg" />
+			</div>
+			{/* Vertical Separator */}
+			<div className="w-full flex flex-col items-center justify-center overflow-hidden px-4">
+				<Separator
+					variant="double"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+				<span className="text-sm text-muted-foreground border px-2 rounded-full">
+					OR
+				</span>
+				<Separator
+					variant="double"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+			</div>
+			<div className="min-w-16 min-h-full bg-muted rounded-lg grow" />
+		</div>
+	),
+};
+
+export const Dotted: Story = {
+	render: () => (
+		<div className="w-full max-w-xl flex">
+			<div className="min-w-16 min-h-full bg-muted rounded-lg grow" />
+
+			{/* Vertical Separator */}
+			<div className="w-full flex flex-col items-center justify-center gap-2 overflow-hidden px-4">
+				<Separator
+					variant="dotted"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+				<span className="text-sm text-muted-foreground">OR</span>
+				<Separator
+					variant="dotted"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+			</div>
+
+			<div className="w-full min-w-xs">
+				<div className="h-16 w-full bg-muted rounded-lg" />
+
+				{/* Horizontal Separator */}
+				<div className="my-6 w-full flex items-center justify-center gap-2 overflow-hidden">
+					<Separator variant="dotted" className="flex-grow" />
+					<span className="text-sm text-muted-foreground">OR</span>
+					<Separator variant="dotted" className="flex-grow" />
+				</div>
+
+				<div className="h-16 w-full bg-muted rounded-lg" />
+
+				{/* Horizontal Separator */}
+				<div className="my-6 w-full flex items-center justify-center overflow-hidden">
+					<Separator variant="dotted" className="flex-grow" />
+					<span className="text-sm text-muted-foreground border px-2 rounded-full">
+						OR
+					</span>
+					<Separator variant="dotted" className="flex-grow" />
+				</div>
+
+				<div className="h-16 w-full bg-muted rounded-lg" />
+			</div>
+
+			{/* Vertical Separator */}
+			<div className="w-full flex flex-col items-center justify-center overflow-hidden px-4">
+				<Separator
+					variant="dotted"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+				<span className="text-sm text-muted-foreground border px-2 rounded-full">
+					OR
+				</span>
+				<Separator
+					variant="dotted"
+					className="flex-grow"
+					orientation="vertical"
+				/>
+			</div>
+
+			<div className="min-w-16 min-h-full bg-muted rounded-lg grow" />
 		</div>
 	),
 };
