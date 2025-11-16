@@ -28,6 +28,7 @@
 		"@tailwindcss/cli": "catalog:ui",
 		"cva": "^1.0.0-beta.4",
 		"embla-carousel-react": "^8.6.0",
+		"input-otp": "^1.4.2",
 		"lucide-react": "0.553.0",
 		"react": "catalog:ui",
 		"react-day-picker": "^9.11.1",
