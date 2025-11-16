@@ -1,0 +1,302 @@
+---
+description: Component structure and code style guidelines for UI package components
+globs:
+  - "src/components/**/*.tsx"
+alwaysApply: false
+---
+
+# UI Package Component Structure & Code Style
+
+This rule defines coding standards and structure for components in the `@voila.dev/ui` package.
+
+## Component Structure
+
+### Export Pattern
+
+**Complex components** (with multiple sub-components) should use the **object export pattern**:
+
+```tsx
+export const ComponentName = {
+	Root,
+	Item,
+	Trigger,
+	Content,
+	// ... other sub-components
+};
+```
+
+**Simple components** (single-purpose, no sub-components) should use **named function exports**:
+
+```tsx
+export function ComponentName({ className, ...props }: ComponentProps<"element">) {
+	return <element className={cx("base-classes", className)} {...props} />;
+}
+```
+
+**Examples:**
+
+Complex components (use object export):
+```tsx
+// ✅ Good
+export const Accordion = {
+	Root,
+	Item,
+	Header,
+	Trigger,
+	Panel,
+};
+
+export const Sidebar = {
+	Provider,
+	Root,
+	Trigger,
+	Content,
+	// ...
+};
+
+// ❌ Bad
+export { AccordionRoot, AccordionItem, AccordionHeader };
+```
+
+Simple components (use named function export):
+```tsx
+// ✅ Good - Simple single-purpose components
+export function Input({ className, ...props }: ComponentProps<typeof BaseInput>) {
+	return <BaseInput className={cx("base-classes", className)} {...props} />;
+}
+
+export function Label({ className, ...props }: ComponentProps<"label">) {
+	return <label className={cx("base-classes", className)} {...props} />;
+}
+
+export function Separator({ className, ...props }: ComponentProps<typeof BaseSeparator>) {
+	return <BaseSeparator className={cx("base-classes", className)} {...props} />;
+}
+
+// ❌ Bad - Don't use object pattern for simple components
+export const Input = { Root: Input };
+```
+
+### When to Use Which Pattern
+
+- **Object Export Pattern**: Use for components with multiple sub-components (e.g., `Accordion`, `Sidebar`, `Sheet`, `Dialog`, `Tabs`)
+- **Named Function Export**: Use for simple, single-purpose components (e.g., `Input`, `Label`, `Separator`, `Button`, `Badge`)
+
+### Component Naming
+
+- **Complex components**: Main component function should be named `Root` (not `ComponentName`)
+- **Simple components**: Use descriptive PascalCase name matching the export (e.g., `Input`, `Label`, `Separator`)
+- Sub-components should be named descriptively (e.g., `Header`, `Trigger`, `Content`)
+- Export object uses PascalCase (e.g., `Accordion`, `Sidebar`, `Button`)
+
+## Styling Utilities
+
+### Use `cx`
+
+Always use `cx` from the package index for className merging:
+
+```tsx
+import { cx } from "..";
+
+// ✅ Good
+<div className={cx("base-classes", className)} />
+
+// ❌ Bad
+import { cn } from "@/lib/utils";
+<div className={cn("base-classes", className)} />
+```
+
+### CVA Variants
+
+Use the **new CVA API** with `base` property:
+
+```tsx
+import { cva, type VariantProps } from "..";
+
+const variants = cva({
+	base: "base-classes here",
+	variants: {
+		variant: {
+			default: "default-classes",
+			outline: "outline-classes",
+		},
+		size: {
+			default: "h-8",
+			sm: "h-7",
+		},
+	},
+	defaultVariants: {
+		variant: "default",
+		size: "default",
+	},
+});
+```
+
+## Component Composition
+
+## TypeScript Patterns
+
+### Component Props
+
+Use `React.ComponentProps` for extending HTML element props:
+
+```tsx
+function Component({
+	className,
+	...props
+}: React.ComponentProps<"div"> & {
+	customProp?: string;
+}) {
+	return <div className={cx("base", className)} {...props} />;
+}
+```
+
+### Variant Props
+
+Extract variant props using `VariantProps`:
+
+```tsx
+import { cva, type VariantProps } from "..";
+
+const variants = cva({ /* ... */ });
+
+function Component({
+	variant,
+	size,
+	className,
+	...props
+}: React.ComponentProps<"button"> & VariantProps<typeof variants>) {
+	return (
+		<button
+			className={cx(variants({ variant, size }), className)}
+			{...props}
+		/>
+	);
+}
+```
+
+## File Structure
+
+### Component File
+
+```tsx
+"use client"; // If needed for client components
+
+import { cva, cx, type VariantProps } from "..";
+import { OtherComponent } from "./other-component";
+
+// Constants
+const CONSTANT_NAME = "value";
+
+// Types
+type ComponentContextProps = {
+	// ...
+};
+
+// Context
+const ComponentContext = React.createContext<ComponentContextProps | null>(null);
+
+// Hooks
+function useComponent() {
+	const context = React.useContext(ComponentContext);
+	if (!context) {
+		throw new Error("useComponent must be used within ComponentProvider");
+	}
+	return context;
+}
+
+// Variants (if needed)
+const variants = cva({
+	base: "...",
+	variants: { /* ... */ },
+	defaultVariants: { /* ... */ },
+});
+
+// Sub-components (alphabetically or logically grouped)
+function Root({ ... }: React.ComponentProps<"div">) {
+	// ...
+}
+
+function Item({ ... }: React.ComponentProps<"div">) {
+	// ...
+}
+
+// Export
+export const Component = {
+	Root,
+	Item,
+	// ...
+};
+
+export { useComponent };
+```
+
+## Common Patterns
+
+### Context Provider Pattern
+
+```tsx
+function Provider({
+	children,
+	defaultValue,
+	...props
+}: React.ComponentProps<"div"> & {
+	defaultValue?: boolean;
+}) {
+	const [state, setState] = React.useState(defaultValue ?? true);
+	
+	const contextValue = React.useMemo(
+		() => ({ state, setState }),
+		[state]
+	);
+
+	return (
+		<ComponentContext.Provider value={contextValue}>
+			<div {...props}>{children}</div>
+		</ComponentContext.Provider>
+	);
+}
+```
+
+### useRender Pattern
+
+```tsx
+import { useRender } from "@base-ui-components/react/use-render";
+
+function Component({
+	render = <div />,
+	className,
+	...props
+}: React.ComponentProps<"div"> & {
+	render?: useRender.RenderProp;
+}) {
+	return useRender({
+		render,
+		props: {
+			className: cx("base-classes", className),
+			...props,
+		},
+	});
+}
+```
+
+## Key Principles
+
+- **Consistency**: Follow existing patterns in the codebase (e.g., `accordion.tsx`, `sidebar.tsx`)
+- **Composability**: Components should be composable and reusable
+- **Type Safety**: Use TypeScript strictly
+- **Accessibility**: Include proper ARIA attributes and semantic HTML
+- **Performance**: Use `React.useMemo` and `React.useCallback` appropriately
+- **Documentation**: Add JSDoc comments for complex components or non-obvious behavior
+
+## Reference Files
+
+**Complex components (object export pattern):**
+@accordion.tsx
+@sidebar.tsx
+@sheet.tsx
+
+**Simple components (named function export):**
+@input.tsx
+@label.tsx
+@separator.tsx
