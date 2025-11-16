@@ -1,0 +1,17 @@
+{
+	"name": "@voila.dev/trigger-deployment",
+	"version": "1.0.0",
+	"description": "Trigger a deployment via Dokploy API",
+	"type": "module",
+	"scripts": {
+		"start": "bun run src/index.ts"
+	},
+	"dependencies": {
+		"commander": "^12.1.0"
+	},
+	"devDependencies": {
+		"@types/bun": "catalog:",
+		"@types/node": "catalog:",
+		"typescript": "catalog:"
+	}
+}

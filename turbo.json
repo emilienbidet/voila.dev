@@ -26,6 +26,15 @@
 		},
 		"build": {
 			"dependsOn": ["^build"]
+		},
+		"build:styles": {
+			"dependsOn": ["^build"]
+		},
+		"build:themes": {
+			"dependsOn": ["^build"]
+		},
+		"build:components": {
+			"dependsOn": ["^build"]
 		}
 	}
 }

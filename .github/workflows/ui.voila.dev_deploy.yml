@@ -1,0 +1,58 @@
+name: ui.voila.dev - Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ui.voila.dev_deploy.yml'
+      - 'projects/voila.dev/apps/ui.voila.dev/**'
+      - 'packages/ui/**'
+      - 'package.json'
+      - 'bun.lock'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: ui.voila.dev_deploy
+      cancel-in-progress: true
+
+    permissions:
+      contents: read
+      packages: write
+
+    environment: 
+      name: ui.voila.dev
+      url: https://ui.voila.dev
+
+    steps:
+      - name: Create deployment
+        uses: ./.github/actions/create-deployment
+        with:
+          environment: ui.voila.dev
+
+      - name: Checkout repository
+        uses: ./.github/actions/checkout-repository
+
+      - name: Build and push Docker image
+        uses: ./.github/actions/docker-build-push
+        with:
+          dockerfile: ./projects/voila.dev/apps/ui.voila.dev/Dockerfile
+          image-name: ui.voila.dev
+
+      - name: Trigger Deployment
+        uses: ./.github/actions/trigger-deployment
+        with:
+          api-key: ${{ secrets.CLOUD_VOILA_DEV_API_KEY }}
+          compose-id: ${{ secrets.CLOUD_VOILA_DEV_COMPOSE_ID }}
+
+      - name: Update deployment status
+        uses: ./.github/actions/update-deployment-status
+        with:
+          environment: ui.voila.dev
+          status: success
+          message: Deployment successful
+          url: https://ui.voila.dev
+

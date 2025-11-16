@@ -1,0 +1,26 @@
+name: 'Trigger Deployment'
+description: 'Trigger a compose deployment via Dokploy API'
+inputs:
+  api-key:
+    description: 'API key for authentication'
+    required: true
+  compose-id:
+    description: 'Compose ID to deploy'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Bun
+      uses: ./.github/actions/setup-bun
+
+    - name: Install dependencies
+      shell: bash
+      run: bun install
+
+    - name: Trigger deployment
+      shell: bash
+      run: |
+        bun run scripts/trigger-deployment/src/index.ts \
+          --api-key "${{ inputs.api-key }}" \
+          --compose-id "${{ inputs.compose-id }}"
+

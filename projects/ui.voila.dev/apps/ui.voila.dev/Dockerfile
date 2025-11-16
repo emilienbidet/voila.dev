@@ -4,7 +4,7 @@ FROM base AS prune
 WORKDIR /app
 COPY . .
 RUN bun install --frozen-lockfile
-RUN turbo prune @ui.voila.dev/ui.voila.dev --docker
+RUN bunx turbo prune @ui.voila.dev/ui.voila.dev --docker
 
 FROM base AS installer
 WORKDIR /app
@@ -16,14 +16,14 @@ WORKDIR /app
 COPY --from=installer /app/node_modules ./node_modules
 COPY --from=installer /app/bun.lock ./bun.lock
 COPY --from=prune /app/out/full/ .
-RUN bun run ui.voila.dev:build
+RUN bunx turbo run build --filter @ui.voila.dev/ui.voila.dev...
 
 FROM base AS deploy
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/projects/voila.dev/apps/ui.voila.dev/dist ./projects/voila.dev/apps/ui.voila.dev/dist
-COPY --from=builder /app/projects/voila.dev/apps/ui.voila.dev/package.json ./projects/voila.dev/apps/ui.voila.dev/package.json
-COPY --from=builder /app/projects/voila.dev/apps/ui.voila.dev/server.ts ./projects/voila.dev/apps/ui.voila.dev/server.ts
-WORKDIR /app/projects/voila.dev/apps/ui.voila.dev
+COPY --from=builder /app/projects/ui.voila.dev/apps/ui.voila.dev/dist ./projects/ui.voila.dev/apps/ui.voila.dev/dist
+COPY --from=builder /app/projects/ui.voila.dev/apps/ui.voila.dev/package.json ./projects/ui.voila.dev/apps/ui.voila.dev/package.json
+COPY --from=builder /app/projects/ui.voila.dev/apps/ui.voila.dev/server.ts ./projects/ui.voila.dev/apps/ui.voila.dev/server.ts
+WORKDIR /app/projects/ui.voila.dev/apps/ui.voila.dev
 CMD ["bun", "run", "server.ts"]
 
