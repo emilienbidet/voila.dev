@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@voila.dev/ui/components/button";
-import { Input } from "@voila.dev/ui/components/input";
-import { Label } from "@voila.dev/ui/components/label";
 import { Sheet } from "@voila.dev/ui/components/sheet";
 import * as React from "react";
 
@@ -11,7 +9,6 @@ const meta = {
 	parameters: {
 		layout: "centered",
 	},
-	tags: ["autodocs"],
 } satisfies Meta<typeof Sheet.Root>;
 
 export default meta;
@@ -185,51 +182,4 @@ export const Controlled: Story = {
 			</>
 		);
 	},
-};
-
-export const WithForm: Story = {
-	render: () => (
-		<Sheet.Root>
-			<Sheet.Trigger>
-				<Button>Create Account</Button>
-			</Sheet.Trigger>
-			<Sheet.Content
-				render={
-					<form
-						onSubmit={(e) => {
-							e.preventDefault();
-							alert("Account created!");
-						}}
-					/>
-				}
-			>
-				<Sheet.Header>
-					<Sheet.Title>Create Account</Sheet.Title>
-					<Sheet.Description>
-						Enter your information to create a new account.
-					</Sheet.Description>
-				</Sheet.Header>
-				<Sheet.Body>
-					<div>
-						<Label htmlFor="email">Email</Label>
-						<Input id="email" type="email" placeholder="john@example.com" />
-					</div>
-					<div>
-						<Label htmlFor="password">Password</Label>
-						<Input id="password" type="password" placeholder="••••••••" />
-					</div>
-				</Sheet.Body>
-				<Sheet.Footer>
-					<Sheet.Close
-						render={
-							<Button type="button" variant="outline">
-								Cancel
-							</Button>
-						}
-					/>
-					<Button type="submit">Create Account</Button>
-				</Sheet.Footer>
-			</Sheet.Content>
-		</Sheet.Root>
-	),
 };
