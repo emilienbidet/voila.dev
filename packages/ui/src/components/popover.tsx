@@ -1,37 +1,53 @@
 "use client";
 
-import { Popover as BasePopover } from "@base-ui-components/react/popover";
+import { Popover as PopoverPrimitive } from "@base-ui-components/react/popover";
 import type { ComponentProps } from "react";
 import { cx } from "..";
 
-function Root(props: ComponentProps<typeof BasePopover.Root>) {
-	return <BasePopover.Root data-slot="popover" {...props} />;
+function Root(props: ComponentProps<typeof PopoverPrimitive.Root>) {
+	return <PopoverPrimitive.Root {...props} />;
 }
 
-function Trigger({ ...props }: ComponentProps<typeof BasePopover.Trigger>) {
-	return <BasePopover.Trigger data-slot="popover-trigger" {...props} />;
-}
-
-function Portal(props: ComponentProps<typeof BasePopover.Portal>) {
-	return <BasePopover.Portal {...props} />;
+function Trigger(props: ComponentProps<typeof PopoverPrimitive.Trigger>) {
+	return <PopoverPrimitive.Trigger {...props} />;
 }
 
 function Positioner({
-	className,
+	sideOffset = 4,
+	portal,
 	...props
-}: ComponentProps<typeof BasePopover.Positioner>) {
-	return <BasePopover.Positioner className={className} {...props} />;
+}: ComponentProps<typeof PopoverPrimitive.Positioner> & {
+	portal?: ComponentProps<typeof PopoverPrimitive.Portal>;
+}) {
+	return (
+		<PopoverPrimitive.Portal {...portal}>
+			<PopoverPrimitive.Positioner sideOffset={sideOffset} {...props} />
+		</PopoverPrimitive.Portal>
+	);
 }
 
-function Popup({
+function Content({
 	className,
 	...props
-}: ComponentProps<typeof BasePopover.Popup>) {
+}: ComponentProps<typeof PopoverPrimitive.Popup>) {
 	return (
-		<BasePopover.Popup
-			data-slot="popover-content"
+		<PopoverPrimitive.Popup
 			className={cx(
-				"bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-72 origin-(--transform-origin) rounded-md border p-4 shadow-md outline-hidden",
+				// Base styles
+				"bg-popover text-popover-foreground",
+				// Animations
+				"data-open:animate-in data-closed:animate-out",
+				"data-closed:fade-out-0 data-open:fade-in-0",
+				"data-closed:zoom-out-95 data-open:zoom-in-95",
+				"data-[side=bottom]:slide-in-from-top-2",
+				"data-[side=left]:slide-in-from-right-2",
+				"data-[side=right]:slide-in-from-left-2",
+				"data-[side=top]:slide-in-from-bottom-2",
+				// Layout
+				"z-50 w-72",
+				"origin-(--radix-popover-content-transform-origin)",
+				// Visual styles
+				"rounded-md border p-4 shadow-md outline-hidden",
 				className,
 			)}
 			{...props}
@@ -39,40 +55,17 @@ function Popup({
 	);
 }
 
-function Content({
-	className,
-	align = "center",
-	side = "bottom",
-	sideOffset = 4,
-	...props
-}: ComponentProps<typeof BasePopover.Popup> & {
-	align?: ComponentProps<typeof BasePopover.Positioner>["align"];
-	side?: ComponentProps<typeof BasePopover.Positioner>["side"];
-	sideOffset?: ComponentProps<typeof BasePopover.Positioner>["sideOffset"];
-}) {
-	return (
-		<Portal>
-			<Positioner align={align} side={side} sideOffset={sideOffset}>
-				<Popup className={className} {...props} />
-			</Positioner>
-		</Portal>
-	);
-}
-
-function Arrow({
-	className,
-	...props
-}: ComponentProps<typeof BasePopover.Arrow>) {
-	return <BasePopover.Arrow className={className} {...props} />;
+function Close(props: ComponentProps<typeof PopoverPrimitive.Close>) {
+	return <PopoverPrimitive.Close {...props} />;
 }
 
 function Title({
 	className,
 	...props
-}: ComponentProps<typeof BasePopover.Title>) {
+}: ComponentProps<typeof PopoverPrimitive.Title>) {
 	return (
-		<BasePopover.Title
-			className={cx("text-sm font-medium", className)}
+		<PopoverPrimitive.Title
+			className={cx("font-semibold", className)}
 			{...props}
 		/>
 	);
@@ -81,28 +74,21 @@ function Title({
 function Description({
 	className,
 	...props
-}: ComponentProps<typeof BasePopover.Description>) {
+}: ComponentProps<typeof PopoverPrimitive.Description>) {
 	return (
-		<BasePopover.Description
+		<PopoverPrimitive.Description
 			className={cx("text-muted-foreground text-sm", className)}
 			{...props}
 		/>
 	);
 }
 
-function Close(props: ComponentProps<typeof BasePopover.Close>) {
-	return <BasePopover.Close {...props} />;
-}
-
 export const Popover = {
 	Root,
 	Trigger,
-	Portal,
 	Positioner,
-	Popup,
 	Content,
-	Arrow,
+	Close,
 	Title,
 	Description,
-	Close,
 };
