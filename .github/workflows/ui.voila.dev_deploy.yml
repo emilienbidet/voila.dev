@@ -31,11 +31,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create deployment
-        uses: ./.github/actions/create-deployment
-        with:
-          environment: ui.voila.dev
-
       - name: Build and push Docker image
         uses: ./.github/actions/docker-build-push
         with:
@@ -47,12 +42,3 @@ jobs:
         with:
           api-key: ${{ secrets.CLOUD_VOILA_DEV_API_KEY }}
           compose-id: ${{ secrets.CLOUD_VOILA_DEV_COMPOSE_ID }}
-
-      - name: Update deployment status
-        uses: ./.github/actions/update-deployment-status
-        with:
-          environment: ui.voila.dev
-          status: success
-          message: Deployment successful
-          url: https://ui.voila.dev
-
