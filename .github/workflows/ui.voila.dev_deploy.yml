@@ -28,13 +28,13 @@ jobs:
       url: https://ui.voila.dev
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Create deployment
         uses: ./.github/actions/create-deployment
         with:
           environment: ui.voila.dev
-
-      - name: Checkout repository
-        uses: ./.github/actions/checkout-repository
 
       - name: Build and push Docker image
         uses: ./.github/actions/docker-build-push
