@@ -1,24 +1,27 @@
-"use client";
-
-import { ScrollArea as BaseScrollArea } from "@base-ui-components/react/scroll-area";
+import { ScrollArea as ScrollAreaPrimitive } from "@base-ui-components/react/scroll-area";
 import type { ComponentProps } from "react";
 import { cx } from "..";
 
 function Root({
 	className,
 	...props
-}: ComponentProps<typeof BaseScrollArea.Root>) {
+}: ComponentProps<typeof ScrollAreaPrimitive.Root>) {
 	return (
-		<BaseScrollArea.Root className={cx("relative", className)} {...props} />
+		<ScrollAreaPrimitive.Root
+			data-slot="scroll-area"
+			className={cx("relative", className)}
+			{...props}
+		/>
 	);
 }
 
 function Viewport({
 	className,
 	...props
-}: ComponentProps<typeof BaseScrollArea.Viewport>) {
+}: ComponentProps<typeof ScrollAreaPrimitive.Viewport>) {
 	return (
-		<BaseScrollArea.Viewport
+		<ScrollAreaPrimitive.Viewport
+			data-slot="scroll-area-viewport"
 			className={cx(
 				"focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1",
 				className,
@@ -31,10 +34,11 @@ function Viewport({
 function Content({
 	className,
 	...props
-}: ComponentProps<typeof BaseScrollArea.Content>) {
+}: ComponentProps<typeof ScrollAreaPrimitive.Content>) {
 	return (
-		<BaseScrollArea.Content
-			className={cx("w-fit min-w-full", className)}
+		<ScrollAreaPrimitive.Content
+			data-slot="scroll-area-content"
+			className={className}
 			{...props}
 		/>
 	);
@@ -44,12 +48,13 @@ function Scrollbar({
 	className,
 	orientation = "vertical",
 	...props
-}: ComponentProps<typeof BaseScrollArea.Scrollbar>) {
+}: ComponentProps<typeof ScrollAreaPrimitive.Scrollbar>) {
 	return (
-		<BaseScrollArea.Scrollbar
+		<ScrollAreaPrimitive.Scrollbar
+			data-slot="scroll-area-scrollbar"
 			orientation={orientation}
 			className={cx(
-				"flex touch-none p-px transition-colors select-none",
+				"flex touch-none p-px transition-[colors,opacity] select-none opacity-0 data-hovering:opacity-100 data-scrolling:opacity-100 duration-150 delay-300 data-hovering:duration-75 data-scrolling:duration-75 data-hovering:delay-0 data-scrolling:delay-0",
 				orientation === "vertical" &&
 					"h-full w-2.5 border-l border-l-transparent",
 				orientation === "horizontal" &&
@@ -64,9 +69,10 @@ function Scrollbar({
 function Thumb({
 	className,
 	...props
-}: ComponentProps<typeof BaseScrollArea.Thumb>) {
+}: ComponentProps<typeof ScrollAreaPrimitive.Thumb>) {
 	return (
-		<BaseScrollArea.Thumb
+		<ScrollAreaPrimitive.Thumb
+			data-slot="scroll-area-thumb"
 			className={cx("bg-border relative flex-1 rounded-full", className)}
 			{...props}
 		/>
@@ -76,8 +82,21 @@ function Thumb({
 function Corner({
 	className,
 	...props
-}: ComponentProps<typeof BaseScrollArea.Corner>) {
-	return <BaseScrollArea.Corner className={cx(className)} {...props} />;
+}: ComponentProps<typeof ScrollAreaPrimitive.Corner>) {
+	return (
+		<ScrollAreaPrimitive.Corner
+			data-slot="scroll-area-corner"
+			className={className}
+			{...props}
+		/>
+	);
 }
 
-export const ScrollArea = { Root, Viewport, Content, Scrollbar, Thumb, Corner };
+export const ScrollArea = {
+	Root,
+	Viewport,
+	Content,
+	Scrollbar,
+	Thumb,
+	Corner,
+};
