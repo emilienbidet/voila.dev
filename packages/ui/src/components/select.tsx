@@ -1,155 +1,264 @@
 "use client";
 
-import { Select as BaseSelect } from "@base-ui-components/react/select";
+import { Select as SelectPrimitive } from "@base-ui-components/react/select";
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import type { ComponentProps } from "react";
-import { cx } from "..";
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "../icons";
 
-function Root(props: ComponentProps<typeof BaseSelect.Root>) {
-	return <BaseSelect.Root {...props} />;
+import { cx } from "..";
+
+function Root({ ...props }: ComponentProps<typeof SelectPrimitive.Root>) {
+	return <SelectPrimitive.Root {...props} />;
+}
+
+function Group({ ...props }: ComponentProps<typeof SelectPrimitive.Group>) {
+	return <SelectPrimitive.Group {...props} />;
+}
+
+function Value({
+	placeholder,
+	...props
+}: ComponentProps<typeof SelectPrimitive.Value> & {
+	placeholder?: string;
+}) {
+	if (!placeholder) {
+		return <SelectPrimitive.Value {...props} />;
+	}
+
+	return (
+		<SelectPrimitive.Value
+			render={(_, { value }) => {
+				if (value) {
+					return <SelectPrimitive.Value {...props} />;
+				}
+
+				// Placeholder
+				return (
+					<span data-slot="select-value" className="text-muted-foreground">
+						{placeholder}
+					</span>
+				);
+			}}
+			{...props}
+		/>
+	);
 }
 
 function Trigger({
 	className,
 	size = "default",
+	children,
 	...props
-}: ComponentProps<typeof BaseSelect.Trigger> & {
+}: ComponentProps<typeof SelectPrimitive.Trigger> & {
 	size?: "sm" | "default";
 }) {
 	return (
-		<BaseSelect.Trigger
+		<SelectPrimitive.Trigger
 			className={cx(
-				"border-input data-placeholder:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] data-disabled:cursor-not-allowed data-disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:line-clamp-1 *:flex *:items-center *:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+				// Layout
+				"flex w-fit items-center justify-between gap-2",
+				// Sizing
+				"px-3 py-2 text-sm whitespace-nowrap",
+				"data-[size=default]:h-9 data-[size=sm]:h-8",
+				// Colors & Background
+				"border-input bg-transparent",
+				"dark:bg-input/30 dark:hover:bg-input/50",
+				// Border & Shadow
+				"rounded-md border shadow-xs",
+				// Typography
+				"data-placeholder:text-muted-foreground",
+				"[&_svg:not([class*='text-'])]:text-muted-foreground",
+				// Focus states
+				"outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+				// Invalid states
+				"aria-invalid:border-destructive",
+				"aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
+				// Disabled states
+				"data-disabled:cursor-not-allowed data-disabled:opacity-50",
+				// Transitions
+				"transition-[color,box-shadow]",
+				// Value slot styling
+				"*:data-[slot=select-value]:line-clamp-1",
+				"*:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2",
+				// Icon styling
+				"[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 				className,
 			)}
 			{...props}
-		/>
+		>
+			{children}
+		</SelectPrimitive.Trigger>
 	);
-}
-
-function Value(props: ComponentProps<typeof BaseSelect.Value>) {
-	return <BaseSelect.Value {...props} />;
 }
 
 function Icon({
 	className,
-	children,
 	...props
-}: ComponentProps<typeof BaseSelect.Icon>) {
+}: ComponentProps<typeof SelectPrimitive.Icon>) {
 	return (
-		<BaseSelect.Icon
-			className={cx("flex items-center justify-center", className)}
+		<SelectPrimitive.Icon
+			render={
+				<ChevronDownIcon className={cx("size-4 opacity-50", className)} />
+			}
 			{...props}
-		>
-			{children || <ChevronDownIcon className="size-4 opacity-50" />}
-		</BaseSelect.Icon>
+		/>
 	);
 }
 
-function Portal(props: ComponentProps<typeof BaseSelect.Portal>) {
-	return <BaseSelect.Portal {...props} />;
-}
-
-function Backdrop({
-	className,
-	...props
-}: ComponentProps<typeof BaseSelect.Backdrop>) {
-	return <BaseSelect.Backdrop className={cx(className)} {...props} />;
+function Portal({ ...props }: ComponentProps<typeof SelectPrimitive.Portal>) {
+	return <SelectPrimitive.Portal {...props} />;
 }
 
 function Positioner({
-	className,
 	...props
-}: ComponentProps<typeof BaseSelect.Positioner>) {
-	return <BaseSelect.Positioner className={cx("z-50", className)} {...props} />;
+}: ComponentProps<typeof SelectPrimitive.Positioner>) {
+	return (
+		<SelectPrimitive.Positioner
+			alignItemWithTrigger={false}
+			sideOffset={5}
+			{...props}
+		/>
+	);
 }
 
 function Popup({
 	className,
+	children,
 	...props
-}: ComponentProps<typeof BaseSelect.Popup>) {
+}: ComponentProps<typeof SelectPrimitive.Popup>) {
 	return (
-		<BaseSelect.Popup
+		<SelectPrimitive.Popup
 			className={cx(
-				"bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative max-h-(--available-height) min-w-32 origin-(--transform-origin) overflow-x-hidden overflow-y-auto rounded-md border shadow-md",
-				className,
-			)}
-			{...props}
-		/>
-	);
-}
-
-function List({ className, ...props }: ComponentProps<typeof BaseSelect.List>) {
-	return <BaseSelect.List className={cx("p-1", className)} {...props} />;
-}
-
-function Item({ className, ...props }: ComponentProps<typeof BaseSelect.Item>) {
-	return (
-		<BaseSelect.Item
-			className={cx(
-				"focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative grid w-full cursor-default grid-cols-[1rem_1fr] items-center gap-2 rounded-sm py-1.5 pr-2 pl-2 text-sm outline-hidden select-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-				className,
-			)}
-			{...props}
-		/>
-	);
-}
-
-function ItemText({
-	className,
-	...props
-}: ComponentProps<typeof BaseSelect.ItemText>) {
-	return (
-		<BaseSelect.ItemText className={cx("col-start-2", className)} {...props} />
-	);
-}
-
-function ItemIndicator({
-	className,
-	keepMounted = true,
-	...props
-}: ComponentProps<typeof BaseSelect.ItemIndicator> & {
-	keepMounted?: boolean;
-}) {
-	return (
-		<BaseSelect.ItemIndicator
-			keepMounted={keepMounted}
-			className={cx(
-				"col-start-1 flex size-4 items-center justify-center opacity-0 [&[data-selected]]:opacity-100 [&:not([hidden])]:opacity-100",
+				// Layout
+				"relative z-50 p-1",
+				// Sizing
+				"max-h-(--available-height) min-w-(--anchor-width)",
+				// Colors
+				"bg-popover text-popover-foreground",
+				// Border & Shadow
+				"rounded-md border shadow-md",
+				// Overflow
+				"overflow-x-hidden overflow-y-auto",
+				// Transform origin
+				"origin-(--transform-origin)",
+				// Animations - Enter
+				"data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95",
+				// Animations - Exit
+				"data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+				// Slide animations by side
+				"data-[side=bottom]:slide-in-from-top-2",
+				"data-[side=left]:slide-in-from-right-2",
+				"data-[side=right]:slide-in-from-left-2",
+				"data-[side=top]:slide-in-from-bottom-2",
 				className,
 			)}
 			{...props}
 		>
-			<CheckIcon className="size-4" />
-		</BaseSelect.ItemIndicator>
+			{children}
+		</SelectPrimitive.Popup>
 	);
 }
 
-function Group({
+function Content({
 	className,
+	children,
 	...props
-}: ComponentProps<typeof BaseSelect.Group>) {
-	return <BaseSelect.Group className={cx(className)} {...props} />;
+}: ComponentProps<typeof SelectPrimitive.Popup>) {
+	return (
+		<>
+			<ScrollUpArrow />
+			<Popup className={className} {...props}>
+				{children}
+			</Popup>
+			<ScrollDownArrow />
+		</>
+	);
 }
 
-function GroupLabel({
+function List({ ...props }: ComponentProps<typeof SelectPrimitive.List>) {
+	return <SelectPrimitive.List data-slot="select-list" {...props} />;
+}
+
+function Label({
 	className,
 	...props
-}: ComponentProps<typeof BaseSelect.GroupLabel>) {
+}: ComponentProps<typeof SelectPrimitive.GroupLabel>) {
 	return (
-		<BaseSelect.GroupLabel
+		<SelectPrimitive.GroupLabel
 			className={cx("text-muted-foreground px-2 py-1.5 text-xs", className)}
 			{...props}
 		/>
 	);
 }
 
+function GroupLabel({
+	className,
+	...props
+}: ComponentProps<typeof SelectPrimitive.GroupLabel>) {
+	return (
+		<SelectPrimitive.GroupLabel
+			className={cx("text-muted-foreground px-2 py-1.5 text-xs", className)}
+			{...props}
+		/>
+	);
+}
+
+function Item({
+	className,
+	children,
+	...props
+}: ComponentProps<typeof SelectPrimitive.Item>) {
+	return (
+		<SelectPrimitive.Item
+			className={cx(
+				// Layout
+				"relative flex w-full items-center gap-2",
+				// Sizing & Spacing
+				"py-1.5 pr-8 pl-2 text-sm",
+				// Border & Shape
+				"rounded-sm",
+				// Colors
+				"focus:bg-accent focus:text-accent-foreground",
+				"[&_svg:not([class*='text-'])]:text-muted-foreground",
+				// Cursor & Selection
+				"cursor-default select-none outline-hidden",
+				// Disabled states
+				"data-disabled:pointer-events-none data-disabled:opacity-50",
+				// Icon styling
+				"[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+				// Span styling
+				"*:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+				className,
+			)}
+			{...props}
+		>
+			{children}
+		</SelectPrimitive.Item>
+	);
+}
+
+function ItemIndicator({
+	className,
+	...props
+}: ComponentProps<typeof SelectPrimitive.ItemIndicator>) {
+	return (
+		<SelectPrimitive.ItemIndicator className={className} {...props}>
+			<CheckIcon className="size-4" />
+		</SelectPrimitive.ItemIndicator>
+	);
+}
+
+function ItemText({
+	...props
+}: ComponentProps<typeof SelectPrimitive.ItemText>) {
+	return <SelectPrimitive.ItemText data-slot="select-item-text" {...props} />;
+}
+
 function Separator({
 	className,
 	...props
-}: ComponentProps<typeof BaseSelect.Separator>) {
+}: ComponentProps<typeof SelectPrimitive.Separator>) {
 	return (
-		<BaseSelect.Separator
+		<SelectPrimitive.Separator
 			className={cx("bg-border pointer-events-none -mx-1 my-1 h-px", className)}
 			{...props}
 		/>
@@ -159,61 +268,82 @@ function Separator({
 function ScrollUpArrow({
 	className,
 	...props
-}: ComponentProps<typeof BaseSelect.ScrollUpArrow>) {
+}: ComponentProps<typeof SelectPrimitive.ScrollUpArrow>) {
 	return (
-		<BaseSelect.ScrollUpArrow
+		<SelectPrimitive.ScrollUpArrow
 			className={cx(
-				"flex cursor-default items-center justify-center py-1",
+				// Layout
+				"relative z-51 flex h-6 w-full items-center justify-center",
+				// Colors & Background
+				"bg-popover",
+				// Border
+				"border",
+				"data-[direction=up]:border-b-0 data-[direction=down]:border-t-0",
+				// Border radius
+				"data-[direction=up]:rounded-t-md data-[direction=down]:rounded-b-md",
+				// Typography
+				"text-center text-md cursor-default",
+				// Pseudo-element
+				"before:absolute before:left-0 before:h-full before:w-full before:content-['']",
+				"data-[direction=up]:before:top-full",
+				"data-[direction=down]:bottom-0 data-[direction=down]:before:-bottom-full",
 				className,
 			)}
 			{...props}
 		>
 			<ChevronUpIcon className="size-4" />
-		</BaseSelect.ScrollUpArrow>
+		</SelectPrimitive.ScrollUpArrow>
 	);
 }
 
 function ScrollDownArrow({
 	className,
 	...props
-}: ComponentProps<typeof BaseSelect.ScrollDownArrow>) {
+}: ComponentProps<typeof SelectPrimitive.ScrollDownArrow>) {
 	return (
-		<BaseSelect.ScrollDownArrow
+		<SelectPrimitive.ScrollDownArrow
 			className={cx(
-				"flex cursor-default items-center justify-center py-1",
+				// Layout
+				"relative z-51 flex h-6 w-full items-center justify-center",
+				// Colors & Background
+				"bg-popover",
+				// Border
+				"border",
+				"data-[direction=up]:border-b-0 data-[direction=down]:border-t-0",
+				// Border radius
+				"data-[direction=up]:rounded-t-md data-[direction=down]:rounded-b-md",
+				// Typography
+				"text-center text-md cursor-default",
+				// Pseudo-element
+				"before:absolute before:left-0 before:h-full before:w-full before:content-['']",
+				"data-[direction=up]:before:top-full",
+				"data-[direction=down]:bottom-0 data-[direction=down]:before:-bottom-full",
 				className,
 			)}
 			{...props}
 		>
 			<ChevronDownIcon className="size-4" />
-		</BaseSelect.ScrollDownArrow>
+		</SelectPrimitive.ScrollDownArrow>
 	);
-}
-
-function Arrow({
-	className,
-	...props
-}: ComponentProps<typeof BaseSelect.Arrow>) {
-	return <BaseSelect.Arrow className={cx(className)} {...props} />;
 }
 
 export const Select = {
 	Root,
-	Trigger,
+	Group,
 	Value,
+	Trigger,
 	Icon,
 	Portal,
-	Backdrop,
 	Positioner,
 	Popup,
+	Content,
 	List,
-	Item,
-	ItemText,
-	ItemIndicator,
-	Group,
+	Label,
 	GroupLabel,
+	Item,
+	ItemIndicator,
+	ItemText,
 	Separator,
 	ScrollUpArrow,
 	ScrollDownArrow,
-	Arrow,
 };

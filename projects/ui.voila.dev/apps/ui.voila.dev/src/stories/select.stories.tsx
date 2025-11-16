@@ -1,5 +1,5 @@
-import { Select } from "@voila.dev/ui/components/select";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Select } from "@voila.dev/ui/components/select";
 
 const meta = {
 	title: "UI/Select",
@@ -232,7 +232,7 @@ export const Disabled: Story = {
 						<Select.ScrollUpArrow />
 						<Select.List>
 							{fonts.map((font) => (
-								<Select.Item key={font.value} value={font.value}>
+								<Select.Item key={font.value} value={font.value} disabled>
 									<Select.ItemIndicator />
 									<Select.ItemText>{font.label}</Select.ItemText>
 								</Select.Item>
