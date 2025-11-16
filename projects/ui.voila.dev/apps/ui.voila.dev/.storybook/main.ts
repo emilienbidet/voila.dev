@@ -6,10 +6,23 @@ const config: StorybookConfig = {
 		name: "@storybook/react-vite",
 		options: {},
 	},
+	core: {
+		disableTelemetry: true,
+	},
 	async viteFinal(config) {
 		const tailwindcss = (await import("@tailwindcss/vite")).default;
-		config.plugins = [...(config.plugins ?? []), tailwindcss()];
-		return config;
+		return {
+			...config,
+			plugins: [...(config.plugins ?? []), tailwindcss()],
+			build: {
+				...config.build,
+				rollupOptions: {
+					...config.build?.rollupOptions,
+					// Disable tree-shaking to work around Rollup bug with conditional expressions
+					treeshake: false,
+				},
+			},
+		};
 	},
 };
 export default config;
