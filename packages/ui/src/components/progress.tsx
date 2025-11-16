@@ -1,24 +1,38 @@
 "use client";
 
-import { Progress as BaseProgress } from "@base-ui-components/react/progress";
+import { Progress as ProgressPrimitive } from "@base-ui-components/react/progress";
 import type { ComponentProps } from "react";
 import { cx } from "..";
 
 function Root({
 	className,
+	children,
 	...props
-}: ComponentProps<typeof BaseProgress.Root>) {
-	return <BaseProgress.Root className={cx(className)} {...props} />;
+}: ComponentProps<typeof ProgressPrimitive.Root>) {
+	return (
+		<ProgressPrimitive.Root
+			className={cx("relative w-full", className)}
+			{...props}
+		>
+			{children ? (
+				children
+			) : (
+				<Track>
+					<Indicator />
+				</Track>
+			)}
+		</ProgressPrimitive.Root>
+	);
 }
 
 function Track({
 	className,
 	...props
-}: ComponentProps<typeof BaseProgress.Track>) {
+}: ComponentProps<typeof ProgressPrimitive.Track>) {
 	return (
-		<BaseProgress.Track
+		<ProgressPrimitive.Track
 			className={cx(
-				"bg-primary/20 relative h-2 w-full overflow-hidden rounded-full",
+				"bg-primary/20 w-full h-2 overflow-hidden rounded-full",
 				className,
 			)}
 			{...props}
@@ -29,9 +43,9 @@ function Track({
 function Indicator({
 	className,
 	...props
-}: ComponentProps<typeof BaseProgress.Indicator>) {
+}: ComponentProps<typeof ProgressPrimitive.Indicator>) {
 	return (
-		<BaseProgress.Indicator
+		<ProgressPrimitive.Indicator
 			className={cx(
 				"bg-primary h-full w-full flex-1 transition-all",
 				className,
@@ -41,18 +55,34 @@ function Indicator({
 	);
 }
 
-function Value({
-	className,
-	...props
-}: ComponentProps<typeof BaseProgress.Value>) {
-	return <BaseProgress.Value className={cx(className)} {...props} />;
-}
-
 function Label({
 	className,
 	...props
-}: ComponentProps<typeof BaseProgress.Label>) {
-	return <BaseProgress.Label className={cx(className)} {...props} />;
+}: ComponentProps<typeof ProgressPrimitive.Label>) {
+	return (
+		<ProgressPrimitive.Label
+			className={cx("text-sm text-muted-foreground", className)}
+			{...props}
+		/>
+	);
 }
 
-export const Progress = { Root, Track, Indicator, Value, Label };
+function Value({
+	className,
+	...props
+}: ComponentProps<typeof ProgressPrimitive.Value>) {
+	return (
+		<ProgressPrimitive.Value
+			className={cx("text-sm text-muted-foreground", className)}
+			{...props}
+		/>
+	);
+}
+
+export const Progress = {
+	Root,
+	Track,
+	Indicator,
+	Label,
+	Value,
+};

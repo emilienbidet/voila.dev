@@ -1,6 +1,5 @@
-import { Progress } from "@voila.dev/ui/components/progress";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useEffect, useState } from "react";
+import { Progress } from "@voila.dev/ui/components/progress";
 
 const meta = {
 	title: "UI/Progress",
@@ -23,74 +22,113 @@ export const Default: Story = {
 	),
 };
 
-export const WithLabelAndValue: Story = {
+export const WithValue: Story = {
 	render: () => (
-		<Progress.Root value={45} className="grid w-64 grid-cols-2 gap-y-2 text-sm">
-			<Progress.Label className="font-medium text-foreground">
-				Export data
-			</Progress.Label>
-			<Progress.Value className="col-start-2 text-right text-foreground" />
-			<Progress.Track className="col-span-full">
-				<Progress.Indicator />
-			</Progress.Track>
-		</Progress.Root>
-	),
-};
+		<div className="w-64 flex flex-col gap-4">
+			<Progress.Root value={66} className="flex items-center gap-4">
+				<Progress.Track>
+					<Progress.Indicator />
+				</Progress.Track>
+				<Progress.Value />
+			</Progress.Root>
 
-export const Empty: Story = {
-	render: () => (
-		<Progress.Root value={0} className="w-64">
-			<Progress.Track>
-				<Progress.Indicator />
-			</Progress.Track>
-		</Progress.Root>
-	),
-};
-
-export const Half: Story = {
-	render: () => (
-		<Progress.Root value={50} className="w-64">
-			<Progress.Track>
-				<Progress.Indicator />
-			</Progress.Track>
-		</Progress.Root>
-	),
-};
-
-export const Full: Story = {
-	render: () => (
-		<Progress.Root value={100} className="w-64">
-			<Progress.Track>
-				<Progress.Indicator />
-			</Progress.Track>
-		</Progress.Root>
-	),
-};
-
-export const Animated: Story = {
-	render: () => {
-		const [value, setValue] = useState(20);
-
-		useEffect(() => {
-			const interval = setInterval(() => {
-				setValue((current) => {
-					const change = Math.round((Math.random() - 0.5) * 50);
-					return Math.max(0, Math.min(100, current + change));
-				});
-			}, 2000);
-			return () => clearInterval(interval);
-		}, []);
-
-		return (
-			<Progress.Root value={value} className="grid w-64 grid-cols-2 gap-y-2">
-				<Progress.Label className="text-sm font-medium text-foreground">
-					Export data
-				</Progress.Label>
-				<Progress.Value className="col-start-2 text-right text-sm text-foreground" />
-				<Progress.Track className="col-span-full">
+			<Progress.Root value={66} className="flex items-center gap-4">
+				<Progress.Value />
+				<Progress.Track>
 					<Progress.Indicator />
 				</Progress.Track>
 			</Progress.Root>
-		);
-	},
+
+			<Progress.Root value={66} className="flex items-center gap-4">
+				<Progress.Track>
+					<Progress.Indicator />
+				</Progress.Track>
+				<Progress.Value>{(_, progress) => `$${progress}`}</Progress.Value>
+			</Progress.Root>
+		</div>
+	),
+};
+
+export const WithLabel: Story = {
+	render: () => (
+		<div className="w-64 flex flex-col gap-6">
+			<Progress.Root value={66}>
+				<Progress.Label>Progress with label</Progress.Label>
+				<Progress.Track className="mt-2">
+					<Progress.Indicator />
+				</Progress.Track>
+			</Progress.Root>
+
+			<Progress.Root value={66} className="flex items-center gap-4">
+				<Progress.Label>Progress</Progress.Label>
+				<Progress.Track>
+					<Progress.Indicator />
+				</Progress.Track>
+			</Progress.Root>
+
+			<Progress.Root value={66}>
+				<div className="flex items-center justify-between gap-2">
+					<Progress.Label>Progress with label and value</Progress.Label>
+					<Progress.Value />
+				</div>
+				<Progress.Track className="mt-2">
+					<Progress.Indicator />
+				</Progress.Track>
+			</Progress.Root>
+
+			<Progress.Root value={66}>
+				<Progress.Label>Progress with label and value</Progress.Label>
+				<div className="flex items-center gap-4">
+					<Progress.Track>
+						<Progress.Indicator />
+					</Progress.Track>
+					<Progress.Value />
+				</div>
+			</Progress.Root>
+		</div>
+	),
+};
+
+export const Color: Story = {
+	render: () => (
+		<div className="w-64 space-y-6">
+			<Progress.Root value={66}>
+				<Progress.Track>
+					<Progress.Indicator className="bg-blue-500" />
+				</Progress.Track>
+			</Progress.Root>
+			<Progress.Root value={66}>
+				<Progress.Track>
+					<Progress.Indicator className="bg-green-500" />
+				</Progress.Track>
+			</Progress.Root>
+			<Progress.Root value={66}>
+				<Progress.Track>
+					<Progress.Indicator className="bg-red-500" />
+				</Progress.Track>
+			</Progress.Root>
+		</div>
+	),
+};
+
+export const Shape: Story = {
+	render: () => (
+		<div className="w-64 space-y-6">
+			<Progress.Root value={66}>
+				<Progress.Track className="rounded-full">
+					<Progress.Indicator />
+				</Progress.Track>
+			</Progress.Root>
+			<Progress.Root value={66}>
+				<Progress.Track className="rounded-md">
+					<Progress.Indicator />
+				</Progress.Track>
+			</Progress.Root>
+			<Progress.Root value={66}>
+				<Progress.Track className="rounded-none">
+					<Progress.Indicator />
+				</Progress.Track>
+			</Progress.Root>
+		</div>
+	),
 };
