@@ -132,6 +132,61 @@ const variants = cva({
 });
 ```
 
+### Splitting Long Classnames
+
+For maintainability, **split long className strings** across multiple lines. Group related classes together logically (e.g., layout, spacing, states, transitions).
+
+**In `cx()` calls:**
+
+```tsx
+// ✅ Good - Split into logical groups
+className={cx(
+	"flex flex-col gap-1 rounded-sm p-2 text-sm",
+	"hover:bg-accent hover:text-accent-foreground",
+	"focus:bg-accent focus:text-accent-foreground",
+	"data-active:focus:bg-accent data-active:hover:bg-accent",
+	"data-active:bg-accent/50 data-active:text-accent-foreground",
+	"focus-visible:ring-ring/50 outline-none",
+	"transition-all focus-visible:ring-[3px] focus-visible:outline-1",
+	className,
+)}
+
+// ❌ Bad - Single long line
+className={cx("flex flex-col gap-1 rounded-sm p-2 text-sm hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-active:focus:bg-accent data-active:hover:bg-accent data-active:bg-accent/50 data-active:text-accent-foreground focus-visible:ring-ring/50 outline-none transition-all focus-visible:ring-[3px] focus-visible:outline-1", className)}
+```
+
+**In CVA `base` property:**
+
+```tsx
+// ✅ Good - Use array with join for long base classes
+const variants = cva({
+	base: [
+		"group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2",
+		"text-sm font-medium",
+		"hover:bg-accent hover:text-accent-foreground",
+		"focus:bg-accent focus:text-accent-foreground",
+		"disabled:pointer-events-none disabled:opacity-50",
+		"focus-visible:ring-ring/50 outline-none",
+		"transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1",
+	].join(" "),
+	variants: { /* ... */ },
+});
+
+// ❌ Bad - Single long string
+const variants = cva({
+	base: "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1",
+	variants: { /* ... */ },
+});
+```
+
+**Guidelines:**
+
+- Split when className exceeds ~100 characters
+- Group related classes together (layout, spacing, states, transitions, etc.)
+- Keep each line focused on a single concern when possible
+- Use array with `.join(" ")` for CVA base when splitting
+- Maintain consistent indentation and formatting
+
 ## Component Composition
 
 ## TypeScript Patterns
