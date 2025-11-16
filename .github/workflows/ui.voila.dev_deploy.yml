@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/ui.voila.dev_deploy.yml'
-      - 'projects/voila.dev/apps/ui.voila.dev/**'
+      - 'projects/ui.voila.dev/apps/ui.voila.dev/**'
       - 'packages/ui/**'
       - 'package.json'
       - 'bun.lock'

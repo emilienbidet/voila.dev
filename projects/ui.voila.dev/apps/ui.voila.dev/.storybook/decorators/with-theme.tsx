@@ -2,6 +2,7 @@ import type { Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
 
 const themeMap: Record<string, () => Promise<unknown>> = {
+	// @ts-expect-error - This is a valid import
 	default: () => import("@voila.dev/ui/styles/themes/default.css"),
 };
 
