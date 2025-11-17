@@ -1,8 +1,10 @@
+import { useRender } from "@base-ui-components/react/use-render";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 import type { ComponentProps } from "react";
+
 import { cx } from "..";
 
-function Root(props: ComponentProps<"nav">) {
+function Root({ ...props }: ComponentProps<"nav">) {
 	return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
 }
 
@@ -11,7 +13,9 @@ function List({ className, ...props }: ComponentProps<"ol">) {
 		<ol
 			data-slot="breadcrumb-list"
 			className={cx(
-				"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm wrap-break-word sm:gap-2.5",
+				"flex flex-wrap items-center gap-1.5 text-sm",
+				"text-muted-foreground wrap-break-word",
+				"sm:gap-2.5",
 				className,
 			)}
 			{...props}
@@ -29,14 +33,23 @@ function Item({ className, ...props }: ComponentProps<"li">) {
 	);
 }
 
-function Link({ className, ...props }: ComponentProps<"a">) {
-	return (
-		<a
-			data-slot="breadcrumb-link"
-			className={cx("hover:text-foreground transition-colors", className)}
-			{...props}
-		/>
-	);
+function Link({
+	className,
+	// biome-ignore lint/a11y/useAnchorContent: Render prop pattern, content provided by consumer
+	// biome-ignore lint/a11y/useValidAnchor: Render prop pattern, href provided by consumer
+	render = <a />,
+	...props
+}: ComponentProps<"a"> & {
+	render?: useRender.RenderProp;
+}) {
+	return useRender({
+		render,
+		props: {
+			"data-slot": "breadcrumb-link",
+			className: cx("transition-colors hover:text-foreground", className),
+			...props,
+		},
+	});
 }
 
 function Page({ className, ...props }: ComponentProps<"span">) {
@@ -44,7 +57,7 @@ function Page({ className, ...props }: ComponentProps<"span">) {
 		<span
 			data-slot="breadcrumb-page"
 			aria-current="page"
-			className={cx("text-foreground font-normal", className)}
+			className={cx("font-normal text-foreground", className)}
 			{...props}
 		/>
 	);
@@ -79,4 +92,12 @@ function Ellipsis({ className, ...props }: ComponentProps<"span">) {
 	);
 }
 
-export const Breadcrumb = { Root, List, Item, Link, Page, Separator, Ellipsis };
+export const Breadcrumb = {
+	Root,
+	List,
+	Item,
+	Link,
+	Page,
+	Separator,
+	Ellipsis,
+};
