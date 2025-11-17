@@ -1,12 +1,12 @@
 "use client";
 
-import { useRender } from "@base-ui-components/react";
 import useEmblaCarousel, {
 	type UseEmblaCarouselType,
 } from "embla-carousel-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import * as React from "react";
+
 import { cx } from "..";
-import { ArrowLeft, ArrowRight } from "../icons";
 import { Button } from "./button";
 
 type CarouselApi = UseEmblaCarouselType[1];
@@ -14,21 +14,21 @@ type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
 
-interface CarouselProps {
+type CarouselProps = {
 	opts?: CarouselOptions;
 	plugins?: CarouselPlugin;
 	orientation?: "horizontal" | "vertical";
 	setApi?: (api: CarouselApi) => void;
-}
+};
 
-interface CarouselContextProps extends CarouselProps {
+type CarouselContextProps = {
 	carouselRef: ReturnType<typeof useEmblaCarousel>[0];
 	api: ReturnType<typeof useEmblaCarousel>[1];
 	scrollPrev: () => void;
 	scrollNext: () => void;
 	canScrollPrev: boolean;
 	canScrollNext: boolean;
-}
+} & CarouselProps;
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
@@ -118,13 +118,13 @@ function Root({
 				canScrollNext,
 			}}
 		>
-			<div
+			<section
 				onKeyDownCapture={handleKeyDown}
 				className={cx("relative", className)}
 				{...props}
 			>
 				{children}
-			</div>
+			</section>
 		</CarouselContext.Provider>
 	);
 }
@@ -133,11 +133,7 @@ function Content({ className, ...props }: React.ComponentProps<"div">) {
 	const { carouselRef, orientation } = useCarousel();
 
 	return (
-		<div
-			ref={carouselRef}
-			className="overflow-hidden"
-			data-slot="carousel-content"
-		>
+		<div ref={carouselRef} className="overflow-hidden">
 			<div
 				className={cx(
 					"flex",
@@ -153,20 +149,16 @@ function Content({ className, ...props }: React.ComponentProps<"div">) {
 function Item({ className, ...props }: React.ComponentProps<"div">) {
 	const { orientation } = useCarousel();
 
-	return useRender({
-		defaultTagName: "div",
-		props: {
-			className: cx(
+	return (
+		<div
+			className={cx(
 				"min-w-0 shrink-0 grow-0 basis-full",
-				{
-					"pl-4": orientation === "horizontal",
-					"pt-4": orientation === "vertical",
-				},
+				orientation === "horizontal" ? "pl-4" : "pt-4",
 				className,
-			),
-			...props,
-		},
-	});
+			)}
+			{...props}
+		/>
+	);
 }
 
 function Previous({
@@ -179,16 +171,13 @@ function Previous({
 
 	return (
 		<Button
-			data-slot="carousel-previous"
 			variant={variant}
 			size={size}
 			className={cx(
 				"absolute size-8 rounded-full",
-				{
-					"top-1/2 -left-12 -translate-y-1/2": orientation === "horizontal",
-					"-top-12 left-1/2 -translate-x-1/2 rotate-90":
-						orientation === "vertical",
-				},
+				orientation === "horizontal"
+					? "top-1/2 -left-12 -translate-y-1/2"
+					: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
 				className,
 			)}
 			disabled={!canScrollPrev}
@@ -211,16 +200,13 @@ function Next({
 
 	return (
 		<Button
-			data-slot="carousel-next"
 			variant={variant}
 			size={size}
 			className={cx(
 				"absolute size-8 rounded-full",
-				{
-					"top-1/2 -right-12 -translate-y-1/2": orientation === "horizontal",
-					"-bottom-12 left-1/2 -translate-x-1/2 rotate-90":
-						orientation === "vertical",
-				},
+				orientation === "horizontal"
+					? "top-1/2 -right-12 -translate-y-1/2"
+					: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
 				className,
 			)}
 			disabled={!canScrollNext}
@@ -239,4 +225,7 @@ export const Carousel = {
 	Item,
 	Previous,
 	Next,
+	useCarousel,
 };
+
+export type { CarouselApi };
