@@ -56,6 +56,21 @@ function Positioner({
 	);
 }
 
+function Body({
+	sideOffset = 6,
+	className,
+	children,
+	...positionerProps
+}: ComponentProps<typeof AutocompletePrimitive.Positioner> & {
+	className?: string;
+}) {
+	return (
+		<Positioner sideOffset={sideOffset} {...positionerProps}>
+			<Popup className={className}>{children}</Popup>
+		</Positioner>
+	);
+}
+
 function List({
 	className,
 	...props
@@ -208,6 +223,7 @@ export const Autocomplete = {
 	Input,
 	Popup,
 	Positioner,
+	Body,
 	List,
 	Empty,
 	Item,
