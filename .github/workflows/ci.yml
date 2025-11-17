@@ -21,7 +21,7 @@ jobs:
         uses: ./.github/actions/install-dependencies
 
       - name: Run Biome check (lint & format)
-        run: biome check .
+        run: bun run check
 
   type-check:
     name: Type Check
@@ -37,7 +37,7 @@ jobs:
         uses: ./.github/actions/install-dependencies
 
       - name: Run TypeScript type check
-        run: turbo run check-types --filter='...'
+        run: bun run check-types
 
   build:
     name: Build
@@ -53,5 +53,5 @@ jobs:
         uses: ./.github/actions/install-dependencies
 
       - name: Build packages
-        run: turbo run build --filter='...'
+        run: bunx turbo run build --filter='...'
 
