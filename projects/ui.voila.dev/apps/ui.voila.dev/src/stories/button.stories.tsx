@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@voila.dev/ui/components/button";
-import { DropdownMenu } from "@voila.dev/ui/components/dropdown-menu";
-import { ChevronDown, Loader, SendHorizonal, Trash } from "@voila.dev/ui/icons";
+import { Loader, SendHorizonal, Trash } from "@voila.dev/ui/icons";
 
 const meta = {
 	title: "UI/Button",
@@ -27,6 +26,14 @@ export const Variants: Story = {
 				<Button variant="ghost">Ghost</Button>
 				<Button variant="link">Link</Button>
 			</div>
+		</div>
+	),
+};
+
+export const Disabled: Story = {
+	render: () => (
+		<div className="flex flex-wrap gap-4">
+			<Button disabled>Disabled</Button>
 		</div>
 	),
 };
@@ -101,35 +108,6 @@ export const Group: Story = {
 			<Button>Button 2</Button>
 			<Button>Button 3</Button>
 			<Button>Button 4</Button>
-		</div>
-	),
-};
-
-export const Split: Story = {
-	render: () => (
-		<div className="flex">
-			<Button className="rounded-r-none border-e border-primary-foreground/20">
-				Send <SendHorizonal className="ml-1" />
-			</Button>
-			<DropdownMenu.Root>
-				<DropdownMenu.Trigger render={<Button className="rounded-l-none" />}>
-					<ChevronDown />
-				</DropdownMenu.Trigger>
-				<DropdownMenu.Positioner>
-					<DropdownMenu.Content>
-						<DropdownMenu.Group>
-							<DropdownMenu.Label>Schedule at</DropdownMenu.Label>
-							<DropdownMenu.Item>Today 9:00 AM</DropdownMenu.Item>
-							<DropdownMenu.Item>Tomorrow 10:00 AM</DropdownMenu.Item>
-							<DropdownMenu.Item>Next week 11:00 AM</DropdownMenu.Item>
-						</DropdownMenu.Group>
-						<DropdownMenu.Separator />
-						<DropdownMenu.Group>
-							<DropdownMenu.Item>Custom Schedule</DropdownMenu.Item>
-						</DropdownMenu.Group>
-					</DropdownMenu.Content>
-				</DropdownMenu.Positioner>
-			</DropdownMenu.Root>
 		</div>
 	),
 };
