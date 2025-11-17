@@ -58,25 +58,3 @@ export const Destructive: Story = {
 		</AlertDialog.Root>
 	),
 };
-
-export const Simple: Story = {
-	render: () => (
-		<AlertDialog.Root>
-			<AlertDialog.Trigger>
-				<Button variant="outline">Show Alert</Button>
-			</AlertDialog.Trigger>
-			<AlertDialog.Content>
-				<AlertDialog.Header>
-					<AlertDialog.Title>Confirm Action</AlertDialog.Title>
-					<AlertDialog.Description>
-						Please confirm that you want to proceed with this action.
-					</AlertDialog.Description>
-				</AlertDialog.Header>
-				<AlertDialog.Footer>
-					<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-					<AlertDialog.Action>Confirm</AlertDialog.Action>
-				</AlertDialog.Footer>
-			</AlertDialog.Content>
-		</AlertDialog.Root>
-	),
-};
