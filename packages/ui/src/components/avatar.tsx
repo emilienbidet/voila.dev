@@ -7,7 +7,6 @@ import { cx } from "..";
 function Root({ className, ...props }: ComponentProps<typeof BaseAvatar.Root>) {
 	return (
 		<BaseAvatar.Root
-			data-slot="avatar"
 			className={cx(
 				"relative flex size-8 shrink-0 overflow-hidden rounded-full",
 				className,
@@ -23,7 +22,6 @@ function Image({
 }: ComponentProps<typeof BaseAvatar.Image>) {
 	return (
 		<BaseAvatar.Image
-			data-slot="avatar-image"
 			className={cx("aspect-square size-full", className)}
 			{...props}
 		/>
@@ -36,7 +34,6 @@ function Fallback({
 }: ComponentProps<typeof BaseAvatar.Fallback>) {
 	return (
 		<BaseAvatar.Fallback
-			data-slot="avatar-fallback"
 			className={cx(
 				"bg-muted flex size-full items-center justify-center rounded-full",
 				className,
