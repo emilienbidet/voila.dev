@@ -1,2 +1,4 @@
 @import "tailwindcss";
 @import "@voila.dev/ui/styles/globals.css";
+
+@custom-variant dark (&:is(.dark *));
