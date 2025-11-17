@@ -1,30 +1,35 @@
 "use client";
 
-import { AlertDialog as BaseAlertDialog } from "@base-ui-components/react/alert-dialog";
+import { AlertDialog as AlertDialogPrimitive } from "@base-ui-components/react/alert-dialog";
 import type { ComponentProps } from "react";
+
 import { cx } from "..";
-import { Button } from "./button";
+import { variants as buttonVariants } from "./button";
 
-function Root(props: ComponentProps<typeof BaseAlertDialog.Root>) {
-	return <BaseAlertDialog.Root {...props} />;
+function Root(props: AlertDialogPrimitive.Root.Props) {
+	return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />;
 }
 
-function Trigger(props: ComponentProps<typeof BaseAlertDialog.Trigger>) {
-	return <BaseAlertDialog.Trigger {...props} />;
-}
-
-function Portal(props: ComponentProps<typeof BaseAlertDialog.Portal>) {
-	return <BaseAlertDialog.Portal {...props} />;
-}
-
-function Backdrop({
-	className,
-	...props
-}: ComponentProps<typeof BaseAlertDialog.Backdrop>) {
+function Trigger(props: AlertDialogPrimitive.Trigger.Props) {
 	return (
-		<BaseAlertDialog.Backdrop
+		<AlertDialogPrimitive.Trigger data-slot="alert-dialog-trigger" {...props} />
+	);
+}
+
+function Portal(props: AlertDialogPrimitive.Portal.Props) {
+	return (
+		<AlertDialogPrimitive.Portal data-slot="alert-dialog-portal" {...props} />
+	);
+}
+
+function Overlay({ className, ...props }: AlertDialogPrimitive.Backdrop.Props) {
+	return (
+		<AlertDialogPrimitive.Backdrop
+			data-slot="alert-dialog-overlay"
 			className={cx(
-				"data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 fixed inset-0 z-50 bg-black/50 duration-200",
+				"fixed inset-0 z-50 bg-black/50",
+				"data-open:animate-in data-open:fade-in-0",
+				"data-closed:animate-out data-closed:fade-out-0 data-closed:animation-duration-[200ms]",
 				className,
 			)}
 			{...props}
@@ -32,24 +37,31 @@ function Backdrop({
 	);
 }
 
-function Popup({
-	className,
-	...props
-}: ComponentProps<typeof BaseAlertDialog.Popup>) {
+function Content({ className, ...props }: AlertDialogPrimitive.Popup.Props) {
 	return (
-		<BaseAlertDialog.Popup
-			className={cx(
-				"bg-background data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
-				className,
-			)}
-			{...props}
-		/>
+		<Portal>
+			<Overlay />
+			<AlertDialogPrimitive.Popup
+				data-slot="alert-dialog-content"
+				className={cx(
+					"fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)]",
+					"translate-x-[-50%] translate-y-[-50%]",
+					"gap-4 rounded-lg border bg-background p-6 shadow-lg",
+					"data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95",
+					"data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+					"duration-200 sm:max-w-lg",
+					className,
+				)}
+				{...props}
+			/>
+		</Portal>
 	);
 }
 
 function Header({ className, ...props }: ComponentProps<"div">) {
 	return (
 		<div
+			data-slot="alert-dialog-header"
 			className={cx("flex flex-col gap-2 text-center sm:text-left", className)}
 			{...props}
 		/>
@@ -59,6 +71,7 @@ function Header({ className, ...props }: ComponentProps<"div">) {
 function Footer({ className, ...props }: ComponentProps<"div">) {
 	return (
 		<div
+			data-slot="alert-dialog-footer"
 			className={cx(
 				"flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
 				className,
@@ -68,12 +81,10 @@ function Footer({ className, ...props }: ComponentProps<"div">) {
 	);
 }
 
-function Title({
-	className,
-	...props
-}: ComponentProps<typeof BaseAlertDialog.Title>) {
+function Title({ className, ...props }: AlertDialogPrimitive.Title.Props) {
 	return (
-		<BaseAlertDialog.Title
+		<AlertDialogPrimitive.Title
+			data-slot="alert-dialog-title"
 			className={cx("text-lg font-semibold", className)}
 			{...props}
 		/>
@@ -83,45 +94,42 @@ function Title({
 function Description({
 	className,
 	...props
-}: ComponentProps<typeof BaseAlertDialog.Description>) {
+}: AlertDialogPrimitive.Description.Props) {
 	return (
-		<BaseAlertDialog.Description
-			className={cx("text-muted-foreground text-sm", className)}
+		<AlertDialogPrimitive.Description
+			data-slot="alert-dialog-description"
+			className={cx("text-sm text-muted-foreground", className)}
 			{...props}
 		/>
 	);
 }
 
-function Action(props: ComponentProps<typeof Button>) {
-	return <BaseAlertDialog.Close render={<Button {...props} />} />;
-}
-
-function Cancel(props: ComponentProps<typeof Button>) {
+function Action({ className, ...props }: AlertDialogPrimitive.Close.Props) {
 	return (
-		<BaseAlertDialog.Close render={<Button variant="outline" {...props} />} />
+		<AlertDialogPrimitive.Close
+			className={cx(buttonVariants(), className)}
+			{...props}
+		/>
 	);
 }
 
-function Content({ children, ...props }: ComponentProps<typeof Portal>) {
+function Cancel({ className, ...props }: AlertDialogPrimitive.Close.Props) {
 	return (
-		<Portal {...props}>
-			<Backdrop />
-			<Popup>{children}</Popup>
-		</Portal>
+		<AlertDialogPrimitive.Close
+			className={cx(buttonVariants({ variant: "outline" }), className)}
+			{...props}
+		/>
 	);
 }
 
 export const AlertDialog = {
 	Root,
 	Trigger,
-	Portal,
-	Backdrop,
-	Popup,
+	Content,
 	Header,
 	Footer,
 	Title,
 	Description,
 	Action,
 	Cancel,
-	Content,
 };
