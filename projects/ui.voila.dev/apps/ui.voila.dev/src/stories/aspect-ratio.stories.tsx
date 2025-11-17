@@ -11,7 +11,7 @@ const meta = {
 	argTypes: {
 		ratio: {
 			control: "select",
-			options: [16 / 9, 3 / 2, 1 / 1, 4 / 3],
+			options: ["16/9", "3/2", "4/3", "1/1"],
 		},
 	},
 } satisfies Meta<typeof AspectRatio>;
@@ -31,7 +31,7 @@ function Image() {
 
 export const Default: Story = {
 	args: {
-		ratio: 16 / 9,
+		ratio: "16/9",
 	},
 	render: (args) => (
 		<div className="w-lg">
