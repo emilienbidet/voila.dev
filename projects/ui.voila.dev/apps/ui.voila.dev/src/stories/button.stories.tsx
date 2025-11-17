@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@voila.dev/ui/components/button";
-import { DownloadIcon, PlusIcon } from "@voila.dev/ui/icons";
+import { DropdownMenu } from "@voila.dev/ui/components/dropdown-menu";
+import { ChevronDown, Loader, SendHorizonal, Trash } from "@voila.dev/ui/icons";
 
 const meta = {
 	title: "UI/Button",
@@ -8,114 +9,127 @@ const meta = {
 	parameters: {
 		layout: "centered",
 	},
-	argTypes: {
-		variant: {
-			control: "select",
-			options: [
-				"primary",
-				"destructive",
-				"outline",
-				"secondary",
-				"ghost",
-				"link",
-			],
-		},
-		size: {
-			control: "select",
-			options: ["default", "sm", "lg", "icon", "icon-sm", "icon-lg"],
-		},
-	},
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-	args: {
-		variant: "primary",
-		children: "Primary",
-	},
-};
-
-export const Destructive: Story = {
-	args: {
-		variant: "destructive",
-		children: "Destructive",
-	},
-};
-
-export const Outline: Story = {
-	args: {
-		variant: "outline",
-		children: "Outline",
-	},
-};
-
-export const Secondary: Story = {
-	args: {
-		variant: "secondary",
-		children: "Secondary",
-	},
-};
-
-export const Ghost: Story = {
-	args: {
-		variant: "ghost",
-		children: "Ghost",
-	},
-};
-
-export const Link: Story = {
-	args: {
-		variant: "link",
-		children: "Link",
-	},
-};
-
-export const Disabled: Story = {
-	args: {
-		disabled: true,
-		children: "Disabled",
-	},
-};
-
-export const WithIcon: Story = {
+export const Variants: Story = {
 	render: () => (
 		<div className="flex flex-col gap-4">
-			<Button variant="primary">
-				<PlusIcon />
-				Add Item
-			</Button>
-			<Button variant="outline">
-				<DownloadIcon />
-				Download
-			</Button>
+			<div className="flex flex-wrap gap-4">
+				<Button variant="default">Default</Button>
+				<Button variant="outline">Outline</Button>
+				<Button variant="secondary">Secondary</Button>
+			</div>
+			<div className="flex flex-wrap gap-4">
+				<Button variant="destructive">Destructive</Button>
+				<Button variant="ghost">Ghost</Button>
+				<Button variant="link">Link</Button>
+			</div>
+		</div>
+	),
+};
+
+export const Shape: Story = {
+	render: () => (
+		<div className="flex flex-wrap gap-4">
+			<Button className="rounded-none">Rectangular</Button>
+			<Button>Square</Button>
+			<Button className="rounded-full">Rounded</Button>
 		</div>
 	),
 };
 
 export const Sizes: Story = {
 	render: () => (
-		<div className="flex items-center gap-4">
-			<Button size="sm">Small</Button>
-			<Button size="default">Default</Button>
-			<Button size="lg">Large</Button>
+		<div className="flex flex-col gap-4">
+			<div className="flex items-center gap-4">
+				<Button size="sm">Small</Button>
+				<Button size="default">Default</Button>
+				<Button size="lg">Large</Button>
+			</div>
+			<div className="flex items-center gap-4">
+				<Button size="icon-sm">
+					<SendHorizonal />
+				</Button>
+				<Button size="icon">
+					<SendHorizonal />
+				</Button>
+				<Button size="icon-lg">
+					<SendHorizonal />
+				</Button>
+			</div>
 		</div>
 	),
 };
 
-export const IconButtons: Story = {
+export const WithIcons: Story = {
 	render: () => (
-		<div className="flex items-center gap-4">
-			<Button size="icon-sm">
-				<PlusIcon />
-			</Button>
+		<div className="flex flex-wrap gap-4">
 			<Button size="icon">
-				<PlusIcon />
+				<SendHorizonal />
 			</Button>
-			<Button size="icon-lg">
-				<PlusIcon />
+			<Button>
+				Send <SendHorizonal />
 			</Button>
+			<Button variant="destructive">
+				<Trash /> Delete
+			</Button>
+		</div>
+	),
+};
+
+export const WithLoading: Story = {
+	render: () => (
+		<div className="flex flex-wrap gap-4">
+			<Button size="icon">
+				<Loader className="animate-spin" />
+			</Button>
+			<Button>
+				<Loader className="animate-spin" />
+				Please wait
+			</Button>
+		</div>
+	),
+};
+
+export const Group: Story = {
+	render: () => (
+		<div className="flex *:not-first:not-last:rounded-none *:first:rounded-r-none *:last:rounded-l-none divide-x divide-primary-foreground/20">
+			<Button>Button 1</Button>
+			<Button>Button 2</Button>
+			<Button>Button 3</Button>
+			<Button>Button 4</Button>
+		</div>
+	),
+};
+
+export const Split: Story = {
+	render: () => (
+		<div className="flex">
+			<Button className="rounded-r-none border-e border-primary-foreground/20">
+				Send <SendHorizonal className="ml-1" />
+			</Button>
+			<DropdownMenu.Root>
+				<DropdownMenu.Trigger render={<Button className="rounded-l-none" />}>
+					<ChevronDown />
+				</DropdownMenu.Trigger>
+				<DropdownMenu.Positioner>
+					<DropdownMenu.Content>
+						<DropdownMenu.Group>
+							<DropdownMenu.Label>Schedule at</DropdownMenu.Label>
+							<DropdownMenu.Item>Today 9:00 AM</DropdownMenu.Item>
+							<DropdownMenu.Item>Tomorrow 10:00 AM</DropdownMenu.Item>
+							<DropdownMenu.Item>Next week 11:00 AM</DropdownMenu.Item>
+						</DropdownMenu.Group>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Group>
+							<DropdownMenu.Item>Custom Schedule</DropdownMenu.Item>
+						</DropdownMenu.Group>
+					</DropdownMenu.Content>
+				</DropdownMenu.Positioner>
+			</DropdownMenu.Root>
 		</div>
 	),
 };
