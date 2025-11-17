@@ -1,5 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Select } from "@voila.dev/ui/components/select";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectPositioner,
+	SelectTrigger,
+	SelectValue,
+} from "@voila.dev/ui/components/select";
 
 const meta = {
 	title: "UI/Select",
@@ -12,6 +21,154 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const timezones = {
+	"North America": [
+		{
+			value: "est",
+			label: "Eastern Standard Time (EST)",
+		},
+		{
+			value: "cst",
+			label: "Central Standard Time (CST)",
+		},
+		{
+			value: "mst",
+			label: "Mountain Standard Time (MST)",
+		},
+		{
+			value: "pst",
+			label: "Pacific Standard Time (PST)",
+		},
+		{
+			value: "akst",
+			label: "Alaska Standard Time (AKST)",
+		},
+		{
+			value: "hst",
+			label: "Hawaii Standard Time (HST)",
+		},
+	],
+	"Europe & Africa": [
+		{
+			value: "gmt",
+			label: "Greenwich Mean Time (GMT)",
+		},
+		{
+			value: "cet",
+			label: "Central European Time (CET)",
+		},
+		{
+			value: "eet",
+			label: "Eastern European Time (EET)",
+		},
+		{
+			value: "west",
+			label: "Western European Summer Time (WEST)",
+		},
+		{
+			value: "cat",
+			label: "Central Africa Time (CAT)",
+		},
+		{
+			value: "eat",
+			label: "East Africa Time (EAT)",
+		},
+	],
+	Asia: [
+		{
+			value: "msk",
+			label: "Moscow Time (MSK)",
+		},
+		{
+			value: "ist",
+			label: "India Standard Time (IST)",
+		},
+		{
+			value: "cst_china",
+			label: "China Standard Time (CST)",
+		},
+		{
+			value: "jst",
+			label: "Japan Standard Time (JST)",
+		},
+		{
+			value: "kst",
+			label: "Korea Standard Time (KST)",
+		},
+		{
+			value: "ist_indonesia",
+			label: "Indonesia Central Standard Time (WITA)",
+		},
+	],
+	"Australia & Pacific": [
+		{
+			value: "awst",
+			label: "Australian Western Standard Time (AWST)",
+		},
+		{
+			value: "acst",
+			label: "Australian Central Standard Time (ACST)",
+		},
+		{
+			value: "aest",
+			label: "Australian Eastern Standard Time (AEST)",
+		},
+		{
+			value: "nzst",
+			label: "New Zealand Standard Time (NZST)",
+		},
+		{
+			value: "fjt",
+			label: "Fiji Time (FJT)",
+		},
+	],
+	"South America": [
+		{
+			value: "art",
+			label: "Argentina Time (ART)",
+		},
+		{
+			value: "bot",
+			label: "Bolivia Time (BOT)",
+		},
+		{
+			value: "brt",
+			label: "Brasilia Time (BRT)",
+		},
+		{
+			value: "clt",
+			label: "Chile Standard Time (CLT)",
+		},
+	],
+};
+
+const items = Object.values(timezones).flat();
+
+export const Default: Story = {
+	render: () => (
+		<Select.Root items={items}>
+			<SelectTrigger className="max-w-xs w-full">
+				<SelectValue placeholder="Select a timezone" />
+			</SelectTrigger>
+
+			<SelectPositioner alignItemWithTrigger>
+				<SelectContent>
+					{Object.entries(timezones).map(([group, items]) => (
+						<SelectGroup key={group}>
+							<SelectLabel>{group}</SelectLabel>
+							{items.map((item) => (
+								<SelectItem key={item.value} value={item.value}>
+									{item.label}
+								</SelectItem>
+							))}
+						</SelectGroup>
+					))}
+				</SelectContent>
+			</SelectPositioner>
+		</Select.Root>
+	),
+};
+
 const fonts = [
 	{ label: "Sans-serif", value: "sans" },
 	{ label: "Serif", value: "serif" },
@@ -19,29 +176,22 @@ const fonts = [
 	{ label: "Cursive", value: "cursive" },
 ];
 
-export const Default: Story = {
+export const Simple: Story = {
 	render: () => (
 		<Select.Root items={fonts} defaultValue="sans">
-			<Select.Trigger className="w-42">
-				<Select.Value />
-				<Select.Icon />
-			</Select.Trigger>
-			<Select.Portal>
-				<Select.Positioner>
-					<Select.Popup>
-						<Select.ScrollUpArrow />
-						<Select.List>
-							{fonts.map((font) => (
-								<Select.Item key={font.value} value={font.value}>
-									<Select.ItemIndicator />
-									<Select.ItemText>{font.label}</Select.ItemText>
-								</Select.Item>
-							))}
-						</Select.List>
-						<Select.ScrollDownArrow />
-					</Select.Popup>
-				</Select.Positioner>
-			</Select.Portal>
+			<SelectTrigger className="w-42">
+				<SelectValue />
+			</SelectTrigger>
+
+			<SelectPositioner>
+				<SelectContent>
+					{fonts.map((font) => (
+						<SelectItem key={font.value} value={font.value}>
+							{font.label}
+						</SelectItem>
+					))}
+				</SelectContent>
+			</SelectPositioner>
 		</Select.Root>
 	),
 };
@@ -49,26 +199,19 @@ export const Default: Story = {
 export const WithPlaceholder: Story = {
 	render: () => (
 		<Select.Root items={fonts}>
-			<Select.Trigger>
-				<Select.Value />
-				<Select.Icon />
-			</Select.Trigger>
-			<Select.Portal>
-				<Select.Positioner sideOffset={8}>
-					<Select.Popup>
-						<Select.ScrollUpArrow />
-						<Select.List>
-							{fonts.map((font) => (
-								<Select.Item key={font.value} value={font.value}>
-									<Select.ItemIndicator />
-									<Select.ItemText>{font.label}</Select.ItemText>
-								</Select.Item>
-							))}
-						</Select.List>
-						<Select.ScrollDownArrow />
-					</Select.Popup>
-				</Select.Positioner>
-			</Select.Portal>
+			<SelectTrigger>
+				<SelectValue placeholder="Select a font" />
+			</SelectTrigger>
+
+			<SelectPositioner>
+				<SelectContent>
+					{fonts.map((font) => (
+						<SelectItem key={font.value} value={font.value}>
+							{font.label}
+						</SelectItem>
+					))}
+				</SelectContent>
+			</SelectPositioner>
 		</Select.Root>
 	),
 };
@@ -76,26 +219,19 @@ export const WithPlaceholder: Story = {
 export const SmallSize: Story = {
 	render: () => (
 		<Select.Root items={fonts} defaultValue="sans">
-			<Select.Trigger size="sm">
-				<Select.Value />
-				<Select.Icon />
-			</Select.Trigger>
-			<Select.Portal>
-				<Select.Positioner>
-					<Select.Popup>
-						<Select.ScrollUpArrow />
-						<Select.List>
-							{fonts.map((font) => (
-								<Select.Item key={font.value} value={font.value}>
-									<Select.ItemIndicator />
-									<Select.ItemText>{font.label}</Select.ItemText>
-								</Select.Item>
-							))}
-						</Select.List>
-						<Select.ScrollDownArrow />
-					</Select.Popup>
-				</Select.Positioner>
-			</Select.Portal>
+			<SelectTrigger size="sm" className="w-42">
+				<SelectValue />
+			</SelectTrigger>
+
+			<SelectPositioner>
+				<SelectContent>
+					{fonts.map((font) => (
+						<SelectItem key={font.value} value={font.value}>
+							{font.label}
+						</SelectItem>
+					))}
+				</SelectContent>
+			</SelectPositioner>
 		</Select.Root>
 	),
 };
@@ -109,29 +245,22 @@ const themes = [
 export const WithGroups: Story = {
 	render: () => (
 		<Select.Root items={themes} defaultValue="system">
-			<Select.Trigger>
-				<Select.Value />
-				<Select.Icon />
-			</Select.Trigger>
-			<Select.Portal>
-				<Select.Positioner sideOffset={8}>
-					<Select.Popup>
-						<Select.ScrollUpArrow />
-						<Select.List>
-							<Select.Group>
-								<Select.GroupLabel>Appearance</Select.GroupLabel>
-								{themes.map((theme) => (
-									<Select.Item key={theme.value} value={theme.value}>
-										<Select.ItemIndicator />
-										<Select.ItemText>{theme.label}</Select.ItemText>
-									</Select.Item>
-								))}
-							</Select.Group>
-						</Select.List>
-						<Select.ScrollDownArrow />
-					</Select.Popup>
-				</Select.Positioner>
-			</Select.Portal>
+			<SelectTrigger>
+				<SelectValue />
+			</SelectTrigger>
+
+			<SelectPositioner>
+				<SelectContent>
+					<SelectGroup>
+						<SelectLabel>Appearance</SelectLabel>
+						{themes.map((theme) => (
+							<SelectItem key={theme.value} value={theme.value}>
+								{theme.label}
+							</SelectItem>
+						))}
+					</SelectGroup>
+				</SelectContent>
+			</SelectPositioner>
 		</Select.Root>
 	),
 };
@@ -139,109 +268,25 @@ export const WithGroups: Story = {
 export const WithSeparator: Story = {
 	render: () => (
 		<Select.Root items={fonts} defaultValue="sans">
-			<Select.Trigger>
-				<Select.Value />
-				<Select.Icon />
-			</Select.Trigger>
-			<Select.Portal>
-				<Select.Positioner sideOffset={8}>
-					<Select.Popup>
-						<Select.ScrollUpArrow />
-						<Select.List>
-							{fonts.slice(0, 2).map((font) => (
-								<Select.Item key={font.value} value={font.value}>
-									<Select.ItemIndicator />
-									<Select.ItemText>{font.label}</Select.ItemText>
-								</Select.Item>
-							))}
-							<Select.Separator />
-							{fonts.slice(2).map((font) => (
-								<Select.Item key={font.value} value={font.value}>
-									<Select.ItemIndicator />
-									<Select.ItemText>{font.label}</Select.ItemText>
-								</Select.Item>
-							))}
-						</Select.List>
-						<Select.ScrollDownArrow />
-					</Select.Popup>
-				</Select.Positioner>
-			</Select.Portal>
-		</Select.Root>
-	),
-};
+			<SelectTrigger>
+				<SelectValue />
+			</SelectTrigger>
 
-const languages = [
-	{ label: "JavaScript", value: "javascript" },
-	{ label: "TypeScript", value: "typescript" },
-	{ label: "Python", value: "python" },
-	{ label: "Java", value: "java" },
-	{ label: "Rust", value: "rust" },
-];
-
-export const MultipleSelection: Story = {
-	render: () => (
-		<Select.Root
-			items={languages}
-			multiple
-			defaultValue={["javascript", "typescript"]}
-		>
-			<Select.Trigger>
-				<Select.Value>
-					{(value: string[]) => {
-						if (value.length === 0) return "Select languages...";
-						const first = languages.find((lang) => lang.value === value[0]);
-						const additional =
-							value.length > 1 ? ` (+${value.length - 1} more)` : "";
-						return first
-							? `${first.label}${additional}`
-							: "Select languages...";
-					}}
-				</Select.Value>
-				<Select.Icon />
-			</Select.Trigger>
-			<Select.Portal>
-				<Select.Positioner sideOffset={8} alignItemWithTrigger={false}>
-					<Select.Popup>
-						<Select.ScrollUpArrow />
-						<Select.List>
-							{languages.map((lang) => (
-								<Select.Item key={lang.value} value={lang.value}>
-									<Select.ItemIndicator />
-									<Select.ItemText>{lang.label}</Select.ItemText>
-								</Select.Item>
-							))}
-						</Select.List>
-						<Select.ScrollDownArrow />
-					</Select.Popup>
-				</Select.Positioner>
-			</Select.Portal>
-		</Select.Root>
-	),
-};
-
-export const Disabled: Story = {
-	render: () => (
-		<Select.Root items={fonts} defaultValue="sans" disabled>
-			<Select.Trigger>
-				<Select.Value />
-				<Select.Icon />
-			</Select.Trigger>
-			<Select.Portal>
-				<Select.Positioner sideOffset={8}>
-					<Select.Popup>
-						<Select.ScrollUpArrow />
-						<Select.List>
-							{fonts.map((font) => (
-								<Select.Item key={font.value} value={font.value} disabled>
-									<Select.ItemIndicator />
-									<Select.ItemText>{font.label}</Select.ItemText>
-								</Select.Item>
-							))}
-						</Select.List>
-						<Select.ScrollDownArrow />
-					</Select.Popup>
-				</Select.Positioner>
-			</Select.Portal>
+			<SelectPositioner>
+				<SelectContent>
+					{fonts.slice(0, 2).map((font) => (
+						<SelectItem key={font.value} value={font.value}>
+							{font.label}
+						</SelectItem>
+					))}
+					<Select.Separator />
+					{fonts.slice(2).map((font) => (
+						<SelectItem key={font.value} value={font.value}>
+							{font.label}
+						</SelectItem>
+					))}
+				</SelectContent>
+			</SelectPositioner>
 		</Select.Root>
 	),
 };
