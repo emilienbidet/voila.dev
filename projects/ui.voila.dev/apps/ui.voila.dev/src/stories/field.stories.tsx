@@ -199,9 +199,7 @@ export const FieldCheckbox: Story = {
 					</FieldDescription>
 					<FieldGroup className="gap-3">
 						<Field orientation="horizontal">
-							<Checkbox.Root id="finder-pref-9k2-hard-disks-ljj" defaultChecked>
-								<Checkbox.Indicator />
-							</Checkbox.Root>
+							<Checkbox id="finder-pref-9k2-hard-disks-ljj" defaultChecked />
 							<FieldLabel
 								htmlFor="finder-pref-9k2-hard-disks-ljj"
 								className="font-normal"
@@ -210,9 +208,7 @@ export const FieldCheckbox: Story = {
 							</FieldLabel>
 						</Field>
 						<Field orientation="horizontal">
-							<Checkbox.Root id="finder-pref-9k2-external-disks-1yg">
-								<Checkbox.Indicator />
-							</Checkbox.Root>
+							<Checkbox id="finder-pref-9k2-external-disks-1yg" />
 							<FieldLabel
 								htmlFor="finder-pref-9k2-external-disks-1yg"
 								className="font-normal"
@@ -221,9 +217,7 @@ export const FieldCheckbox: Story = {
 							</FieldLabel>
 						</Field>
 						<Field orientation="horizontal">
-							<Checkbox.Root id="finder-pref-9k2-cds-dvds-fzt">
-								<Checkbox.Indicator />
-							</Checkbox.Root>
+							<Checkbox id="finder-pref-9k2-cds-dvds-fzt" />
 							<FieldLabel
 								htmlFor="finder-pref-9k2-cds-dvds-fzt"
 								className="font-normal"
@@ -232,9 +226,7 @@ export const FieldCheckbox: Story = {
 							</FieldLabel>
 						</Field>
 						<Field orientation="horizontal">
-							<Checkbox.Root id="finder-pref-9k2-connected-servers-6l2">
-								<Checkbox.Indicator />
-							</Checkbox.Root>
+							<Checkbox id="finder-pref-9k2-connected-servers-6l2" />
 							<FieldLabel
 								htmlFor="finder-pref-9k2-connected-servers-6l2"
 								className="font-normal"
@@ -246,9 +238,7 @@ export const FieldCheckbox: Story = {
 				</FieldSet>
 				<FieldSeparator />
 				<Field orientation="horizontal">
-					<Checkbox.Root id="finder-pref-9k2-sync-folders-nep" defaultChecked>
-						<Checkbox.Indicator />
-					</Checkbox.Root>
+					<Checkbox id="finder-pref-9k2-sync-folders-nep" defaultChecked />
 					<FieldContent>
 						<FieldLabel htmlFor="finder-pref-9k2-sync-folders-nep">
 							Sync Desktop & Documents folders
@@ -367,9 +357,7 @@ export const FieldGroupExample: Story = {
 					</FieldDescription>
 					<FieldGroup data-slot="checkbox-group">
 						<Field orientation="horizontal">
-							<Checkbox.Root id="push" defaultChecked disabled>
-								<Checkbox.Indicator />
-							</Checkbox.Root>
+							<Checkbox id="push" defaultChecked disabled />
 							<FieldLabel htmlFor="push" className="font-normal">
 								Push notifications
 							</FieldLabel>
@@ -385,17 +373,13 @@ export const FieldGroupExample: Story = {
 					</FieldDescription>
 					<FieldGroup data-slot="checkbox-group">
 						<Field orientation="horizontal">
-							<Checkbox.Root id="push-tasks">
-								<Checkbox.Indicator />
-							</Checkbox.Root>
+							<Checkbox id="push-tasks" />
 							<FieldLabel htmlFor="push-tasks" className="font-normal">
 								Push notifications
 							</FieldLabel>
 						</Field>
 						<Field orientation="horizontal">
-							<Checkbox.Root id="email-tasks">
-								<Checkbox.Indicator />
-							</Checkbox.Root>
+							<Checkbox id="email-tasks" />
 							<FieldLabel htmlFor="email-tasks" className="font-normal">
 								Email notifications
 							</FieldLabel>
