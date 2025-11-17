@@ -10,7 +10,7 @@ const meta = {
 } satisfies Meta<typeof Resizable.PanelGroup>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Resizable.PanelGroup>;
 
 export const Default: Story = {
 	render: () => (
