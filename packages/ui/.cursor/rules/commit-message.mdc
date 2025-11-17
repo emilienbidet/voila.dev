@@ -1,0 +1,71 @@
+---
+description: Commit message format guidelines for voila.dev repository
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# Commit Message Format
+
+All commit messages in the voila.dev repository must follow this format:
+
+```
+packagename: verb + rest of message
+```
+
+## Format Structure
+
+- **Package name**: Identifies which package or project the change affects
+- **Colon and space**: Separator (`: `)
+- **Verb**: Action verb in lowercase (e.g., `add`, `fix`, `update`, `remove`, `refactor`)
+- **Rest of message**: Description of what was changed
+
+## Examples
+
+### Valid Commit Messages
+
+```
+ui.voila.dev: add a new story for item
+ui: add a new component for XX
+ui: fix button styling issue
+ui.voila.dev: update story documentation
+ui: refactor accordion component structure
+typescript-config: update base tsconfig settings
+```
+
+### Invalid Commit Messages
+
+```
+❌ Add new component
+❌ fix: button styling
+❌ ui add component
+❌ UI: Add component
+❌ ui:Add component (missing space after colon)
+```
+
+## Common Package Names
+
+- `ui` - Changes in `packages/ui`
+- `ui.voila.dev` - Changes in `projects/ui.voila.dev`
+- `typescript-config` - Changes in `packages/typescript-config`
+...
+
+## Common Verbs
+
+- `add` - Adding new features, components, or functionality
+- `fix` - Fixing bugs or issues
+- `update` - Updating existing code or documentation
+- `remove` - Removing code or features
+- `refactor` - Refactoring code without changing functionality
+- `improve` - Improving existing code
+- `docs` - Documentation changes
+- `style` - Styling or formatting changes
+- `test` - Adding or updating tests
+
+## Guidelines
+
+- Always start with the package name
+- Use lowercase for the verb
+- Be descriptive but concise in the rest of the message
+- Use present tense verbs (e.g., "add" not "added")
+- Keep the message clear and actionable
