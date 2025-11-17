@@ -3,7 +3,7 @@ import type * as React from "react";
 
 import { cva, cx, type VariantProps } from "..";
 
-const variants = cva({
+export const variants = cva({
 	base: [
 		"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ",
 		"transition-all ",
