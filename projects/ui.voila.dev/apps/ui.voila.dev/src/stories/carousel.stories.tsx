@@ -13,17 +13,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<Carousel.Root className="max-w-sm">
+		<Carousel.Root className="w-full max-w-sm">
 			<Carousel.Content>
-				{Array.from({ length: 10 }, (_, index) => `slide-${index}`).map(
-					(slideId, index) => (
-						<Carousel.Item key={slideId}>
-							<div className="flex aspect-square items-center justify-center rounded-md bg-muted p-6">
-								<span className="text-4xl font-semibold">{index + 1}</span>
-							</div>
-						</Carousel.Item>
-					),
-				)}
+				{Array.from({ length: 5 }, (_, i) => (
+					<Carousel.Item key={i}>
+						<div className="flex aspect-square items-center justify-center rounded-md bg-muted">
+							<span className="text-4xl font-semibold">{i + 1}</span>
+						</div>
+					</Carousel.Item>
+				))}
 			</Carousel.Content>
 			<Carousel.Previous />
 			<Carousel.Next />
@@ -34,20 +32,18 @@ export const Default: Story = {
 export const Vertical: Story = {
 	render: () => (
 		<Carousel.Root
-			opts={{ align: "start" }}
-			className="max-w-sm"
 			orientation="vertical"
+			className="mx-auto w-64"
+			opts={{ align: "start" }}
 		>
-			<Carousel.Content className="max-h-[300px]">
-				{Array.from({ length: 10 }, (_, index) => `slide-${index}`).map(
-					(slideId, index) => (
-						<Carousel.Item key={slideId}>
-							<div className="flex aspect-square items-center justify-center rounded-md bg-muted p-6">
-								<span className="text-4xl font-semibold">{index + 1}</span>
-							</div>
-						</Carousel.Item>
-					),
-				)}
+			<Carousel.Content className="h-[300px]">
+				{Array.from({ length: 5 }, (_, i) => (
+					<Carousel.Item key={i}>
+						<div className="flex h-full items-center justify-center rounded-md bg-muted">
+							<span className="text-4xl font-semibold">{i + 1}</span>
+						</div>
+					</Carousel.Item>
+				))}
 			</Carousel.Content>
 			<Carousel.Previous />
 			<Carousel.Next />
