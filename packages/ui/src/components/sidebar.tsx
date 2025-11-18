@@ -1,9 +1,9 @@
 "use client";
 
 import { useRender } from "@base-ui-components/react/use-render";
-import { useIsMobile } from "@voila.dev/ui/hooks/use-is-mobile";
 import { PanelLeftIcon } from "lucide-react";
 import * as React from "react";
+import { useIsMobile } from "../hooks/use-is-mobile";
 import { cva, cx, type VariantProps } from "../index";
 import { Button } from "./button";
 import { Input } from "./input";
