@@ -1,7 +1,7 @@
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui-components/react/navigation-menu";
 import type { ComponentProps, CSSProperties } from "react";
-import { cva, cx } from "..";
 import { ChevronDownIcon } from "../icons";
+import { cva, cx } from "../index";
 
 function Root({
 	className,

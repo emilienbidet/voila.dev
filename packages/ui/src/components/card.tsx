@@ -1,5 +1,5 @@
 import { useRender } from "@base-ui-components/react/use-render";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({
 	render,

@@ -2,8 +2,8 @@
 
 import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import type { ComponentProps } from "react";
-import { cx } from "..";
 import { XIcon } from "../icons";
+import { cx } from "../index";
 
 function Root(props: ComponentProps<typeof BaseDialog.Root>) {
 	return <BaseDialog.Root {...props} />;

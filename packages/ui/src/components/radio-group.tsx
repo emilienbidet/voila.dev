@@ -1,8 +1,8 @@
 import { Radio as RadioPrimitive } from "@base-ui-components/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui-components/react/radio-group";
 import type { ComponentProps } from "react";
-import { cva, cx, type VariantProps } from "..";
 import { CircleIcon } from "../icons";
+import { cva, cx, type VariantProps } from "../index";
 
 const itemVariants = cva({
 	base: [

@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import type { ComponentProps } from "react";
 
-import { cva, cx, type VariantProps } from "..";
+import { cva, cx, type VariantProps } from "../index";
 
 const linkVariants = cva({
 	base: "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",

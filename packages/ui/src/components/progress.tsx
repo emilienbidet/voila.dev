@@ -2,7 +2,7 @@
 
 import { Progress as ProgressPrimitive } from "@base-ui-components/react/progress";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({
 	className,

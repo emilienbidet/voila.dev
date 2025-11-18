@@ -1,6 +1,6 @@
 import { Meter as BaseMeter } from "@base-ui-components/react/meter";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({ className, ...props }: ComponentProps<typeof BaseMeter.Root>) {
 	return <BaseMeter.Root className={cx(className)} {...props} />;

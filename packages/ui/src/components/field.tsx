@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 
-import { cva, cx, type VariantProps } from "..";
+import { cva, cx, type VariantProps } from "../index";
 import { Label } from "./label";
 import { Separator } from "./separator";
 

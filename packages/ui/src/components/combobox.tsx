@@ -3,7 +3,7 @@
 import { Check, ChevronsUpDown } from "lucide-react";
 import type * as React from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 import { Button } from "./button";
 import { Command } from "./command";
 import { Popover } from "./popover";

@@ -1,7 +1,7 @@
 import { useRender } from "@base-ui-components/react/use-render";
 import type * as React from "react";
 
-import { cva, cx, type VariantProps } from "..";
+import { cva, cx, type VariantProps } from "../index";
 
 const variants = cva({
 	base:

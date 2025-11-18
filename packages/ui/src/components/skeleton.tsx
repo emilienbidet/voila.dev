@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 export function Skeleton({ className, ...props }: ComponentProps<"div">) {
 	return (

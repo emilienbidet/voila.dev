@@ -1,7 +1,7 @@
 "use client";
 
 import type * as React from "react";
-import { cva, cx, type VariantProps } from "..";
+import { cva, cx, type VariantProps } from "../index";
 import { Button } from "./button";
 import { Input } from "./input";
 import { Textarea } from "./textarea";

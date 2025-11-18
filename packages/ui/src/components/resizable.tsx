@@ -2,8 +2,8 @@
 
 import type { ComponentProps } from "react";
 import * as ResizablePrimitive from "react-resizable-panels";
-import { cx } from "..";
 import { GripVerticalIcon } from "../icons";
+import { cx } from "../index";
 
 function PanelGroup({
 	className,

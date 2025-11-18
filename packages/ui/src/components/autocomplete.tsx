@@ -2,7 +2,7 @@ import { Autocomplete as AutocompletePrimitive } from "@base-ui-components/react
 import { XIcon } from "lucide-react";
 import type { ComponentProps } from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 import { Button } from "./button";
 import { Input as InputComponent } from "./input";
 

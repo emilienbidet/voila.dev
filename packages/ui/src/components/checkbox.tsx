@@ -2,7 +2,7 @@ import { Checkbox as CheckboxPrimitive } from "@base-ui-components/react/checkbo
 import { CheckIcon } from "lucide-react";
 import type * as React from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 
 export function Checkbox({
 	className,

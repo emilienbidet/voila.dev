@@ -1,6 +1,6 @@
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui-components/react/scroll-area";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({
 	className,

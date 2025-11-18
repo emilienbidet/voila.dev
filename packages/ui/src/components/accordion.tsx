@@ -3,7 +3,7 @@
 import { Accordion as AccordionPrimitive } from "@base-ui-components/react/accordion";
 import { ChevronDownIcon } from "lucide-react";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({ ...props }: ComponentProps<typeof AccordionPrimitive.Root>) {
 	return <AccordionPrimitive.Root keepMounted {...props} />;

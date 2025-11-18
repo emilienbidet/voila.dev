@@ -2,7 +2,7 @@
 
 import { Avatar as BaseAvatar } from "@base-ui-components/react/avatar";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({ className, ...props }: ComponentProps<typeof BaseAvatar.Root>) {
 	return (

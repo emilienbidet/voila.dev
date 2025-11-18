@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 
 export function Label({ className, ...props }: React.ComponentProps<"label">) {
 	return (

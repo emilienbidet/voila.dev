@@ -2,7 +2,7 @@
 
 import { Separator as SeparatorPrimitive } from "@base-ui-components/react/separator";
 import type { ComponentProps } from "react";
-import { cva, cx, type VariantProps } from "..";
+import { cva, cx, type VariantProps } from "../index";
 
 const separatorVariants = cva({
 	base: "shrink-0 data-[orientation=horizontal]:border-t data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:border-e",

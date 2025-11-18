@@ -1,7 +1,7 @@
 import { Input as InputPrimitive } from "@base-ui-components/react/input";
 import type * as React from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 
 export function Input({
 	className,

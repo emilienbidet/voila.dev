@@ -2,7 +2,7 @@
 
 import type { ComponentProps } from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({ className, ...props }: ComponentProps<"table">) {
 	return (

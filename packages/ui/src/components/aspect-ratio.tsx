@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 interface Props extends ComponentProps<"div"> {
 	ratio: "16/9" | "3/2" | "4/3" | "1/1";

@@ -2,7 +2,7 @@
 
 import { Popover as PopoverPrimitive } from "@base-ui-components/react/popover";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root(props: ComponentProps<typeof PopoverPrimitive.Root>) {
 	return <PopoverPrimitive.Root {...props} />;

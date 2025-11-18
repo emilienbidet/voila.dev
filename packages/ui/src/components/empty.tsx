@@ -1,5 +1,5 @@
 import { useRender } from "@base-ui-components/react/use-render";
-import { cva, cx, type VariantProps } from "..";
+import { cva, cx, type VariantProps } from "../index";
 
 function Root({
 	render,

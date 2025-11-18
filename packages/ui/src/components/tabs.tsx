@@ -2,7 +2,7 @@
 
 import { Tabs as BaseTabs } from "@base-ui-components/react/tabs";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({ className, ...props }: ComponentProps<typeof BaseTabs.Root>) {
 	return (

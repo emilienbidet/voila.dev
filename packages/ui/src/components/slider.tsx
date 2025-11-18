@@ -3,7 +3,7 @@
 import { Slider as SliderPrimitive } from "@base-ui-components/react/slider";
 import * as React from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 
 export function Slider({
 	className,

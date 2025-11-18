@@ -2,7 +2,7 @@
 
 import { Toggle as BaseToggle } from "@base-ui-components/react/toggle";
 import type { ComponentProps } from "react";
-import { cva, cx, type VariantProps } from "..";
+import { cva, cx, type VariantProps } from "../index";
 
 export const variants = cva({
 	base: [

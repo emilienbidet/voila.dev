@@ -2,7 +2,7 @@
 
 import { Select as SelectPrimitive } from "@base-ui-components/react/select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root<Value, Multiple extends boolean | undefined = false>(
 	props: SelectPrimitive.Root.Props<Value, Multiple>,

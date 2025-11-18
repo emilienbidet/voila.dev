@@ -2,7 +2,6 @@
 
 import { Toast as BaseToast } from "@base-ui-components/react/toast";
 import type { ComponentProps } from "react";
-import { cx } from "..";
 import {
 	CircleCheckIcon,
 	InfoIcon,
@@ -11,6 +10,7 @@ import {
 	TriangleAlertIcon,
 	X,
 } from "../icons";
+import { cx } from "../index";
 import { Button } from "./button";
 
 export type ToastType =

@@ -4,7 +4,7 @@ import { Command as CommandPrimitive } from "cmdk";
 import { SearchIcon } from "lucide-react";
 import type * as React from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 import { Dialog as DialogComponent } from "./dialog";
 
 function Root({

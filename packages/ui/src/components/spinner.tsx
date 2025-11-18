@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
-import { cx } from "..";
 import { Loader2Icon } from "../icons";
+import { cx } from "../index";
 
 export function Spinner({ className, ...props }: ComponentProps<"svg">) {
 	return (

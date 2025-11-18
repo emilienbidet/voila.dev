@@ -1,7 +1,7 @@
 "use client";
 
 import { Switch as BaseSwitch } from "@base-ui-components/react/switch";
-import { cx } from "..";
+import { cx } from "../index";
 
 export function Switch({
 	className,

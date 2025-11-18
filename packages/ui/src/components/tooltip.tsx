@@ -1,6 +1,6 @@
 import { Tooltip as TooltipPrimitive } from "@base-ui-components/react/tooltip";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Provider({
 	delay = 0,

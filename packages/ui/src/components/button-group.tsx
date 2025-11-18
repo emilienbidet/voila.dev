@@ -2,7 +2,7 @@ import { mergeProps } from "@base-ui-components/react/merge-props";
 import { useRender } from "@base-ui-components/react/use-render";
 import type { ComponentProps } from "react";
 
-import { cva, cx, type VariantProps } from "..";
+import { cva, cx, type VariantProps } from "../index";
 import { Separator } from "./separator";
 
 export const variants = cva({

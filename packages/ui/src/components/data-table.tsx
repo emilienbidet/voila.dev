@@ -26,7 +26,7 @@ import {
 	ChevronsRightIcon,
 } from "lucide-react";
 import * as React from "react";
-import { cx } from "..";
+import { cx } from "../index";
 import { Button } from "./button";
 import { DropdownMenu } from "./dropdown-menu";
 import { Input } from "./input";

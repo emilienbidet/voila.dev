@@ -1,6 +1,6 @@
 import { useRender } from "@base-ui-components/react/use-render";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 export function Kbd({
 	render,

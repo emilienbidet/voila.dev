@@ -2,7 +2,7 @@ import { useRender } from "@base-ui-components/react/use-render";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 import type { ComponentProps } from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({ ...props }: ComponentProps<"nav">) {
 	return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;

@@ -3,7 +3,7 @@ import { Menubar as MenubarPrimitive } from "@base-ui-components/react/menubar";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 import type * as React from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({ className, ...props }: MenubarPrimitive.Props) {
 	return (

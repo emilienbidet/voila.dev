@@ -2,8 +2,8 @@
 
 import { Radio as BaseRadio } from "@base-ui-components/react/radio";
 import type { ComponentProps } from "react";
-import { cx } from "..";
 import { CircleIcon } from "../icons";
+import { cx } from "../index";
 
 function Root({ className, ...props }: ComponentProps<typeof BaseRadio.Root>) {
 	return (

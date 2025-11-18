@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 export function AvatarGroup({ className, ...props }: ComponentProps<"div">) {
 	return (

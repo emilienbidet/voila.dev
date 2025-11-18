@@ -2,7 +2,7 @@
 
 import { Collapsible as BaseCollapsible } from "@base-ui-components/react/collapsible";
 import type { ComponentProps } from "react";
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root(props: ComponentProps<typeof BaseCollapsible.Root>) {
 	return <BaseCollapsible.Root {...props} />;

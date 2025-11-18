@@ -1,7 +1,7 @@
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui-components/react/preview-card";
 import type { ComponentProps } from "react";
 
-import { cx } from "..";
+import { cx } from "../index";
 
 function Root({ ...props }: ComponentProps<typeof PreviewCardPrimitive.Root>) {
 	return <PreviewCardPrimitive.Root data-slot="hover-card" {...props} />;
