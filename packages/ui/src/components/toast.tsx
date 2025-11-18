@@ -31,7 +31,7 @@ type ToastUpdateOptions = Parameters<BaseToastManager["update"]>[1] & {
 	type?: ToastType;
 };
 
-type ToastPromiseOptions<Value> = Parameters<BaseToastManager["promise"]>[1];
+type ToastPromiseOptions = Parameters<BaseToastManager["promise"]>[1];
 
 interface TypedToastManager {
 	toasts: BaseToastManager["toasts"];
@@ -40,7 +40,7 @@ interface TypedToastManager {
 	update: (toastId: string, options: ToastUpdateOptions) => void;
 	promise: <Value>(
 		promise: Promise<Value>,
-		options: ToastPromiseOptions<Value>,
+		options: ToastPromiseOptions,
 	) => Promise<Value>;
 	success: (options: Omit<ToastAddOptions, "type">) => string;
 	error: (options: Omit<ToastAddOptions, "type">) => string;
@@ -85,7 +85,7 @@ function Viewport({
 	return (
 		<BaseToast.Viewport
 			className={cx(
-				"fixed z-[100] flex flex-col gap-2",
+				"fixed z-100 flex flex-col gap-2",
 				"top-auto right-4 bottom-4 left-auto w-[250px]",
 				"sm:right-6 sm:bottom-6 sm:w-[300px]",
 				className,

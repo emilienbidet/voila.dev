@@ -6,7 +6,7 @@ interface Props extends ComponentProps<"div"> {
 }
 
 export function AspectRatio({ ratio, className, children, ...props }: Props) {
-	const [width, height] = ratio.split("/").map(Number);
+	const [width = 1, height = 1] = ratio.split("/").map(Number);
 	const numericRatio = width / height;
 
 	return (

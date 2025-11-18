@@ -1,12 +1,14 @@
 {
 	"name": "@voila.dev/ui",
 	"type": "module",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"publishConfig": {
 		"access": "public",
 		"directory": "dist"
 	},
 	"scripts": {
+		"clean": "rm -rf dist",
+		"typecheck": "tsc --noEmit",
 		"build": "bun run build:styles && bun run build:themes && bun run build:components",
 		"build:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles/globals.css",
 		"build:themes": "bunx cpx2 'src/styles/themes/**/*.css' 'dist/styles/themes'",
@@ -14,7 +16,8 @@
 		"check-types": "tsc --noEmit",
 		"dev:styles": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles/globals.css --watch",
 		"dev:themes": "bunx cpx2 'src/styles/themes/**/*.css' 'dist/styles/themes' --watch",
-		"dev:components": "tsc --watch"
+		"dev:components": "tsc --watch",
+		"prepublishOnly": "bun run clean && bun run build"
 	},
 	"exports": {
 		".": "./dist/index.js",
@@ -33,9 +36,7 @@
 		"embla-carousel-react": "^8.6.0",
 		"input-otp": "^1.4.2",
 		"lucide-react": "0.553.0",
-		"react": "catalog:ui",
 		"react-day-picker": "^9.11.1",
-		"react-dom": "catalog:ui",
 		"react-resizable-panels": "^3.0.6",
 		"recharts": "^3.3.0",
 		"tailwind-merge": "^3.3.1",
@@ -47,5 +48,10 @@
 		"@voila.dev/typescript-config": "workspace:^1.0.0",
 		"tailwindcss": "catalog:ui",
 		"typescript": "catalog:"
+	},
+	"peerDependencies": {
+		"react": "catalog:ui",
+		"react-dom": "catalog:ui",
+		"tailwindcss": "catalog:ui"
 	}
 }

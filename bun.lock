@@ -17,7 +17,7 @@
     },
     "packages/ui": {
       "name": "@voila.dev/ui",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "dependencies": {
         "@base-ui-components/react": "^1.0.0-beta.4",
         "@tailwindcss/cli": "catalog:ui",
@@ -27,9 +27,7 @@
         "embla-carousel-react": "^8.6.0",
         "input-otp": "^1.4.2",
         "lucide-react": "0.553.0",
-        "react": "catalog:ui",
         "react-day-picker": "^9.11.1",
-        "react-dom": "catalog:ui",
         "react-resizable-panels": "^3.0.6",
         "recharts": "^3.3.0",
         "tailwind-merge": "^3.3.1",
@@ -42,10 +40,15 @@
         "tailwindcss": "catalog:ui",
         "typescript": "catalog:",
       },
+      "peerDependencies": {
+        "react": "catalog:ui",
+        "react-dom": "catalog:ui",
+        "tailwindcss": "catalog:ui",
+      },
     },
     "projects/ui.voila.dev/apps/ui.voila.dev": {
       "name": "@ui.voila.dev/ui.voila.dev",
-      "version": "0.0.0",
+      "version": "0.0.1",
       "dependencies": {
         "@tailwindcss/vite": "catalog:ui",
         "@voila.dev/ui": "workspace:*",
