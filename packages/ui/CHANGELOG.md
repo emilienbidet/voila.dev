@@ -1,5 +1,9 @@
 # @voila.dev/ui
 
+## 1.0.7
+
+Refactor icons in the sidebar
+
 ## 1.0.6
 
 ### Patch Changes

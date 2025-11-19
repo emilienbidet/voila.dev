@@ -1,9 +1,9 @@
 "use client";
 
 import { useRender } from "@base-ui-components/react/use-render";
-import { PanelLeftIcon } from "lucide-react";
 import * as React from "react";
 import { useIsMobile } from "../hooks/use-is-mobile";
+import { PanelLeft } from "../icons";
 import { cva, cx, type VariantProps } from "../index";
 import { Button } from "./button";
 import { Input } from "./input";
@@ -255,7 +255,7 @@ function SidebarTrigger({
 			}}
 			{...props}
 		>
-			<PanelLeftIcon />
+			<PanelLeft />
 			<span className="sr-only">Toggle Sidebar</span>
 		</Button>
 	);
