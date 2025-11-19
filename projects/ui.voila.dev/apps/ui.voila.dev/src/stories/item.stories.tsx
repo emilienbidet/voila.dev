@@ -4,11 +4,11 @@ import { Button } from "@voila.dev/ui/components/button";
 import { DropdownMenu } from "@voila.dev/ui/components/dropdown-menu";
 import { Item } from "@voila.dev/ui/components/item";
 import {
-	ChevronDownIcon,
-	ChevronRightIcon,
-	ExternalLinkIcon,
-	PlusIcon,
-	ShieldAlertIcon,
+	ChevronDown,
+	ChevronRight,
+	ExternalLink,
+	Plus,
+	ShieldAlert,
 } from "@voila.dev/ui/icons";
 import * as React from "react";
 
@@ -86,7 +86,7 @@ export const WithIcon: Story = {
 		<div className="flex w-full max-w-lg flex-col gap-6">
 			<Item.Root variant="outline">
 				<Item.Media variant="icon">
-					<ShieldAlertIcon />
+					<ShieldAlert />
 				</Item.Media>
 				<Item.Content>
 					<Item.Title>Security Alert</Item.Title>
@@ -125,7 +125,7 @@ export const WithAvatar: Story = {
 						className="rounded-full size-8"
 						aria-label="Invite"
 					>
-						<PlusIcon />
+						<Plus />
 					</Button>
 				</Item.Actions>
 			</Item.Root>
@@ -265,7 +265,7 @@ export const Group: Story = {
 							</Item.Content>
 							<Item.Actions>
 								<Button variant="ghost" size="icon" className="rounded-full">
-									<PlusIcon />
+									<Plus />
 								</Button>
 							</Item.Actions>
 						</Item.Root>
@@ -339,7 +339,7 @@ export const AsLink: Story = {
 					</Item.Description>
 				</Item.Content>
 				<Item.Actions>
-					<ChevronRightIcon className="size-4" />
+					<ChevronRight className="size-4" />
 				</Item.Actions>
 			</Item.Root>
 
@@ -357,7 +357,7 @@ export const AsLink: Story = {
 					</Item.Description>
 				</Item.Content>
 				<Item.Actions>
-					<ExternalLinkIcon className="size-4" />
+					<ExternalLink className="size-4" />
 				</Item.Actions>
 			</Item.Root>
 		</div>
@@ -371,7 +371,7 @@ export const InDropdown: Story = {
 				<DropdownMenu.Trigger
 					render={<Button variant="outline" size="sm" className="w-fit" />}
 				>
-					Select <ChevronDownIcon />
+					Select <ChevronDown />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Positioner align="end">
 					<DropdownMenu.Content className="w-72 [--radius:0.65rem]">

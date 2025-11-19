@@ -10,29 +10,32 @@ import { Separator } from "@voila.dev/ui/components/separator";
 import { Textarea } from "@voila.dev/ui/components/textarea";
 import { Tooltip } from "@voila.dev/ui/components/tooltip";
 import {
-	AlertTriangleIcon,
-	ArchiveIcon,
-	ArrowLeftIcon,
-	ArrowRightIcon,
-	AudioLinesIcon,
-	BotIcon,
-	CalendarPlusIcon,
-	CheckIcon,
-	ChevronDownIcon,
-	ClockIcon,
-	CopyIcon,
-	ListFilterPlusIcon,
-	MailCheckIcon,
-	MinusIcon,
-	MoreHorizontalIcon,
-	PlusIcon,
-	SearchIcon,
-	ShareIcon,
-	TagIcon,
-	Trash2Icon,
-	TrashIcon,
-	UserRoundXIcon,
-	VolumeOffIcon,
+	Archive,
+	ArrowLeft,
+	ArrowRight,
+	AudioLines,
+	Bot,
+	CalendarPlus,
+	Check,
+	ChevronDown,
+	CircleArrowLeft,
+	CircleArrowRight,
+	CircleMinus,
+	CirclePlus,
+	Clock,
+	Copy,
+	Ellipsis,
+	ListFilterPlus,
+	MailCheck,
+	Plus,
+	Search,
+	Share,
+	Tag,
+	Trash,
+	Trash2,
+	TriangleAlert,
+	UserRoundX,
+	VolumeOff,
 } from "@voila.dev/ui/icons";
 import * as React from "react";
 
@@ -60,10 +63,10 @@ export const Vertical: Story = {
 	render: () => (
 		<ButtonGroup.Root orientation="vertical" aria-label="Media controls">
 			<Button variant="outline" size="icon">
-				<PlusIcon />
+				<CirclePlus />
 			</Button>
 			<Button variant="outline" size="icon">
-				<MinusIcon />
+				<CircleMinus />
 			</Button>
 		</ButtonGroup.Root>
 	),
@@ -83,7 +86,7 @@ export const Sizes: Story = {
 					Group
 				</Button>
 				<Button variant="outline" size="icon-sm">
-					<PlusIcon />
+					<CirclePlus />
 				</Button>
 			</ButtonGroup.Root>
 			<ButtonGroup.Root>
@@ -91,7 +94,7 @@ export const Sizes: Story = {
 				<Button variant="outline">Button</Button>
 				<Button variant="outline">Group</Button>
 				<Button variant="outline" size="icon">
-					<PlusIcon />
+					<CirclePlus />
 				</Button>
 			</ButtonGroup.Root>
 			<ButtonGroup.Root>
@@ -105,7 +108,7 @@ export const Sizes: Story = {
 					Group
 				</Button>
 				<Button variant="outline" size="icon-lg">
-					<PlusIcon />
+					<CirclePlus />
 				</Button>
 			</ButtonGroup.Root>
 		</div>
@@ -134,10 +137,10 @@ export const Nested: Story = {
 			</ButtonGroup.Root>
 			<ButtonGroup.Root>
 				<Button variant="outline" size="icon-sm" aria-label="Previous">
-					<ArrowLeftIcon />
+					<CircleArrowLeft />
 				</Button>
 				<Button variant="outline" size="icon-sm" aria-label="Next">
-					<ArrowRightIcon />
+					<CircleArrowRight />
 				</Button>
 			</ButtonGroup.Root>
 		</ButtonGroup.Root>
@@ -164,7 +167,7 @@ export const Split: Story = {
 			<Button variant="secondary">Button</Button>
 			<ButtonGroup.Separator />
 			<Button size="icon" variant="secondary">
-				<PlusIcon />
+				<Plus />
 			</Button>
 		</ButtonGroup.Root>
 	),
@@ -185,7 +188,7 @@ export const WithInput: Story = {
 		<ButtonGroup.Root>
 			<Input placeholder="Search..." />
 			<Button variant="outline" aria-label="Search">
-				<SearchIcon />
+				<Search />
 			</Button>
 		</ButtonGroup.Root>
 	),
@@ -199,7 +202,7 @@ export const WithInputGroup: Story = {
 			<ButtonGroup.Root className="[--radius:9999rem]">
 				<ButtonGroup.Root>
 					<Button variant="outline" size="icon">
-						<PlusIcon />
+						<Plus />
 					</Button>
 				</ButtonGroup.Root>
 				<ButtonGroup.Root>
@@ -223,7 +226,7 @@ export const WithInputGroup: Story = {
 										/>
 									}
 								>
-									<AudioLinesIcon />
+									<AudioLines />
 								</Tooltip.Trigger>
 								<Tooltip.Positioner>
 									<Tooltip.Content>Voice Mode</Tooltip.Content>
@@ -243,40 +246,40 @@ export const WithDropdown: Story = {
 			<Button variant="outline">Follow</Button>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger render={<Button variant="outline" />}>
-					<ChevronDownIcon />
+					<ChevronDown />
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Positioner align="end">
 					<DropdownMenu.Content className="[--radius:1rem]">
 						<DropdownMenu.Group>
 							<DropdownMenu.Item>
-								<VolumeOffIcon />
+								<VolumeOff />
 								Mute Conversation
 							</DropdownMenu.Item>
 							<DropdownMenu.Item>
-								<CheckIcon />
+								<Check />
 								Mark as Read
 							</DropdownMenu.Item>
 							<DropdownMenu.Item>
-								<AlertTriangleIcon />
+								<TriangleAlert />
 								Report Conversation
 							</DropdownMenu.Item>
 							<DropdownMenu.Item>
-								<UserRoundXIcon />
+								<UserRoundX />
 								Block User
 							</DropdownMenu.Item>
 							<DropdownMenu.Item>
-								<ShareIcon />
+								<Share />
 								Share Conversation
 							</DropdownMenu.Item>
 							<DropdownMenu.Item>
-								<CopyIcon />
+								<Copy />
 								Copy Conversation
 							</DropdownMenu.Item>
 						</DropdownMenu.Group>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Group>
 							<DropdownMenu.Item variant="destructive">
-								<TrashIcon />
+								<Trash />
 								Delete Conversation
 							</DropdownMenu.Item>
 						</DropdownMenu.Group>
@@ -295,7 +298,7 @@ export const Complex: Story = {
 			<ButtonGroup.Root>
 				<ButtonGroup.Root className="hidden sm:flex">
 					<Button variant="outline" size="icon" aria-label="Go Back">
-						<ArrowLeftIcon />
+						<ArrowLeft />
 					</Button>
 				</ButtonGroup.Root>
 				<ButtonGroup.Root>
@@ -314,37 +317,37 @@ export const Complex: Story = {
 								/>
 							}
 						>
-							<MoreHorizontalIcon />
+							<Ellipsis />
 						</DropdownMenu.Trigger>
 						<DropdownMenu.Positioner align="end">
 							<DropdownMenu.Content className="w-52">
 								<DropdownMenu.Group>
 									<DropdownMenu.Item>
-										<MailCheckIcon />
+										<MailCheck />
 										Mark as Read
 									</DropdownMenu.Item>
 									<DropdownMenu.Item>
-										<ArchiveIcon />
+										<Archive />
 										Archive
 									</DropdownMenu.Item>
 								</DropdownMenu.Group>
 								<DropdownMenu.Separator />
 								<DropdownMenu.Group>
 									<DropdownMenu.Item>
-										<ClockIcon />
+										<Clock />
 										Snooze
 									</DropdownMenu.Item>
 									<DropdownMenu.Item>
-										<CalendarPlusIcon />
+										<CalendarPlus />
 										Add to Calendar
 									</DropdownMenu.Item>
 									<DropdownMenu.Item>
-										<ListFilterPlusIcon />
+										<ListFilterPlus />
 										Add to List
 									</DropdownMenu.Item>
 									<DropdownMenu.Sub>
 										<DropdownMenu.SubTrigger>
-											<TagIcon />
+											<Tag />
 											Label As...
 										</DropdownMenu.SubTrigger>
 										<DropdownMenu.Positioner>
@@ -370,7 +373,7 @@ export const Complex: Story = {
 								<DropdownMenu.Separator />
 								<DropdownMenu.Group>
 									<DropdownMenu.Item variant="destructive">
-										<Trash2Icon />
+										<Trash2 />
 										Trash
 									</DropdownMenu.Item>
 								</DropdownMenu.Group>
@@ -404,30 +407,24 @@ export const WithSelect: Story = {
 						<Select.Trigger className="font-mono text-xs">
 							{currency}
 						</Select.Trigger>
-						<Select.Portal>
-							<Select.Positioner>
-								<Select.Popup>
-									<Select.List>
-										{currencies.map((curr) => (
-											<Select.Item key={curr.value} value={curr.value}>
-												<Select.ItemText>
-													{curr.value}{" "}
-													<span className="text-muted-foreground text-xs">
-														{curr.label}
-													</span>
-												</Select.ItemText>
-											</Select.Item>
-										))}
-									</Select.List>
-								</Select.Popup>
-							</Select.Positioner>
-						</Select.Portal>
+						<Select.Positioner>
+							<Select.Content>
+								{currencies.map((curr) => (
+									<Select.Item key={curr.value} value={curr.value}>
+										{curr.value}{" "}
+										<span className="text-muted-foreground text-xs">
+											{curr.label}
+										</span>
+									</Select.Item>
+								))}
+							</Select.Content>
+						</Select.Positioner>
 					</Select.Root>
 					<Input placeholder="10.00" pattern="[0-9]*" />
 				</ButtonGroup.Root>
 				<ButtonGroup.Root>
 					<Button aria-label="Send" size="icon" variant="outline">
-						<ArrowRightIcon />
+						<ArrowRight />
 					</Button>
 				</ButtonGroup.Root>
 			</ButtonGroup.Root>
@@ -439,7 +436,7 @@ export const WithPopover: Story = {
 	render: () => (
 		<ButtonGroup.Root>
 			<Button variant="outline">
-				<BotIcon /> Copilot
+				<Bot /> Copilot
 			</Button>
 			<Popover.Root>
 				<Popover.Trigger
@@ -447,7 +444,7 @@ export const WithPopover: Story = {
 						<Button variant="outline" size="icon" aria-label="Open Popover" />
 					}
 				>
-					<ChevronDownIcon />
+					<ChevronDown />
 				</Popover.Trigger>
 				<Popover.Positioner align="end">
 					<Popover.Content className="rounded-xl p-0 text-sm">

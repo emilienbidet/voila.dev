@@ -102,22 +102,16 @@ export const MonthYearSelector: Story = {
 							className="bg-background w-full"
 						>
 							<Select.Value placeholder="Dropdown" />
-							<Select.Icon />
 						</Select.Trigger>
-						<Select.Portal>
-							<Select.Positioner align="center">
-								<Select.Popup>
-									<Select.List>
-										{dropdownOptions.map((option) => (
-											<Select.Item key={option.value} value={option.value}>
-												<Select.ItemIndicator />
-												<Select.ItemText>{option.label}</Select.ItemText>
-											</Select.Item>
-										))}
-									</Select.List>
-								</Select.Popup>
-							</Select.Positioner>
-						</Select.Portal>
+						<Select.Positioner align="center">
+							<Select.Content>
+								{dropdownOptions.map((option) => (
+									<Select.Item key={option.value} value={option.value}>
+										{option.label}
+									</Select.Item>
+								))}
+							</Select.Content>
+						</Select.Positioner>
 					</Select.Root>
 				</div>
 			</div>

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@voila.dev/ui/components/button";
 import { Empty } from "@voila.dev/ui/components/empty";
 import { Input } from "@voila.dev/ui/components/input";
-import { ArrowUpRightIcon, InboxIcon, SearchIcon } from "@voila.dev/ui/icons";
+import { ArrowUpRight, Inbox, Search } from "@voila.dev/ui/icons";
 
 const meta = {
 	title: "UI/Empty",
@@ -20,7 +20,7 @@ export const Default: Story = {
 		<Empty.Root>
 			<Empty.Header>
 				<Empty.Media variant="icon">
-					<InboxIcon />
+					<Inbox />
 				</Empty.Media>
 				<Empty.Title>No Projects Yet!</Empty.Title>
 				<Empty.Description>
@@ -34,7 +34,7 @@ export const Default: Story = {
 			</Empty.Content>
 			<Button variant="link">
 				Learn More
-				<ArrowUpRightIcon />
+				<ArrowUpRight />
 			</Button>
 		</Empty.Root>
 	),
@@ -45,7 +45,7 @@ export const InputGroup: Story = {
 		<Empty.Root>
 			<Empty.Header>
 				<Empty.Media variant="icon">
-					<SearchIcon />
+					<Search />
 				</Empty.Media>
 				<Empty.Title>No results found</Empty.Title>
 				<Empty.Description>

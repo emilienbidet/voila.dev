@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toggle } from "@voila.dev/ui/components/toggle";
-import { BoldIcon, BookmarkIcon, UnderlineIcon } from "@voila.dev/ui/icons";
+import { Bold, Bookmark, Underline } from "@voila.dev/ui/icons";
 
 const meta = {
 	title: "UI/Toggle",
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	render: () => (
 		<Toggle>
-			<BoldIcon />
+			<Bold />
 		</Toggle>
 	),
 };
@@ -24,7 +24,7 @@ export const Default: Story = {
 export const Pressed: Story = {
 	render: () => (
 		<Toggle defaultPressed>
-			<BoldIcon />
+			<Bold />
 		</Toggle>
 	),
 };
@@ -33,10 +33,10 @@ export const Disabled: Story = {
 	render: () => (
 		<div className="grid gap-4">
 			<Toggle disabled>
-				<BoldIcon />
+				<Bold />
 			</Toggle>
 			<Toggle disabled defaultPressed>
-				<UnderlineIcon />
+				<Underline />
 			</Toggle>
 		</div>
 	),
@@ -45,7 +45,7 @@ export const Disabled: Story = {
 export const WithIcon: Story = {
 	render: () => (
 		<Toggle>
-			<BookmarkIcon className="group-data-pressed:fill-yellow-500" />
+			<Bookmark className="group-data-pressed:fill-yellow-500" />
 			Bookmark
 		</Toggle>
 	),

@@ -1,12 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ContextMenu } from "@voila.dev/ui/components/context-menu";
-import {
-	DownloadIcon,
-	LogOutIcon,
-	PlusIcon,
-	SettingsIcon,
-	UserIcon,
-} from "@voila.dev/ui/icons";
+import { Download, LogOut, Plus, Settings, User } from "@voila.dev/ui/icons";
 
 const meta = {
 	title: "UI/ContextMenu",
@@ -30,16 +24,16 @@ export const Default: Story = {
 			<ContextMenu.Positioner>
 				<ContextMenu.Content>
 					<ContextMenu.Item>
-						<UserIcon />
+						<User />
 						Profile
 					</ContextMenu.Item>
 					<ContextMenu.Item>
-						<SettingsIcon />
+						<Settings />
 						Settings
 					</ContextMenu.Item>
 					<ContextMenu.Separator />
 					<ContextMenu.Item>
-						<LogOutIcon />
+						<LogOut />
 						Logout
 					</ContextMenu.Item>
 				</ContextMenu.Content>
@@ -61,11 +55,11 @@ export const WithGroups: Story = {
 					<ContextMenu.Group>
 						<ContextMenu.Label>Account</ContextMenu.Label>
 						<ContextMenu.Item>
-							<UserIcon />
+							<User />
 							Profile
 						</ContextMenu.Item>
 						<ContextMenu.Item>
-							<SettingsIcon />
+							<Settings />
 							Settings
 						</ContextMenu.Item>
 					</ContextMenu.Group>
@@ -73,11 +67,11 @@ export const WithGroups: Story = {
 					<ContextMenu.Group>
 						<ContextMenu.Label>Actions</ContextMenu.Label>
 						<ContextMenu.Item>
-							<PlusIcon />
+							<Plus />
 							New Item
 						</ContextMenu.Item>
 						<ContextMenu.Item>
-							<DownloadIcon />
+							<Download />
 							Download
 						</ContextMenu.Item>
 					</ContextMenu.Group>
@@ -142,27 +136,27 @@ export const WithSubmenu: Story = {
 			<ContextMenu.Positioner>
 				<ContextMenu.Content>
 					<ContextMenu.Item>
-						<UserIcon />
+						<User />
 						Profile
 					</ContextMenu.Item>
 					<ContextMenu.Item>
-						<SettingsIcon />
+						<Settings />
 						Settings
 					</ContextMenu.Item>
 					<ContextMenu.Separator />
 					<ContextMenu.Sub>
 						<ContextMenu.SubTrigger>
-							<PlusIcon />
+							<Plus />
 							More Tools
 						</ContextMenu.SubTrigger>
 						<ContextMenu.Positioner>
 							<ContextMenu.SubContent>
 								<ContextMenu.Item>
-									<DownloadIcon />
+									<Download />
 									Export
 								</ContextMenu.Item>
 								<ContextMenu.Item>
-									<LogOutIcon />
+									<LogOut />
 									Import
 								</ContextMenu.Item>
 							</ContextMenu.SubContent>
@@ -185,16 +179,16 @@ export const Destructive: Story = {
 			<ContextMenu.Positioner>
 				<ContextMenu.Content>
 					<ContextMenu.Item>
-						<UserIcon />
+						<User />
 						Edit Profile
 					</ContextMenu.Item>
 					<ContextMenu.Item>
-						<SettingsIcon />
+						<Settings />
 						Preferences
 					</ContextMenu.Item>
 					<ContextMenu.Separator />
 					<ContextMenu.Item variant="destructive">
-						<LogOutIcon />
+						<LogOut />
 						Delete Account
 					</ContextMenu.Item>
 				</ContextMenu.Content>
@@ -214,18 +208,18 @@ export const WithShortcuts: Story = {
 			<ContextMenu.Positioner>
 				<ContextMenu.Content>
 					<ContextMenu.Item>
-						<PlusIcon />
+						<Plus />
 						New File
 						<ContextMenu.Shortcut>⌘N</ContextMenu.Shortcut>
 					</ContextMenu.Item>
 					<ContextMenu.Item>
-						<DownloadIcon />
+						<Download />
 						Open File
 						<ContextMenu.Shortcut>⌘O</ContextMenu.Shortcut>
 					</ContextMenu.Item>
 					<ContextMenu.Separator />
 					<ContextMenu.Item>
-						<SettingsIcon />
+						<Settings />
 						Preferences
 						<ContextMenu.Shortcut>⌘,</ContextMenu.Shortcut>
 					</ContextMenu.Item>

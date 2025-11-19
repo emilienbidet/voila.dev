@@ -1,5 +1,11 @@
 # @voila.dev/ui
 
+## 1.0.6
+
+### Patch Changes
+
+- Refactor icon imports to use consistent naming (XIcon -> X, Loader2Icon -> Loader, etc.) in autocomplete, dialog, sheet, spinner, and toast components.
+
 ## 1.0.5
 
 ### Patch Changes

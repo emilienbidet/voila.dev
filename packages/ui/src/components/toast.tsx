@@ -3,11 +3,11 @@
 import { Toast as BaseToast } from "@base-ui-components/react/toast";
 import type { ComponentProps } from "react";
 import {
-	CircleCheckIcon,
-	InfoIcon,
-	Loader2Icon,
-	OctagonXIcon,
-	TriangleAlertIcon,
+	CircleCheck,
+	Info,
+	Loader,
+	OctagonX,
+	TriangleAlert,
 	X,
 } from "../icons";
 import { cx } from "../index";
@@ -98,15 +98,15 @@ function Viewport({
 function getToastIcon(type: ToastType | undefined) {
 	switch (type) {
 		case "success":
-			return <CircleCheckIcon className="size-4" />;
+			return <CircleCheck className="size-4" />;
 		case "error":
-			return <OctagonXIcon className="size-4" />;
+			return <OctagonX className="size-4" />;
 		case "warning":
-			return <TriangleAlertIcon className="size-4" />;
+			return <TriangleAlert className="size-4" />;
 		case "info":
-			return <InfoIcon className="size-4" />;
+			return <Info className="size-4" />;
 		case "loading":
-			return <Loader2Icon className="size-4 animate-spin" />;
+			return <Loader className="size-4 animate-spin" />;
 		default:
 			return null;
 	}

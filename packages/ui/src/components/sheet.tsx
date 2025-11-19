@@ -2,7 +2,7 @@
 
 import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import type { ComponentProps } from "react";
-import { XIcon } from "../icons";
+import { X } from "../icons";
 import { cx } from "../index";
 
 function Root(props: ComponentProps<typeof BaseDialog.Root>) {
@@ -68,7 +68,7 @@ function Content({
 						"ring-offset-background focus:ring-ring data-popup-open:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 					)}
 				>
-					<XIcon />
+					<X />
 					<span className="sr-only">Close</span>
 				</Close>
 			</BaseDialog.Popup>

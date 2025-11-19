@@ -1,5 +1,5 @@
 import { Autocomplete as AutocompletePrimitive } from "@base-ui-components/react/autocomplete";
-import { XIcon } from "lucide-react";
+import { X } from "lucide-react";
 import type { ComponentProps } from "react";
 
 import { cx } from "../index";
@@ -186,7 +186,7 @@ function Clear({
 			className={cx(className)}
 			{...props}
 		>
-			{children ?? <XIcon className="w-4 h-4 text-muted-foreground" />}
+			{children ?? <X className="w-4 h-4 text-muted-foreground" />}
 		</AutocompletePrimitive.Clear>
 	);
 }

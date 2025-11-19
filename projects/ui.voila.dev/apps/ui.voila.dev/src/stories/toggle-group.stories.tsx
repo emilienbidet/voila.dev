@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ToggleGroup } from "@voila.dev/ui/components/toggle-group";
-import { BoldIcon, ItalicIcon, UnderlineIcon } from "@voila.dev/ui/icons";
+import { Bold, Italic, Underline } from "@voila.dev/ui/icons";
 
 const meta = {
 	title: "UI/ToggleGroup",
@@ -37,13 +37,13 @@ export const Multiple: Story = {
 	render: () => (
 		<ToggleGroup.Root variant="outline" multiple>
 			<ToggleGroup.Item value="bold">
-				<BoldIcon />
+				<Bold />
 			</ToggleGroup.Item>
 			<ToggleGroup.Item value="italic">
-				<ItalicIcon />
+				<Italic />
 			</ToggleGroup.Item>
 			<ToggleGroup.Item value="underline">
-				<UnderlineIcon />
+				<Underline />
 			</ToggleGroup.Item>
 		</ToggleGroup.Root>
 	),

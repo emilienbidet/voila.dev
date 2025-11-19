@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Alert } from "@voila.dev/ui/components/alert";
-import {
-	AlertCircleIcon,
-	AlertTriangleIcon,
-	CheckCircle2Icon,
-} from "@voila.dev/ui/icons";
+import { CircleAlert, CircleCheck, TriangleAlert } from "@voila.dev/ui/icons";
 
 const meta = {
 	title: "UI/Alert",
@@ -31,7 +27,7 @@ export const Default: Story = {
 export const WithIcon: Story = {
 	render: () => (
 		<Alert.Root>
-			<CheckCircle2Icon />
+			<CircleCheck />
 			<Alert.Title>Success! Your changes have been saved</Alert.Title>
 			<Alert.Description>
 				Your changes have been saved successfully.
@@ -43,7 +39,7 @@ export const WithIcon: Story = {
 export const WithoutDescription: Story = {
 	render: () => (
 		<Alert.Root>
-			<CheckCircle2Icon />
+			<CircleCheck />
 			<Alert.Title>Success! Your changes have been saved</Alert.Title>
 		</Alert.Root>
 	),
@@ -52,7 +48,7 @@ export const WithoutDescription: Story = {
 export const Destructive: Story = {
 	render: () => (
 		<Alert.Root variant="destructive">
-			<AlertCircleIcon />
+			<CircleAlert />
 			<Alert.Title>Error</Alert.Title>
 			<Alert.Description>
 				Something went wrong. Please try again later.
@@ -64,7 +60,7 @@ export const Destructive: Story = {
 export const DestructiveWithDetails: Story = {
 	render: () => (
 		<Alert.Root variant="destructive">
-			<AlertTriangleIcon />
+			<TriangleAlert />
 			<Alert.Title>Unable to process your payment.</Alert.Title>
 			<Alert.Description>
 				<p>Please verify your billing information and try again.</p>

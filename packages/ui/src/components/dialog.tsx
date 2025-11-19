@@ -1,5 +1,5 @@
 import { Dialog as DialogPrimitive } from "@base-ui-components/react/dialog";
-import { XIcon } from "lucide-react";
+import { X } from "lucide-react";
 import type { ComponentProps } from "react";
 
 import { cx } from "../index";
@@ -77,7 +77,7 @@ function Content({
 							"[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 						)}
 					>
-						<XIcon />
+						<X />
 						<span className="sr-only">Close</span>
 					</DialogPrimitive.Close>
 				)}

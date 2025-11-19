@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "@voila.dev/ui/components/button";
 import { DropdownMenu } from "@voila.dev/ui/components/dropdown-menu";
 import {
-	ChevronDownIcon,
-	DownloadIcon,
-	LogOutIcon,
-	PlusIcon,
-	SettingsIcon,
-	UserIcon,
+	ChevronDown,
+	Download,
+	LogOut,
+	Plus,
+	Settings,
+	User,
 } from "@voila.dev/ui/icons";
 
 const meta = {
@@ -19,7 +19,7 @@ const meta = {
 } satisfies Meta<typeof DropdownMenu.Root>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof DropdownMenu.Root>;
 
 export const Default: Story = {
 	render: () => (
@@ -27,23 +27,23 @@ export const Default: Story = {
 			<DropdownMenu.Trigger
 				render={
 					<Button variant="outline">
-						Open Menu <ChevronDownIcon />
+						Open Menu <ChevronDown />
 					</Button>
 				}
 			/>
 			<DropdownMenu.Positioner>
 				<DropdownMenu.Content>
 					<DropdownMenu.Item>
-						<UserIcon />
+						<User />
 						Profile
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>
-						<SettingsIcon />
+						<Settings />
 						Settings
 					</DropdownMenu.Item>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
-						<LogOutIcon />
+						<LogOut />
 						Logout
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>
@@ -58,7 +58,7 @@ export const WithGroups: Story = {
 			<DropdownMenu.Trigger
 				render={
 					<Button variant="outline">
-						Open Menu <ChevronDownIcon />
+						Open Menu <ChevronDown />
 					</Button>
 				}
 			/>
@@ -67,11 +67,11 @@ export const WithGroups: Story = {
 					<DropdownMenu.Group>
 						<DropdownMenu.Label>Account</DropdownMenu.Label>
 						<DropdownMenu.Item>
-							<UserIcon />
+							<User />
 							Profile
 						</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<SettingsIcon />
+							<Settings />
 							Settings
 						</DropdownMenu.Item>
 					</DropdownMenu.Group>
@@ -79,11 +79,11 @@ export const WithGroups: Story = {
 					<DropdownMenu.Group>
 						<DropdownMenu.Label>Actions</DropdownMenu.Label>
 						<DropdownMenu.Item>
-							<PlusIcon />
+							<Plus />
 							New Item
 						</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<DownloadIcon />
+							<Download />
 							Download
 						</DropdownMenu.Item>
 					</DropdownMenu.Group>
@@ -99,7 +99,7 @@ export const WithCheckboxes: Story = {
 			<DropdownMenu.Trigger
 				render={
 					<Button variant="outline">
-						View Options <ChevronDownIcon />
+						View Options <ChevronDown />
 					</Button>
 				}
 			/>
@@ -124,7 +124,7 @@ export const WithRadioGroup: Story = {
 			<DropdownMenu.Trigger
 				render={
 					<Button variant="outline">
-						Theme <ChevronDownIcon />
+						Theme <ChevronDown />
 					</Button>
 				}
 			/>
@@ -149,34 +149,34 @@ export const WithSubmenu: Story = {
 			<DropdownMenu.Trigger
 				render={
 					<Button variant="outline">
-						More Options <ChevronDownIcon />
+						More Options <ChevronDown />
 					</Button>
 				}
 			/>
 			<DropdownMenu.Positioner>
 				<DropdownMenu.Content>
 					<DropdownMenu.Item>
-						<UserIcon />
+						<User />
 						Profile
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>
-						<SettingsIcon />
+						<Settings />
 						Settings
 					</DropdownMenu.Item>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Sub>
 						<DropdownMenu.SubTrigger>
-							<PlusIcon />
+							<Plus />
 							More Tools
 						</DropdownMenu.SubTrigger>
 						<DropdownMenu.Positioner>
 							<DropdownMenu.SubContent>
 								<DropdownMenu.Item>
-									<DownloadIcon />
+									<Download />
 									Export
 								</DropdownMenu.Item>
 								<DropdownMenu.Item>
-									<LogOutIcon />
+									<LogOut />
 									Import
 								</DropdownMenu.Item>
 							</DropdownMenu.SubContent>
@@ -194,23 +194,23 @@ export const Destructive: Story = {
 			<DropdownMenu.Trigger
 				render={
 					<Button variant="outline">
-						Actions <ChevronDownIcon />
+						Actions <ChevronDown />
 					</Button>
 				}
 			/>
 			<DropdownMenu.Positioner>
 				<DropdownMenu.Content>
 					<DropdownMenu.Item>
-						<UserIcon />
+						<User />
 						Edit Profile
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>
-						<SettingsIcon />
+						<Settings />
 						Preferences
 					</DropdownMenu.Item>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item variant="destructive">
-						<LogOutIcon />
+						<LogOut />
 						Delete Account
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>
@@ -225,25 +225,25 @@ export const WithShortcuts: Story = {
 			<DropdownMenu.Trigger
 				render={
 					<Button variant="outline">
-						File <ChevronDownIcon />
+						File <ChevronDown />
 					</Button>
 				}
 			/>
 			<DropdownMenu.Positioner>
 				<DropdownMenu.Content>
 					<DropdownMenu.Item>
-						<PlusIcon />
+						<Plus />
 						New File
 						<DropdownMenu.Shortcut>⌘N</DropdownMenu.Shortcut>
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>
-						<DownloadIcon />
+						<Download />
 						Open File
 						<DropdownMenu.Shortcut>⌘O</DropdownMenu.Shortcut>
 					</DropdownMenu.Item>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
-						<SettingsIcon />
+						<Settings />
 						Preferences
 						<DropdownMenu.Shortcut>⌘,</DropdownMenu.Shortcut>
 					</DropdownMenu.Item>

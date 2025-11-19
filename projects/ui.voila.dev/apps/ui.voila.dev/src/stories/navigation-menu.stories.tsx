@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { NavigationMenu } from "@voila.dev/ui/components/navigation-menu";
-import {
-	CircleCheckIcon,
-	CircleHelpIcon,
-	CircleIcon,
-} from "@voila.dev/ui/icons";
+import { Circle, CircleCheck, CircleQuestionMark } from "@voila.dev/ui/icons";
 
 const meta = {
 	title: "UI/NavigationMenu",
@@ -207,7 +203,7 @@ export const Default: Story = {
 											href="#"
 											className="flex flex-row items-center gap-2"
 										>
-											<CircleHelpIcon />
+											<CircleQuestionMark />
 											Backlog
 										</NavigationMenu.Link>
 									</li>
@@ -216,7 +212,7 @@ export const Default: Story = {
 											href="#"
 											className="flex flex-row items-center gap-2"
 										>
-											<CircleIcon />
+											<Circle />
 											To Do
 										</NavigationMenu.Link>
 									</li>
@@ -225,7 +221,7 @@ export const Default: Story = {
 											href="#"
 											className="flex flex-row items-center gap-2"
 										>
-											<CircleCheckIcon />
+											<CircleCheck />
 											Done
 										</NavigationMenu.Link>
 									</li>
