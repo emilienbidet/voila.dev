@@ -1,5 +1,12 @@
 # @voila.dev/ui
 
+## 1.0.5
+
+### Patch Changes
+
+- Enable tree-shaking for icon exports by replacing `export *` with explicit named exports. Only imported icons will be bundled, significantly reducing bundle size.
+- Remove sidebar cookie management
+
 ## 1.0.4
 
 ### Patch Changes
