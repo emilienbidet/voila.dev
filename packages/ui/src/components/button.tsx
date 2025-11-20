@@ -50,17 +50,11 @@ interface Props
 	render?: useRender.RenderProp;
 }
 
-export function Button({
-	className,
-	variant,
-	size,
-	render = <button type="button" />,
-	...props
-}: Props) {
+export function Button({ className, variant, size, render, ...props }: Props) {
 	return useRender({
+		defaultTagName: "button",
 		render,
 		props: {
-			"data-slot": "button",
 			className: cx(variants({ variant, size }), className),
 			...props,
 		},

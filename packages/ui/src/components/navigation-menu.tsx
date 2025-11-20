@@ -1,6 +1,6 @@
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui-components/react/navigation-menu";
 import type { ComponentProps, CSSProperties } from "react";
-import { ChevronDownIcon } from "../icons";
+import { ChevronDown } from "../icons";
 import { cva, cx } from "../index";
 
 function Root({
@@ -77,7 +77,7 @@ function Trigger({
 			{...props}
 		>
 			{children}{" "}
-			<ChevronDownIcon
+			<ChevronDown
 				className="relative top-px ml-1 size-3 transition duration-300 group-data-popup-open:rotate-180"
 				aria-hidden="true"
 			/>

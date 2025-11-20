@@ -1,7 +1,7 @@
 import { Radio as RadioPrimitive } from "@base-ui-components/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui-components/react/radio-group";
 import type { ComponentProps } from "react";
-import { CircleIcon } from "../icons";
+import { Circle } from "../icons";
 import { cva, cx, type VariantProps } from "../index";
 
 const itemVariants = cva({
@@ -60,7 +60,7 @@ function Item({
 				data-slot="radio-group-indicator"
 				className="relative flex items-center justify-center"
 			>
-				<CircleIcon
+				<Circle
 					className={cx(
 						"absolute top-1/2 left-1/2 fill-primary",
 						"-translate-x-1/2 -translate-y-1/2",

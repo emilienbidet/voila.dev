@@ -1,5 +1,20 @@
 # @voila.dev/ui
 
+## 1.0.10
+
+- Icons name fix
+- Button type fix
+
+## 1.0.9
+
+- Revert and publish typescript files
+
+## 1.0.8
+
+### Patch Changes
+
+- Build artifacts
+
 ## 1.0.7
 
 Refactor icons in the sidebar

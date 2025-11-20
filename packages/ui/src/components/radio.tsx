@@ -2,7 +2,7 @@
 
 import { Radio as BaseRadio } from "@base-ui-components/react/radio";
 import type { ComponentProps } from "react";
-import { CircleIcon } from "../icons";
+import { Circle } from "../icons";
 import { cx } from "../index";
 
 function Root({ className, ...props }: ComponentProps<typeof BaseRadio.Root>) {
@@ -39,7 +39,7 @@ function Indicator({
 			className={cx("relative flex items-center justify-center", className)}
 			{...props}
 		>
-			<CircleIcon
+			<Circle
 				className={cx(
 					"absolute top-1/2 left-1/2 size-2",
 					"-translate-x-1/2 -translate-y-1/2",
