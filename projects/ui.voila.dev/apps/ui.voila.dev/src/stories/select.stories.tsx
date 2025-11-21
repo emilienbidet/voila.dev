@@ -1,14 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectLabel,
-	SelectPositioner,
-	SelectTrigger,
-	SelectValue,
-} from "@voila.dev/ui/components/select";
+import { Select } from "@voila.dev/ui/components/select";
 
 const meta = {
 	title: "UI/Select",
@@ -147,24 +138,22 @@ const items = Object.values(timezones).flat();
 export const Default: Story = {
 	render: () => (
 		<Select.Root items={items}>
-			<SelectTrigger className="max-w-xs w-full">
-				<SelectValue placeholder="Select a timezone" />
-			</SelectTrigger>
+			<Select.Trigger className="max-w-xs w-full">
+				<Select.Value placeholder="Select a timezone" />
+			</Select.Trigger>
 
-			<SelectPositioner alignItemWithTrigger>
-				<SelectContent>
-					{Object.entries(timezones).map(([group, items]) => (
-						<SelectGroup key={group}>
-							<SelectLabel>{group}</SelectLabel>
-							{items.map((item) => (
-								<SelectItem key={item.value} value={item.value}>
-									{item.label}
-								</SelectItem>
-							))}
-						</SelectGroup>
-					))}
-				</SelectContent>
-			</SelectPositioner>
+			<Select.Content>
+				{Object.entries(timezones).map(([group, items]) => (
+					<Select.Group key={group}>
+						<Select.Label>{group}</Select.Label>
+						{items.map((item) => (
+							<Select.Item key={item.value} value={item.value}>
+								{item.label}
+							</Select.Item>
+						))}
+					</Select.Group>
+				))}
+			</Select.Content>
 		</Select.Root>
 	),
 };
@@ -179,19 +168,17 @@ const fonts = [
 export const Simple: Story = {
 	render: () => (
 		<Select.Root items={fonts} defaultValue="sans">
-			<SelectTrigger className="w-42">
-				<SelectValue />
-			</SelectTrigger>
+			<Select.Trigger className="w-42">
+				<Select.Value />
+			</Select.Trigger>
 
-			<SelectPositioner>
-				<SelectContent>
-					{fonts.map((font) => (
-						<SelectItem key={font.value} value={font.value}>
-							{font.label}
-						</SelectItem>
-					))}
-				</SelectContent>
-			</SelectPositioner>
+			<Select.Content>
+				{fonts.map((font) => (
+					<Select.Item key={font.value} value={font.value}>
+						{font.label}
+					</Select.Item>
+				))}
+			</Select.Content>
 		</Select.Root>
 	),
 };
@@ -199,19 +186,17 @@ export const Simple: Story = {
 export const WithPlaceholder: Story = {
 	render: () => (
 		<Select.Root items={fonts}>
-			<SelectTrigger>
-				<SelectValue placeholder="Select a font" />
-			</SelectTrigger>
+			<Select.Trigger>
+				<Select.Value placeholder="Select a font" />
+			</Select.Trigger>
 
-			<SelectPositioner>
-				<SelectContent>
-					{fonts.map((font) => (
-						<SelectItem key={font.value} value={font.value}>
-							{font.label}
-						</SelectItem>
-					))}
-				</SelectContent>
-			</SelectPositioner>
+			<Select.Content>
+				{fonts.map((font) => (
+					<Select.Item key={font.value} value={font.value}>
+						{font.label}
+					</Select.Item>
+				))}
+			</Select.Content>
 		</Select.Root>
 	),
 };
@@ -219,19 +204,17 @@ export const WithPlaceholder: Story = {
 export const SmallSize: Story = {
 	render: () => (
 		<Select.Root items={fonts} defaultValue="sans">
-			<SelectTrigger size="sm" className="w-42">
-				<SelectValue />
-			</SelectTrigger>
+			<Select.Trigger size="sm" className="w-42">
+				<Select.Value />
+			</Select.Trigger>
 
-			<SelectPositioner>
-				<SelectContent>
-					{fonts.map((font) => (
-						<SelectItem key={font.value} value={font.value}>
-							{font.label}
-						</SelectItem>
-					))}
-				</SelectContent>
-			</SelectPositioner>
+			<Select.Content>
+				{fonts.map((font) => (
+					<Select.Item key={font.value} value={font.value}>
+						{font.label}
+					</Select.Item>
+				))}
+			</Select.Content>
 		</Select.Root>
 	),
 };
@@ -245,22 +228,20 @@ const themes = [
 export const WithGroups: Story = {
 	render: () => (
 		<Select.Root items={themes} defaultValue="system">
-			<SelectTrigger>
-				<SelectValue />
-			</SelectTrigger>
+			<Select.Trigger>
+				<Select.Value />
+			</Select.Trigger>
 
-			<SelectPositioner>
-				<SelectContent>
-					<SelectGroup>
-						<SelectLabel>Appearance</SelectLabel>
-						{themes.map((theme) => (
-							<SelectItem key={theme.value} value={theme.value}>
-								{theme.label}
-							</SelectItem>
-						))}
-					</SelectGroup>
-				</SelectContent>
-			</SelectPositioner>
+			<Select.Content>
+				<Select.Group>
+					<Select.Label>Appearance</Select.Label>
+					{themes.map((theme) => (
+						<Select.Item key={theme.value} value={theme.value}>
+							{theme.label}
+						</Select.Item>
+					))}
+				</Select.Group>
+			</Select.Content>
 		</Select.Root>
 	),
 };
@@ -268,25 +249,23 @@ export const WithGroups: Story = {
 export const WithSeparator: Story = {
 	render: () => (
 		<Select.Root items={fonts} defaultValue="sans">
-			<SelectTrigger>
-				<SelectValue />
-			</SelectTrigger>
+			<Select.Trigger>
+				<Select.Value />
+			</Select.Trigger>
 
-			<SelectPositioner>
-				<SelectContent>
-					{fonts.slice(0, 2).map((font) => (
-						<SelectItem key={font.value} value={font.value}>
-							{font.label}
-						</SelectItem>
-					))}
-					<Select.Separator />
-					{fonts.slice(2).map((font) => (
-						<SelectItem key={font.value} value={font.value}>
-							{font.label}
-						</SelectItem>
-					))}
-				</SelectContent>
-			</SelectPositioner>
+			<Select.Content>
+				{fonts.slice(0, 2).map((font) => (
+					<Select.Item key={font.value} value={font.value}>
+						{font.label}
+					</Select.Item>
+				))}
+				<Select.Separator />
+				{fonts.slice(2).map((font) => (
+					<Select.Item key={font.value} value={font.value}>
+						{font.label}
+					</Select.Item>
+				))}
+			</Select.Content>
 		</Select.Root>
 	),
 };

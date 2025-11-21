@@ -98,7 +98,7 @@ function Content({
 	...props
 }: SelectPrimitive.Popup.Props) {
 	return (
-		<>
+		<Positioner>
 			<ScrollUpButton />
 			<SelectPrimitive.Popup
 				data-slot="select-content"
@@ -118,7 +118,7 @@ function Content({
 				{children}
 			</SelectPrimitive.Popup>
 			<ScrollDownButton />
-		</>
+		</Positioner>
 	);
 }
 
@@ -218,26 +218,10 @@ export const Select = {
 	Group,
 	Value,
 	Trigger,
-	Positioner,
 	Content,
 	Label,
 	Item,
 	Separator,
 	ScrollUpButton,
 	ScrollDownButton,
-};
-
-// Individual exports for convenience
-export {
-	Root as SelectRoot,
-	Group as SelectGroup,
-	Value as SelectValue,
-	Trigger as SelectTrigger,
-	Positioner as SelectPositioner,
-	Content as SelectContent,
-	Label as SelectLabel,
-	Item as SelectItem,
-	Separator as SelectSeparator,
-	ScrollUpButton as SelectScrollUpButton,
-	ScrollDownButton as SelectScrollDownButton,
 };

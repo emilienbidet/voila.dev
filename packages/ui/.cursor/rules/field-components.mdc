@@ -1,0 +1,349 @@
+---
+description: How to use FieldGroup and Field components
+alwaysApply: false
+---
+
+# FieldGroup and Field Components Usage Guide
+
+This guide explains how to use the `FieldGroup` and `Field` components from `@voila.dev/ui/components/field-group` and `@voila.dev/ui/components/field`.
+
+## Component Structure
+
+The field components are split into two main groups:
+
+- **FieldGroup**: Container components for organizing multiple fields into groups, sets, and sections
+- **Field**: Individual form field components for labels, inputs, descriptions, and errors
+
+## Importing Components
+
+```tsx
+import { Field } from "@voila.dev/ui/components/field";
+import { FieldGroup } from "@voila.dev/ui/components/field-group";
+```
+
+## FieldGroup Components
+
+### FieldGroup.Root
+
+The main container for a group of fields. Use this as the outermost wrapper when you have multiple field sets or sections.
+
+```tsx
+<FieldGroup.Root>
+	{/* Field sets and fields go here */}
+</FieldGroup.Root>
+```
+
+### FieldGroup.Set
+
+A semantic `<fieldset>` wrapper for grouping related fields together. Use this to create logical sections within a field group.
+
+```tsx
+<FieldGroup.Set>
+	<FieldGroup.Legend>Section Title</FieldGroup.Legend>
+	<FieldGroup.Description>Section description</FieldGroup.Description>
+	{/* Fields go here */}
+</FieldGroup.Set>
+```
+
+### FieldGroup.Legend
+
+A `<legend>` element for fieldset titles. Supports two variants:
+
+- `"legend"` (default): Larger text for main section titles
+- `"label"`: Smaller text for subsection titles
+
+```tsx
+<FieldGroup.Legend>Address Information</FieldGroup.Legend>
+<FieldGroup.Legend variant="label">Show these items on the desktop</FieldGroup.Legend>
+```
+
+### FieldGroup.Description
+
+A description paragraph for field sets. Use this to provide context or instructions for a group of fields.
+
+```tsx
+<FieldGroup.Description>
+	We need your address to deliver your order.
+</FieldGroup.Description>
+```
+
+### FieldGroup.Separator
+
+A visual separator between field sets. Can optionally include text content.
+
+```tsx
+<FieldGroup.Separator />
+<FieldGroup.Separator>or</FieldGroup.Separator>
+```
+
+### FieldGroup.Group
+
+A nested group container for organizing fields within a set. Useful for checkbox groups, radio groups, or any collection of related fields.
+
+```tsx
+<FieldGroup.Group className="gap-3">
+	<Field.Root orientation="horizontal">
+		{/* Field content */}
+	</Field.Root>
+</FieldGroup.Group>
+```
+
+## Field Components
+
+### Field.Root
+
+The main field container. Renders as a `<fieldset>` and supports orientation variants:
+
+- `"vertical"` (default): Stack label and input vertically
+- `"horizontal"`: Place label and input side by side
+- `"responsive"`: Vertical on mobile, horizontal on larger screens
+
+```tsx
+<Field.Root>
+	<Field.Label htmlFor="username">Username</Field.Label>
+	<Input id="username" />
+</Field.Root>
+
+<Field.Root orientation="horizontal">
+	<Checkbox id="option" />
+	<Field.Label htmlFor="option">Option</Field.Label>
+</Field.Root>
+```
+
+### Field.Label
+
+A label component that works with form inputs. Automatically handles styling for different field orientations and states.
+
+```tsx
+<Field.Label htmlFor="username">Username</Field.Label>
+<Field.Label htmlFor="option" className="font-normal">Option</Field.Label>
+```
+
+### Field.Description
+
+A description paragraph for individual fields. Provides additional context or validation hints.
+
+```tsx
+<Field.Description>
+	Must be at least 8 characters long.
+</Field.Description>
+```
+
+### Field.Content
+
+A content wrapper for fields with multiple text elements (label + description). Use this when you have both a label and description in a horizontal layout.
+
+```tsx
+<Field.Root orientation="horizontal">
+	<Field.Content>
+		<Field.Label htmlFor="2fa">Multi-factor authentication</Field.Label>
+		<Field.Description>
+			Enable multi-factor authentication for better security.
+		</Field.Description>
+	</Field.Content>
+	<Switch id="2fa" />
+</Field.Root>
+```
+
+### Field.Title
+
+A title component for fields that need a more prominent heading than a label. Often used in choice cards or complex field layouts.
+
+```tsx
+<Field.Root orientation="horizontal">
+	<Field.Content>
+		<Field.Title>Kubernetes</Field.Title>
+		<Field.Description>
+			Run GPU workloads on a K8s configured cluster.
+		</Field.Description>
+	</Field.Content>
+	<RadioGroup.Item value="kubernetes" />
+</Field.Root>
+```
+
+### Field.Error
+
+An error message component that can display validation errors. Accepts either `children` or an `errors` array.
+
+```tsx
+<Field.Error>This field is required</Field.Error>
+
+<Field.Error errors={[{ message: "Invalid email format" }]} />
+
+<Field.Error
+	errors={[
+		{ message: "Password too short" },
+		{ message: "Must contain uppercase letter" },
+	]}
+/>
+```
+
+## Common Patterns
+
+### Basic Form with Field Sets
+
+```tsx
+<FieldGroup.Root>
+	<FieldGroup.Set>
+		<FieldGroup.Legend>Personal Information</FieldGroup.Legend>
+		<FieldGroup.Description>
+			Please provide your personal details.
+		</FieldGroup.Description>
+		<FieldGroup.Group>
+			<Field.Root>
+				<Field.Label htmlFor="name">Name</Field.Label>
+				<Input id="name" />
+			</Field.Root>
+			<Field.Root>
+				<Field.Label htmlFor="email">Email</Field.Label>
+				<Input id="email" type="email" />
+				<Field.Description>
+					We'll never share your email with anyone.
+				</Field.Description>
+			</Field.Root>
+		</FieldGroup.Group>
+	</FieldGroup.Set>
+</FieldGroup.Root>
+```
+
+### Checkbox Group
+
+```tsx
+<FieldGroup.Root>
+	<FieldGroup.Set>
+		<FieldGroup.Legend variant="label">
+			Show these items on the desktop
+		</FieldGroup.Legend>
+		<FieldGroup.Description>
+			Select the items you want to show on the desktop.
+		</FieldGroup.Description>
+		<FieldGroup.Group className="gap-3">
+			<Field.Root orientation="horizontal">
+				<Checkbox id="hard-disks" />
+				<Field.Label htmlFor="hard-disks" className="font-normal">
+					Hard disks
+				</Field.Label>
+			</Field.Root>
+			<Field.Root orientation="horizontal">
+				<Checkbox id="external-disks" />
+				<Field.Label htmlFor="external-disks" className="font-normal">
+					External disks
+				</Field.Label>
+			</Field.Root>
+		</FieldGroup.Group>
+	</FieldGroup.Set>
+	<FieldGroup.Separator />
+	<Field.Root orientation="horizontal">
+		<Checkbox id="sync" defaultChecked />
+		<Field.Content>
+			<Field.Label htmlFor="sync">
+				Sync Desktop & Documents folders
+			</Field.Label>
+			<Field.Description>
+				Your folders are being synced with iCloud Drive.
+			</Field.Description>
+		</Field.Content>
+	</Field.Root>
+</FieldGroup.Root>
+```
+
+### Horizontal Field with Switch
+
+```tsx
+<Field.Root orientation="horizontal">
+	<Field.Content>
+		<Field.Label htmlFor="notifications">
+			Push notifications
+		</Field.Label>
+		<Field.Description>
+			Receive push notifications on your device.
+		</Field.Description>
+	</Field.Content>
+	<Switch id="notifications" />
+</Field.Root>
+```
+
+### Field with Error State
+
+```tsx
+<Field.Root>
+	<Field.Label htmlFor="password">Password</Field.Label>
+	<Input id="password" type="password" data-invalid={hasError} />
+	<Field.Description>
+		Must be at least 8 characters long.
+	</Field.Description>
+	{hasError && (
+		<Field.Error errors={validationErrors} />
+	)}
+</Field.Root>
+```
+
+### Choice Cards with Radio Group
+
+```tsx
+<FieldGroup.Root>
+	<FieldGroup.Set>
+		<Field.Label>Compute Environment</Field.Label>
+		<Field.Description>
+			Select the compute environment for your cluster.
+		</Field.Description>
+		<RadioGroup.Root defaultValue="kubernetes">
+			<Field.Label htmlFor="kubernetes">
+				<Field.Root orientation="horizontal">
+					<Field.Content>
+						<Field.Title>Kubernetes</Field.Title>
+						<Field.Description>
+							Run GPU workloads on a K8s configured cluster.
+						</Field.Description>
+					</Field.Content>
+					<RadioGroup.Item value="kubernetes" id="kubernetes" />
+				</Field.Root>
+			</Field.Label>
+		</RadioGroup.Root>
+	</FieldGroup.Set>
+</FieldGroup.Root>
+```
+
+## Component Hierarchy
+
+```
+FieldGroup.Root (outermost container)
+├── FieldGroup.Set (fieldset wrapper)
+│   ├── FieldGroup.Legend (section title)
+│   ├── FieldGroup.Description (section description)
+│   └── FieldGroup.Group (nested field container)
+│       └── Field.Root (individual field)
+│           ├── Field.Label
+│           ├── Field.Description
+│           ├── Field.Content (for horizontal layouts)
+│           │   ├── Field.Label
+│           │   ├── Field.Title (optional)
+│           │   └── Field.Description
+│           └── Field.Error (optional)
+├── FieldGroup.Separator (between sets)
+└── Field.Root (standalone field, not in a set)
+```
+
+## Key Principles
+
+1. **Use FieldGroup.Root** as the outermost container when you have multiple field sets or sections
+2. **Use FieldGroup.Set** to group related fields semantically with a legend
+3. **Use FieldGroup.Group** for nested collections of fields (checkboxes, radios, etc.)
+4. **Use Field.Root** for individual form fields
+5. **Use Field.Content** when you have both label and description in horizontal layouts
+6. **Use Field.Title** for prominent headings in choice cards or complex layouts
+7. **Use Field.Error** to display validation errors, either as children or with an errors array
+
+## Orientation Guidelines
+
+- **Vertical** (default): Best for most form inputs, especially on mobile
+- **Horizontal**: Good for checkboxes, radios, and switches where the label is next to the control
+- **Responsive**: Use when you want vertical on mobile and horizontal on larger screens
+
+## Styling Notes
+
+- Field components automatically handle spacing, alignment, and responsive behavior
+- Labels in horizontal fields automatically adjust width and alignment
+- Descriptions adapt their text balance based on field orientation
+- Error states are automatically styled with destructive colors
+- Use `className` prop to override or extend default styles when needed

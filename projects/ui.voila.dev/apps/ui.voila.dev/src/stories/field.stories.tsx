@@ -1,16 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Checkbox } from "@voila.dev/ui/components/checkbox";
-import {
-	Field,
-	FieldContent,
-	FieldDescription,
-	FieldGroup,
-	FieldLabel,
-	FieldLegend,
-	FieldSeparator,
-	FieldSet,
-	FieldTitle,
-} from "@voila.dev/ui/components/field";
+import { Field } from "@voila.dev/ui/components/field";
+import { FieldGroup } from "@voila.dev/ui/components/field-group";
 import { Input } from "@voila.dev/ui/components/input";
 import { RadioGroup } from "@voila.dev/ui/components/radio-group";
 import { Select } from "@voila.dev/ui/components/select";
@@ -21,11 +12,11 @@ import { useState } from "react";
 
 const meta = {
 	title: "UI/Field",
-	component: Field,
+	component: Field.Root,
 	parameters: {
 		layout: "padded",
 	},
-} satisfies Meta<typeof Field>;
+} satisfies Meta<typeof Field.Root>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -33,24 +24,24 @@ type Story = StoryObj<typeof meta>;
 export const FieldInput: Story = {
 	render: () => (
 		<div className="w-full max-w-md">
-			<FieldSet>
-				<FieldGroup>
-					<Field>
-						<FieldLabel htmlFor="username">Username</FieldLabel>
+			<FieldGroup.Set>
+				<FieldGroup.Group>
+					<Field.Root>
+						<Field.Label htmlFor="username">Username</Field.Label>
 						<Input id="username" type="text" placeholder="Max Leiter" />
-						<FieldDescription>
+						<Field.Description>
 							Choose a unique username for your account.
-						</FieldDescription>
-					</Field>
-					<Field>
-						<FieldLabel htmlFor="password">Password</FieldLabel>
-						<FieldDescription>
+						</Field.Description>
+					</Field.Root>
+					<Field.Root>
+						<Field.Label htmlFor="password">Password</Field.Label>
+						<Field.Description>
 							Must be at least 8 characters long.
-						</FieldDescription>
+						</Field.Description>
 						<Input id="password" type="password" placeholder="********" />
-					</Field>
-				</FieldGroup>
-			</FieldSet>
+					</Field.Root>
+				</FieldGroup.Group>
+			</FieldGroup.Set>
 		</div>
 	),
 };
@@ -58,21 +49,21 @@ export const FieldInput: Story = {
 export const FieldTextarea: Story = {
 	render: () => (
 		<div className="w-full max-w-md">
-			<FieldSet>
-				<FieldGroup>
-					<Field>
-						<FieldLabel htmlFor="feedback">Feedback</FieldLabel>
+			<FieldGroup.Set>
+				<FieldGroup.Group>
+					<Field.Root>
+						<Field.Label htmlFor="feedback">Feedback</Field.Label>
 						<Textarea
 							id="feedback"
 							placeholder="Your feedback helps us improve..."
 							rows={4}
 						/>
-						<FieldDescription>
+						<Field.Description>
 							Share your thoughts about our service.
-						</FieldDescription>
-					</Field>
-				</FieldGroup>
-			</FieldSet>
+						</Field.Description>
+					</Field.Root>
+				</FieldGroup.Group>
+			</FieldGroup.Set>
 		</div>
 	),
 };
@@ -91,33 +82,27 @@ const departments = [
 export const FieldSelect: Story = {
 	render: () => (
 		<div className="w-full max-w-md">
-			<Field>
-				<FieldLabel>Department</FieldLabel>
+			<Field.Root>
+				<Field.Label>Department</Field.Label>
 				<Select.Root items={departments}>
 					<Select.Trigger>
 						<Select.Value placeholder="Choose department" />
 					</Select.Trigger>
-					<Select.Portal>
-						<Select.Positioner>
-							<Select.Content>
-								<Select.List>
-									<Select.Item value="engineering">Engineering</Select.Item>
-									<Select.Item value="design">Design</Select.Item>
-									<Select.Item value="marketing">Marketing</Select.Item>
-									<Select.Item value="sales">Sales</Select.Item>
-									<Select.Item value="support">Customer Support</Select.Item>
-									<Select.Item value="hr">Human Resources</Select.Item>
-									<Select.Item value="finance">Finance</Select.Item>
-									<Select.Item value="operations">Operations</Select.Item>
-								</Select.List>
-							</Select.Content>
-						</Select.Positioner>
-					</Select.Portal>
+					<Select.Content>
+						<Select.Item value="engineering">Engineering</Select.Item>
+						<Select.Item value="design">Design</Select.Item>
+						<Select.Item value="marketing">Marketing</Select.Item>
+						<Select.Item value="sales">Sales</Select.Item>
+						<Select.Item value="support">Customer Support</Select.Item>
+						<Select.Item value="hr">Human Resources</Select.Item>
+						<Select.Item value="finance">Finance</Select.Item>
+						<Select.Item value="operations">Operations</Select.Item>
+					</Select.Content>
 				</Select.Root>
-				<FieldDescription>
+				<Field.Description>
 					Select your department or area of work.
-				</FieldDescription>
-			</Field>
+				</Field.Description>
+			</Field.Root>
 		</div>
 	),
 };
@@ -127,14 +112,14 @@ export const FieldSlider: Story = {
 		const [value, setValue] = useState([200, 800]);
 		return (
 			<div className="w-full max-w-md">
-				<Field>
-					<FieldTitle>Price Range</FieldTitle>
-					<FieldDescription>
+				<Field.Root>
+					<Field.Title>Price Range</Field.Title>
+					<Field.Description>
 						Set your budget range ($
 						<span className="font-medium tabular-nums">{value[0]}</span> -{" "}
 						<span className="font-medium tabular-nums">{value[1]}</span>).
-					</FieldDescription>
-					<Slider.Root
+					</Field.Description>
+					<Slider
 						value={value}
 						onValueChange={(val) => setValue(val as number[])}
 						max={1000}
@@ -142,16 +127,8 @@ export const FieldSlider: Story = {
 						step={10}
 						className="mt-2 w-full"
 						aria-label="Price Range"
-					>
-						<Slider.Control>
-							<Slider.Track>
-								<Slider.Indicator />
-							</Slider.Track>
-							<Slider.Thumb index={0} />
-							<Slider.Thumb index={1} />
-						</Slider.Control>
-					</Slider.Root>
-				</Field>
+					/>
+				</Field.Root>
 			</div>
 		);
 	},
@@ -160,28 +137,28 @@ export const FieldSlider: Story = {
 export const FieldFieldset: Story = {
 	render: () => (
 		<div className="w-full max-w-md space-y-6">
-			<FieldSet>
-				<FieldLegend>Address Information</FieldLegend>
-				<FieldDescription>
+			<FieldGroup.Set>
+				<FieldGroup.Legend>Address Information</FieldGroup.Legend>
+				<FieldGroup.Description>
 					We need your address to deliver your order.
-				</FieldDescription>
-				<FieldGroup>
-					<Field>
-						<FieldLabel htmlFor="street">Street Address</FieldLabel>
+				</FieldGroup.Description>
+				<FieldGroup.Group>
+					<Field.Root>
+						<Field.Label htmlFor="street">Street Address</Field.Label>
 						<Input id="street" type="text" placeholder="123 Main St" />
-					</Field>
+					</Field.Root>
 					<div className="grid grid-cols-2 gap-4">
-						<Field>
-							<FieldLabel htmlFor="city">City</FieldLabel>
+						<Field.Root>
+							<Field.Label htmlFor="city">City</Field.Label>
 							<Input id="city" type="text" placeholder="New York" />
-						</Field>
-						<Field>
-							<FieldLabel htmlFor="zip">Postal Code</FieldLabel>
+						</Field.Root>
+						<Field.Root>
+							<Field.Label htmlFor="zip">Postal Code</Field.Label>
 							<Input id="zip" type="text" placeholder="90502" />
-						</Field>
+						</Field.Root>
 					</div>
-				</FieldGroup>
-			</FieldSet>
+				</FieldGroup.Group>
+			</FieldGroup.Set>
 		</div>
 	),
 };
@@ -189,67 +166,67 @@ export const FieldFieldset: Story = {
 export const FieldCheckbox: Story = {
 	render: () => (
 		<div className="w-full max-w-lg">
-			<FieldGroup>
-				<FieldSet>
-					<FieldLegend variant="label">
+			<FieldGroup.Root>
+				<FieldGroup.Set>
+					<FieldGroup.Legend variant="label">
 						Show these items on the desktop
-					</FieldLegend>
-					<FieldDescription>
+					</FieldGroup.Legend>
+					<FieldGroup.Description>
 						Select the items you want to show on the desktop.
-					</FieldDescription>
-					<FieldGroup className="gap-3">
-						<Field orientation="horizontal">
+					</FieldGroup.Description>
+					<FieldGroup.Group className="gap-3">
+						<Field.Root orientation="horizontal">
 							<Checkbox id="finder-pref-9k2-hard-disks-ljj" defaultChecked />
-							<FieldLabel
+							<Field.Label
 								htmlFor="finder-pref-9k2-hard-disks-ljj"
 								className="font-normal"
 							>
 								Hard disks
-							</FieldLabel>
-						</Field>
-						<Field orientation="horizontal">
+							</Field.Label>
+						</Field.Root>
+						<Field.Root orientation="horizontal">
 							<Checkbox id="finder-pref-9k2-external-disks-1yg" />
-							<FieldLabel
+							<Field.Label
 								htmlFor="finder-pref-9k2-external-disks-1yg"
 								className="font-normal"
 							>
 								External disks
-							</FieldLabel>
-						</Field>
-						<Field orientation="horizontal">
+							</Field.Label>
+						</Field.Root>
+						<Field.Root orientation="horizontal">
 							<Checkbox id="finder-pref-9k2-cds-dvds-fzt" />
-							<FieldLabel
+							<Field.Label
 								htmlFor="finder-pref-9k2-cds-dvds-fzt"
 								className="font-normal"
 							>
 								CDs, DVDs, and iPods
-							</FieldLabel>
-						</Field>
-						<Field orientation="horizontal">
+							</Field.Label>
+						</Field.Root>
+						<Field.Root orientation="horizontal">
 							<Checkbox id="finder-pref-9k2-connected-servers-6l2" />
-							<FieldLabel
+							<Field.Label
 								htmlFor="finder-pref-9k2-connected-servers-6l2"
 								className="font-normal"
 							>
 								Connected servers
-							</FieldLabel>
-						</Field>
-					</FieldGroup>
-				</FieldSet>
-				<FieldSeparator />
-				<Field orientation="horizontal">
+							</Field.Label>
+						</Field.Root>
+					</FieldGroup.Group>
+				</FieldGroup.Set>
+				<FieldGroup.Separator />
+				<Field.Root orientation="horizontal">
 					<Checkbox id="finder-pref-9k2-sync-folders-nep" defaultChecked />
-					<FieldContent>
-						<FieldLabel htmlFor="finder-pref-9k2-sync-folders-nep">
+					<Field.Content>
+						<Field.Label htmlFor="finder-pref-9k2-sync-folders-nep">
 							Sync Desktop & Documents folders
-						</FieldLabel>
-						<FieldDescription>
+						</Field.Label>
+						<Field.Description>
 							Your Desktop & Documents folders are being synced with iCloud
 							Drive. You can access them from other devices.
-						</FieldDescription>
-					</FieldContent>
-				</Field>
-			</FieldGroup>
+						</Field.Description>
+					</Field.Content>
+				</Field.Root>
+			</FieldGroup.Root>
 		</div>
 	),
 };
@@ -257,32 +234,32 @@ export const FieldCheckbox: Story = {
 export const FieldRadio: Story = {
 	render: () => (
 		<div className="w-full max-w-md">
-			<FieldSet>
-				<FieldLabel>Subscription Plan</FieldLabel>
-				<FieldDescription>
+			<FieldGroup.Set>
+				<Field.Label>Subscription Plan</Field.Label>
+				<Field.Description>
 					Yearly and lifetime plans offer significant savings.
-				</FieldDescription>
+				</Field.Description>
 				<RadioGroup.Root defaultValue="monthly">
-					<Field orientation="horizontal">
+					<Field.Root orientation="horizontal">
 						<RadioGroup.Item value="monthly" id="plan-monthly" />
-						<FieldLabel htmlFor="plan-monthly" className="font-normal">
+						<Field.Label htmlFor="plan-monthly" className="font-normal">
 							Monthly ($9.99/month)
-						</FieldLabel>
-					</Field>
-					<Field orientation="horizontal">
+						</Field.Label>
+					</Field.Root>
+					<Field.Root orientation="horizontal">
 						<RadioGroup.Item value="yearly" id="plan-yearly" />
-						<FieldLabel htmlFor="plan-yearly" className="font-normal">
+						<Field.Label htmlFor="plan-yearly" className="font-normal">
 							Yearly ($99.99/year)
-						</FieldLabel>
-					</Field>
-					<Field orientation="horizontal">
+						</Field.Label>
+					</Field.Root>
+					<Field.Root orientation="horizontal">
 						<RadioGroup.Item value="lifetime" id="plan-lifetime" />
-						<FieldLabel htmlFor="plan-lifetime" className="font-normal">
+						<Field.Label htmlFor="plan-lifetime" className="font-normal">
 							Lifetime ($299.99)
-						</FieldLabel>
-					</Field>
+						</Field.Label>
+					</Field.Root>
 				</RadioGroup.Root>
-			</FieldSet>
+			</FieldGroup.Set>
 		</div>
 	),
 };
@@ -290,16 +267,16 @@ export const FieldRadio: Story = {
 export const FieldSwitch: Story = {
 	render: () => (
 		<div className="w-full max-w-lg">
-			<Field orientation="horizontal">
-				<FieldContent>
-					<FieldLabel htmlFor="2fa">Multi-factor authentication</FieldLabel>
-					<FieldDescription>
+			<Field.Root orientation="horizontal">
+				<Field.Content>
+					<Field.Label htmlFor="2fa">Multi-factor authentication</Field.Label>
+					<Field.Description>
 						Enable multi-factor authentication. If you do not have a two-factor
 						device, you can use a one-time code sent to your email.
-					</FieldDescription>
-				</FieldContent>
+					</Field.Description>
+				</Field.Content>
 				<Switch id="2fa" />
-			</Field>
+			</Field.Root>
 		</div>
 	),
 };
@@ -307,40 +284,40 @@ export const FieldSwitch: Story = {
 export const FieldChoiceCard: Story = {
 	render: () => (
 		<div className="w-full max-w-lg">
-			<FieldGroup>
-				<FieldSet>
-					<FieldLabel htmlFor="compute-environment-p8w">
+			<FieldGroup.Root>
+				<FieldGroup.Set>
+					<Field.Label htmlFor="compute-environment-p8w">
 						Compute Environment
-					</FieldLabel>
-					<FieldDescription>
+					</Field.Label>
+					<Field.Description>
 						Select the compute environment for your cluster.
-					</FieldDescription>
+					</Field.Description>
 					<RadioGroup.Root defaultValue="kubernetes">
-						<FieldLabel htmlFor="kubernetes-r2h">
-							<Field orientation="horizontal">
-								<FieldContent>
-									<FieldTitle>Kubernetes</FieldTitle>
-									<FieldDescription>
-										Run GPU workloads on a K8s configured cluster.
-									</FieldDescription>
-								</FieldContent>
+						<Field.Label htmlFor="kubernetes-r2h">
+							<Field.Root orientation="horizontal">
 								<RadioGroup.Item value="kubernetes" id="kubernetes-r2h" />
-							</Field>
-						</FieldLabel>
-						<FieldLabel htmlFor="vm-z4k">
-							<Field orientation="horizontal">
-								<FieldContent>
-									<FieldTitle>Virtual Machine</FieldTitle>
-									<FieldDescription>
-										Access a VM configured cluster to run GPU workloads.
-									</FieldDescription>
-								</FieldContent>
+								<Field.Content>
+									<Field.Title>Kubernetes</Field.Title>
+									<Field.Description>
+										Run GPU workloads on a K8s configured cluster.
+									</Field.Description>
+								</Field.Content>
+							</Field.Root>
+						</Field.Label>
+						<Field.Label htmlFor="vm-z4k">
+							<Field.Root orientation="horizontal">
 								<RadioGroup.Item value="vm" id="vm-z4k" />
-							</Field>
-						</FieldLabel>
+								<Field.Content>
+									<Field.Title>Virtual Machine</Field.Title>
+									<Field.Description>
+										Access a VM configured cluster to run GPU workloads.
+									</Field.Description>
+								</Field.Content>
+							</Field.Root>
+						</Field.Label>
 					</RadioGroup.Root>
-				</FieldSet>
-			</FieldGroup>
+				</FieldGroup.Set>
+			</FieldGroup.Root>
 		</div>
 	),
 };
@@ -348,45 +325,45 @@ export const FieldChoiceCard: Story = {
 export const FieldGroupExample: Story = {
 	render: () => (
 		<div className="w-full max-w-lg">
-			<FieldGroup>
-				<FieldSet>
-					<FieldLabel>Responses</FieldLabel>
-					<FieldDescription>
+			<FieldGroup.Root>
+				<FieldGroup.Set>
+					<Field.Label>Responses</Field.Label>
+					<Field.Description>
 						Get notified when ChatGPT responds to requests that take time, like
 						research or image generation.
-					</FieldDescription>
-					<FieldGroup data-slot="checkbox-group">
-						<Field orientation="horizontal">
+					</Field.Description>
+					<FieldGroup.Group data-slot="checkbox-group">
+						<Field.Root orientation="horizontal">
 							<Checkbox id="push" defaultChecked disabled />
-							<FieldLabel htmlFor="push" className="font-normal">
+							<Field.Label htmlFor="push" className="font-normal">
 								Push notifications
-							</FieldLabel>
-						</Field>
-					</FieldGroup>
-				</FieldSet>
-				<FieldSeparator />
-				<FieldSet>
-					<FieldLabel>Tasks</FieldLabel>
-					<FieldDescription>
+							</Field.Label>
+						</Field.Root>
+					</FieldGroup.Group>
+				</FieldGroup.Set>
+				<FieldGroup.Separator />
+				<FieldGroup.Set>
+					<Field.Label>Tasks</Field.Label>
+					<Field.Description>
 						Get notified when tasks you&apos;ve created have updates.{" "}
 						<a href="#manage-tasks">Manage tasks</a>
-					</FieldDescription>
-					<FieldGroup data-slot="checkbox-group">
-						<Field orientation="horizontal">
+					</Field.Description>
+					<FieldGroup.Group data-slot="checkbox-group">
+						<Field.Root orientation="horizontal">
 							<Checkbox id="push-tasks" />
-							<FieldLabel htmlFor="push-tasks" className="font-normal">
+							<Field.Label htmlFor="push-tasks" className="font-normal">
 								Push notifications
-							</FieldLabel>
-						</Field>
-						<Field orientation="horizontal">
+							</Field.Label>
+						</Field.Root>
+						<Field.Root orientation="horizontal">
 							<Checkbox id="email-tasks" />
-							<FieldLabel htmlFor="email-tasks" className="font-normal">
+							<Field.Label htmlFor="email-tasks" className="font-normal">
 								Email notifications
-							</FieldLabel>
-						</Field>
-					</FieldGroup>
-				</FieldSet>
-			</FieldGroup>
+							</Field.Label>
+						</Field.Root>
+					</FieldGroup.Group>
+				</FieldGroup.Set>
+			</FieldGroup.Root>
 		</div>
 	),
 };

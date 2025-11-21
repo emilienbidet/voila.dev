@@ -2,10 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "@voila.dev/ui/components/badge";
 import { Breadcrumb } from "@voila.dev/ui/components/breadcrumb";
 import {
-	ChevronRight,
 	ChevronsRight,
 	Component,
-	Home,
+	House,
 	Minus,
 	Route,
 	Slash,
@@ -49,7 +48,7 @@ export const WithIcons: Story = {
 				<Breadcrumb.List>
 					<Breadcrumb.Item>
 						<Breadcrumb.Link href="#">
-							<Home className="size-4" />
+							<House className="size-4" />
 						</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator>
@@ -71,7 +70,7 @@ export const WithIcons: Story = {
 				<Breadcrumb.List>
 					<Breadcrumb.Item>
 						<Breadcrumb.Link href="#">
-							<Home className="size-4" />
+							<House className="size-4" />
 						</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator>

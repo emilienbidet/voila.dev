@@ -1,5 +1,11 @@
 # @voila.dev/ui
 
+## 1.0.11
+
+### Patch Changes
+
+- Refac field components
+
 ## 1.0.10
 
 - Icons name fix
